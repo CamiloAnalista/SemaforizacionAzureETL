@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/18/2022 12:30:04 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\dmarin"
+  DTS:DTSID="{138CE966-5937-47E3-B45D-89EB2D58CB93}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="loadFactAmino"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{70880897-BD48-444F-9C90-BAD55A787C8F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\loadFactAmino"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AC63683D-9CA4-4849-B7AD-5B8EDD5568A5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="loadFactAmino"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"TRUNCATE TABLE [dbo].[factAmino]
+INSERT INTO [dbo].[factAmino] ([SRK_Parametro],[SRK_Paciente],SRK_Fecha, SK_TipoEdad, Resultado, Validado, Edad, Genero)
+SELECT 	P.[SRK_Parametro]
+	  ,[SRK_Paciente]
+	  ,SRK_FechaSolicitud
+	  , T.SK_TipoEdad
+	  ,CAST(REPLACE(TRIM(stuff([Resultado], 1, patindex('%[0-9]%', [Resultado])-1, '')),'*','') AS NUMERIC(12,4)) resultado
+      ,[Validado1]
+      ,[UnidadEdad] Edad
+      ,CAST([SexoPaciente] AS CHAR(1)) Genero
+	  --,P.BK_CodigoParametro
+	  --,[NombreParametro]
+  FROM [SemaforizacionColcan].[dbo].[FactDiagnosticos] D
+  INNER JOIN [SemaforizacionColcan].[dbo].[DimParametro] P ON P.SRK_Parametro = D.SRK_Parametro
+  INNER JOIN dbo.dimTipoEdad T ON T.TipoEdad = D.TipoEdad
+  WHERE (P.BK_CodigoParametro LIKE '1744%' OR P.BK_CodigoParametro LIKE '1745%')
+  AND Isnumeric([Resultado])=1 
+  AND [Resultado] NOT IN ('NI','ANEXO','VER ANEXO','NO DETECTABLE','NEGATIVO') 
+  AND LEN(TRIM([Resultado])) &gt;0 AND [Resultado] NOT LIKE '%INFERI%'
+AND [Resultado] NOT LIKE '%MAYOR%' AND [Resultado] NOT LIKE '%MENOR%' AND [Resultado] NOT LIKE '%/%' "</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[factAmino]&#xA;INSERT INTO [dbo].[factAmino] ([SRK_Parametro],[SRK_Paciente],SRK_Fecha, SK_TipoEdad, Resultado, Validado, Edad, Genero)&#xA;SELECT &#x9;P.[SRK_Parametro]&#xA;&#x9;  ,[SRK_Paciente]&#xA;&#x9;  ,SRK_FechaSolicitud&#xA;&#x9;  , T.SK_TipoEdad&#xA;&#x9;  ,CAST(REPLACE(TRIM(stuff([Resultado], 1, patindex('%[0-9]%', [Resultado])-1, '')),'*','') AS NUMERIC(12,4)) resultado&#xA;      ,[Validado1]&#xA;      ,[UnidadEdad] Edad&#xA;      ,CAST([SexoPaciente] AS CHAR(1)) Genero&#xA;&#x9;  --,P.BK_CodigoParametro&#xA;&#x9;  --,[NombreParametro]&#xA;  FROM [SemaforizacionColcan].[dbo].[FactDiagnosticos] D&#xA;  INNER JOIN [SemaforizacionColcan].[dbo].[DimParametro] P ON P.SRK_Parametro = D.SRK_Parametro&#xA;  INNER JOIN dbo.dimTipoEdad T ON T.TipoEdad = D.TipoEdad&#xA;  WHERE (P.BK_CodigoParametro LIKE '1744%' OR P.BK_CodigoParametro LIKE '1745%')&#xA;  AND Isnumeric([Resultado])=1 &#xA;  AND [Resultado] NOT IN ('NI','ANEXO','VER ANEXO','NO DETECTABLE','NEGATIVO') &#xA;  AND LEN(TRIM([Resultado])) &gt;0 AND [Resultado] NOT LIKE '%INFERI%'&#xA;AND [Resultado] NOT LIKE '%MAYOR%' AND [Resultado] NOT LIKE '%MENOR%' AND [Resultado] NOT LIKE '%/%' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="148,42.6666666666667"
+          Id="Package\loadFactAmino"
+          TopLeft="77.0833321847022,78.4333319308361" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

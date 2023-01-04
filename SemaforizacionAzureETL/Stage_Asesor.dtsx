@@ -1,0 +1,710 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/2/2018 5:00:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PRUEBAS-BI"
+  DTS:CreatorName="PRUEBAS-BI\Soportebi"
+  DTS:DTSID="{86A4D2F2-3F23-4D17-ACA5-6D272407F336}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Stage_Asesor"
+  DTS:PackageType="5"
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{7B954BEF-2AE6-4360-8F2A-A706F3F922FD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Dim Asesor"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{AF54746E-B4CD-405B-A65A-DEF5D23A5BA6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dim Asesor"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Dim Asesor\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dim Asesor\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Inputs[Data Conversion Input].Columns[IDCORDINADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="IDCORDINADOR"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[IDCORDINADOR]" />
+                    <inputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Inputs[Data Conversion Input].Columns[NOMBRE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="NOMBRE"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[NOMBRE]" />
+                    <inputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Inputs[Data Conversion Input].Columns[CODIGOASESOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="CODIGOASESOR"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[CODIGOASESOR]" />
+                    <inputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Inputs[Data Conversion Input].Columns[ACTIVO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="ACTIVO"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[ACTIVO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Dim Asesor\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de IDCORDINADOR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de IDCORDINADOR]"
+                      name="Copia de IDCORDINADOR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[IDCORDINADOR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CODIGOASESOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CODIGOASESOR]"
+                      name="Copia de CODIGOASESOR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[CODIGOASESOR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NOMBRE]"
+                      name="Copia de NOMBRE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[NOMBRE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de ACTIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de ACTIVO]"
+                      name="Copia de ACTIVO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[ACTIVO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Dim Asesor\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim Asesor\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[Asesor]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim Asesor\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de NOMBRE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de NOMBRE"
+                      externalMetadataColumnId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre_Asesor]"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NOMBRE]" />
+                    <inputColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de CODIGOASESOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de CODIGOASESOR"
+                      externalMetadataColumnId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Codigo_Asesor]"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CODIGOASESOR]" />
+                    <inputColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de ACTIVO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Copia de ACTIVO"
+                      externalMetadataColumnId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Activo]"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de ACTIVO]" />
+                    <inputColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de IDCORDINADOR]"
+                      cachedDataType="i4"
+                      cachedName="Copia de IDCORDINADOR"
+                      externalMetadataColumnId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IDAsesor]"
+                      lineageId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de IDCORDINADOR]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Codigo_Asesor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Codigo_Asesor" />
+                    <externalMetadataColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Activo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Activo" />
+                    <externalMetadataColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IDAsesor]"
+                      dataType="i4"
+                      name="BK_IDAsesor" />
+                    <externalMetadataColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre_Asesor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nombre_Asesor" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim Asesor\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim Asesor\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim Asesor\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim Asesor\QUERY ASESORES"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="QUERY ASESORES"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT IDCORDINADOR, 
+LTRIM(SUBSTRING(NOMBRE,1,6)) AS CODIGOASESOR, NOMBRE,
+CASE WHEN ACTIVO = 1 THEN 'ACTIVO' WHEN ACTIVO = 0 THEN 'INACTIVO' ELSE 'N/A' END AS ACTIVO
+FROM GENERAL.TB_CORDINADORCUENTA</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim Asesor\QUERY ASESORES.Connections[OleDbConnection]"
+                  connectionManagerID="{EA13A1CF-4513-41F7-A69E-550CBEE06684}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[COLCANBI Athenea]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[IDCORDINADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].ExternalColumns[IDCORDINADOR]"
+                      length="50"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[IDCORDINADOR]"
+                      name="IDCORDINADOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[CODIGOASESOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].ExternalColumns[CODIGOASESOR]"
+                      length="6"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[CODIGOASESOR]"
+                      name="CODIGOASESOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[ACTIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].ExternalColumns[ACTIVO]"
+                      length="8"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[ACTIVO]"
+                      name="ACTIVO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE]"
+                      length="80"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].Columns[NOMBRE]"
+                      name="NOMBRE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].ExternalColumns[IDCORDINADOR]"
+                      dataType="i4"
+                      name="IDCORDINADOR" />
+                    <externalMetadataColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].ExternalColumns[CODIGOASESOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="CODIGOASESOR" />
+                    <externalMetadataColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].ExternalColumns[ACTIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="ACTIVO" />
+                    <externalMetadataColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="NOMBRE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[IDCORDINADOR]"
+                      dataType="i4"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[IDCORDINADOR]"
+                      name="IDCORDINADOR" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[CODIGOASESOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[CODIGOASESOR]"
+                      name="CODIGOASESOR" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[NOMBRE]"
+                      name="NOMBRE" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[ACTIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[ACTIVO]"
+                      name="ACTIVO" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Dim Asesor.Paths[Data Conversion Output]"
+              endId="Package\Dim Asesor\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Dim Asesor\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Dim Asesor.Paths[OLE DB Source Output]"
+              endId="Package\Dim Asesor\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Dim Asesor\QUERY ASESORES.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE ASESOR"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{87D8F381-6DBA-48E2-9F9E-594648121BA3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE ASESOR"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="Truncate table Stage.Asesor;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{5ADC185B-6413-42E9-865F-BBF9CC4570DC}"
+      DTS:From="Package\TRUNCATE ASESOR"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Dim Asesor" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Dim Asesor"
+          TopLeft="350,94.6666666666667" />
+        <NodeLayout
+          Size="173.333333333334,42"
+          Id="Package\TRUNCATE ASESOR"
+          TopLeft="327,24" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="414.75,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.6666666666667"
+              Start="0,0"
+              End="0,21.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Dim Asesor">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145.333333333334,42.6666666666667"
+          Id="Package\Dim Asesor\OLE DB Destination"
+          TopLeft="293,183" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Dim Asesor\Data Conversion"
+          TopLeft="284,112" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Dim Asesor\QUERY ASESORES"
+          TopLeft="283.333333333334,40.3333333333333" />
+        <EdgeLayout
+          Id="Package\Dim Asesor.Paths[Data Conversion Output]"
+          TopLeft="363.75,154">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim Asesor.Paths[OLE DB Source Output]"
+          TopLeft="364.166666666667,82.3333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.6666666666667"
+              Start="0,0"
+              End="0,22.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim Asesor\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim Asesor\QUERY ASESORES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

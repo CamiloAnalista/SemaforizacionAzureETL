@@ -1,0 +1,1393 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/9/2022 3:50:26 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{B1046B40-86AB-4DCC-9483-B299A9C99064}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Stage_VentasCTS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="78"
+  DTS:VersionGUID="{DB6FDB8B-25D2-4DEF-BF98-5C4DD2CE5F77}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4525B5E0-B109-421B-8513-48B04D35B120}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;2021&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_ano">
+      <DTS:VariableValue
+        DTS:DataType="8">2021</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{47AA4984-C59D-4E65-A5EE-7CF6990D3D26}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_ANOMES">
+      <DTS:VariableValue
+        DTS:DataType="8">202202</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{168B11E8-D895-4628-AB80-5EFCB4380361}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;202107&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_periodo">
+      <DTS:VariableValue
+        DTS:DataType="8">202107</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1188D384-02C7-41D8-BED7-52DA223474BD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PeriodoProcesar">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9454F20D-1B8B-465E-80A4-479639D52D58}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_STR, 4, 1252) DATEPART(&quot;yy&quot; , GETDATE()) + RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;mm&quot; , GETDATE()), 2)+  RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;dd&quot; , GETDATE()), 2)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PROJECT_DATE">
+      <DTS:VariableValue
+        DTS:DataType="8">20230104</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9EC0229A-7EE0-4542-B2E1-045E8888AF33}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PROJECT_KEY">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1535AF5B-6F98-4471-BB52-A5F8539ADB82}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT DS.IDSOLICITUD, SP.IDPACIENTE, DS.ANO, DS.IDPARAMETRO, SP.ANULADA,&#xA;CASE WHEN DS.IDGRUPO &lt;&gt; 0 THEN DS.IDGRUPO ELSE DS.IDPARAMETRO END AS IDGRUPO,&#xA;CAST(SP.FECHASOLICITUD AS  date) AS FECHASOLICITUD, CONVERT(VARCHAR(8), SP.FECHASOLICITUD, 108) AS HORASOLICITUD, &#xA;DS.USUARIOINGRESO,LTRIM(RTRIM(DS.RESULTADO)) AS RESULTADO, &#xA;DS.PATOLOGICO, DS.VALIDADO1, DS.USUARIOVALIDO1,CAST( DS.FECHAVALIDACION1 AS DATE) AS FECHAVALIDACION1,&#xA;CONVERT(VARCHAR(8), DS.FECHAVALIDACION1, 108) AS HORAVALIDACION1, DS.VALIDADO2, DS.USUARIOVALIDO2, &#xA;CAST( DS.FECHAVALIDACION2 AS DATE) AS FECHAVALIDACION2,   CONVERT(VARCHAR(8), DS.FECHAVALIDACION2, 108) AS HORAVALIDACION2, DS.DETENIDO,&#xA;DS.IDNORMALIDAD, DS.COMENTARIO AS COMENTARIO1,DS.CODCOMENTARIO,  DS.ANTIBIOGRAMA, DS.REPETICION, DS.MUESTRARECIBIDA,&#xA;DS.IDMUESTRA, SP.COMENTARIO, CAST(SP.D0 AS varchar) AS IDCENTROATENCION,&#xA;ISNULL(CONVERT(int,SP.D1),0) AS IDPLAN,&#xA;ISNULL(CONVERT(int,SP.D2),0) AS CODMEDICO, CAST(SP.D4 AS varchar) D4, CAST(SP.D5 AS varchar) D5, &#xA;CASE WHEN SP.D6 = 2 THEN 1 ELSE 0 END ESTADOEMBARAZO, &#xA;CAST(SP.D7 AS varchar) D7, CAST(SP.D8 AS varchar) D8, CAST(SP.D9 AS varchar) D9, SP.CONSECUTIVO ,CONCAT (SP.ANO, '-', SP.NUMEROSOLICITUD) CODIGOBARRAS,&#xA;REPLACE(REPLACE(REPLACE(convert(varchar(700), LTRIM(RTRIM(C.COMENTARIO))),CHAR(9),''),CHAR(10),''),CHAR(13),'') AS COMENTARIOTEXTO,&#xA;CASE WHEN SP.FECHASOLICITUD &lt;= PAC.FECHANACIMIENTO THEN STAGECOLCANDWH.dbo.fnAgnos(SP.FECHASOLICITUD,PAC.FECHANACIMIENTO)&#xA;ELSE STAGECOLCANDWH.dbo.fnAgnos(PAC.FECHANACIMIENTO,SP.FECHASOLICITUD) END AS EdadPaciente,&#xA;CASE WHEN PAC.IDSEXO = 1 THEN 'MASCULINO' WHEN PAC.IDSEXO = 2 THEN 'FEMENINO' ELSE 'AMBOS' END AS SexoPac,&#xA;CAST(SP.D3 AS BIT) AS URGENCIA,&#xA;CAST(DS.FECHAIMPRIMIO AS datE) AS FECHAIMPRIMIO, DS.USUARIOIMPRIMIO, CAST(DIMDIAG.VALOR AS varchar(6)) AS NombreDiagnostico,&#xA;H.RESULTADO AS PERFIL_SENS, &#xA;H.MEDICAMENTO, H.MICRO,CAST(K.NOMBRE AS varchar(200)) AS IPSOrigen, &#xA;CAST(DIMRAD.VALOR AS varchar(100)) AS IDRADICACION, &#xA;CAST(DIMORD.VALOR AS varchar(100)) AS NO_ORDENAMIENTO,&#xA;CAST(COMEN.COMENTARIO AS varchar(200)) AS COMEN_SOLICITUD,&#xA;CAST(DS.USUARIORESULTADO AS varchar(100)) AS USUARIO_RESULTADO,&#xA;IIF(DIMVIAJ.VALOR =1,'SI',IIF(DIMVIAJ.VALOR=2,'NO','--')) AS IDVIAJERO,&#xA;CAST(DIMNEV.VALOR AS varchar(50)) AS Nevera,&#xA;ROW_NUMBER() OVER(ORDER BY SP.IDPACIENTE) AS rowid&#xA;FROM LABORATORIO.TB_CABSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot; SP&#xA;LEFT JOIN DIMENSIONES.TB_CABSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot; DIMDIAG ON SP.IDSOLICITUD = DIMDIAG.IDSOLICITUD AND DIMDIAG.DIMENSION=19 AND DIMDIAG.ANO = &quot; + LEFT(@[User::V_ANOMES],4) + &quot;&#xA;LEFT JOIN DIMENSIONES.TB_CABSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot; DIMRAD ON SP.IDSOLICITUD = DIMRAD.IDSOLICITUD AND DIMRAD.DIMENSION=17 AND DIMRAD.ANO = &quot; + LEFT(@[User::V_ANOMES],4) + &quot;&#xA;LEFT JOIN DIMENSIONES.TB_CABSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot; DIMVIAJ ON SP.IDSOLICITUD = DIMVIAJ.IDSOLICITUD AND DIMVIAJ.DIMENSION=22 AND DIMVIAJ.ANO = &quot; + LEFT(@[User::V_ANOMES],4) + &quot;&#xA;LEFT JOIN DIMENSIONES.TB_CABSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot; DIMNEV ON SP.IDSOLICITUD = DIMNEV.IDSOLICITUD AND DIMNEV.DIMENSION=23 AND DIMNEV.ANO = &quot; + LEFT(@[User::V_ANOMES],4) + &quot;&#xA;LEFT JOIN DIMENSIONES.TB_CABSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot; DIMORD ON SP.IDSOLICITUD = DIMORD.IDSOLICITUD AND DIMORD.DIMENSION=13 AND DIMORD.ANO = &quot; + LEFT(@[User::V_ANOMES],4) + &quot;&#xA;INNER JOIN GENERAL.TB_PACIENTES PAC ON PAC.IDPACIENTE = SP.IDPACIENTE&#xA;INNER JOIN LABORATORIO.TB_DETSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot; DS ON  DS.IDSOLICITUD = SP.IDSOLICITUD&#xA;LEFT JOIN  LABORATORIO.TB_DETCOMENTARIOS&quot; + LEFT(@[User::V_ANOMES],4) + &quot; C ON DS.IDSOLICITUD = C.IDSOLICITUD AND DS.IDPARAMETRO = C.IDPARAMETRO&#xA;LEFT JOIN (&#xA;SELECT H.IDSOLICITUD, H.IDPARAMETRO, H.RESULTADO, &#xA;I.NOMBRE AS MEDICAMENTO, J.NOMBRE AS MICRO FROM LABORATORIO.TB_DETMICROBIOLOGIA&quot; + LEFT(@[User::V_ANOMES],4) + &quot; H &#xA;LEFT JOIN LABORATORIO.TB_ANTIBIOTICOS I ON I.IDANTIBIOTICO = H.IDANTIBIOGRAMA&#xA;LEFT JOIN LABORATORIO.TB_MICROORGANISMOS J ON J.IDMICROORGANISMO = H.IDMICROORGANISMO) H ON H.IDSOLICITUD = DS.IDSOLICITUD AND H.IDPARAMETRO = DS.IDPARAMETRO&#xA;LEFT JOIN LABORATORIO.TB_CABCOMENTARIOS&quot; + LEFT(@[User::V_ANOMES],4) + &quot; COMEN ON COMEN.ANO = DS.ANO AND COMEN.IDSOLICITUD = DS.IDSOLICITUD&#xA;LEFT JOIN DIMENSIONES.TB_LISTAS K ON K.IDLISTA = SP.D7 and K.LISTA = 'IPS'&#xA;WHERE SP.ANULADA = 0 AND CONVERT(VARCHAR(6), SP.FECHASOLICITUD, 112) = &quot; + @[User::V_ANOMES]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_QUERY_SOURCE">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT DS.IDSOLICITUD, SP.IDPACIENTE, DS.ANO, DS.IDPARAMETRO, SP.ANULADA,
+CASE WHEN DS.IDGRUPO &lt;&gt; 0 THEN DS.IDGRUPO ELSE DS.IDPARAMETRO END AS IDGRUPO,
+CAST(SP.FECHASOLICITUD AS  date) AS FECHASOLICITUD, CONVERT(VARCHAR(8), SP.FECHASOLICITUD, 108) AS HORASOLICITUD, 
+DS.USUARIOINGRESO,LTRIM(RTRIM(DS.RESULTADO)) AS RESULTADO, 
+DS.PATOLOGICO, DS.VALIDADO1, DS.USUARIOVALIDO1,CAST( DS.FECHAVALIDACION1 AS DATE) AS FECHAVALIDACION1,
+CONVERT(VARCHAR(8), DS.FECHAVALIDACION1, 108) AS HORAVALIDACION1, DS.VALIDADO2, DS.USUARIOVALIDO2, 
+CAST( DS.FECHAVALIDACION2 AS DATE) AS FECHAVALIDACION2,   CONVERT(VARCHAR(8), DS.FECHAVALIDACION2, 108) AS HORAVALIDACION2, DS.DETENIDO,
+DS.IDNORMALIDAD, DS.COMENTARIO AS COMENTARIO1,DS.CODCOMENTARIO,  DS.ANTIBIOGRAMA, DS.REPETICION, DS.MUESTRARECIBIDA,
+DS.IDMUESTRA, SP.COMENTARIO, CAST(SP.D0 AS varchar) AS IDCENTROATENCION,
+ISNULL(CONVERT(int,SP.D1),0) AS IDPLAN,
+ISNULL(CONVERT(int,SP.D2),0) AS CODMEDICO, CAST(SP.D4 AS varchar) D4, CAST(SP.D5 AS varchar) D5, 
+CASE WHEN SP.D6 = 2 THEN 1 ELSE 0 END ESTADOEMBARAZO, 
+CAST(SP.D7 AS varchar) D7, CAST(SP.D8 AS varchar) D8, CAST(SP.D9 AS varchar) D9, SP.CONSECUTIVO ,CONCAT (SP.ANO, '-', SP.NUMEROSOLICITUD) CODIGOBARRAS,
+REPLACE(REPLACE(REPLACE(convert(varchar(700), LTRIM(RTRIM(C.COMENTARIO))),CHAR(9),''),CHAR(10),''),CHAR(13),'') AS COMENTARIOTEXTO,
+CASE WHEN SP.FECHASOLICITUD &lt;= PAC.FECHANACIMIENTO THEN STAGECOLCANDWH.dbo.fnAgnos(SP.FECHASOLICITUD,PAC.FECHANACIMIENTO)
+ELSE STAGECOLCANDWH.dbo.fnAgnos(PAC.FECHANACIMIENTO,SP.FECHASOLICITUD) END AS EdadPaciente,
+CASE WHEN PAC.IDSEXO = 1 THEN 'MASCULINO' WHEN PAC.IDSEXO = 2 THEN 'FEMENINO' ELSE 'AMBOS' END AS SexoPac,
+CAST(SP.D3 AS BIT) AS URGENCIA,
+CAST(DS.FECHAIMPRIMIO AS datE) AS FECHAIMPRIMIO, DS.USUARIOIMPRIMIO, CAST(DIMDIAG.VALOR AS varchar(6)) AS NombreDiagnostico,
+H.RESULTADO AS PERFIL_SENS, 
+H.MEDICAMENTO, H.MICRO,CAST(K.NOMBRE AS varchar(200)) AS IPSOrigen, 
+CAST(DIMRAD.VALOR AS varchar(100)) AS IDRADICACION, 
+CAST(DIMORD.VALOR AS varchar(100)) AS NO_ORDENAMIENTO,
+CAST(COMEN.COMENTARIO AS varchar(200)) AS COMEN_SOLICITUD,
+CAST(DS.USUARIORESULTADO AS varchar(100)) AS USUARIO_RESULTADO,
+IIF(DIMVIAJ.VALOR =1,'SI',IIF(DIMVIAJ.VALOR=2,'NO','--')) AS IDVIAJERO,
+CAST(DIMNEV.VALOR AS varchar(50)) AS Nevera,
+ROW_NUMBER() OVER(ORDER BY SP.IDPACIENTE) AS rowid
+FROM LABORATORIO.TB_CABSOLICITUD2022 SP
+LEFT JOIN DIMENSIONES.TB_CABSOLICITUD2022 DIMDIAG ON SP.IDSOLICITUD = DIMDIAG.IDSOLICITUD AND DIMDIAG.DIMENSION=19 AND DIMDIAG.ANO = 2022
+LEFT JOIN DIMENSIONES.TB_CABSOLICITUD2022 DIMRAD ON SP.IDSOLICITUD = DIMRAD.IDSOLICITUD AND DIMRAD.DIMENSION=17 AND DIMRAD.ANO = 2022
+LEFT JOIN DIMENSIONES.TB_CABSOLICITUD2022 DIMVIAJ ON SP.IDSOLICITUD = DIMVIAJ.IDSOLICITUD AND DIMVIAJ.DIMENSION=22 AND DIMVIAJ.ANO = 2022
+LEFT JOIN DIMENSIONES.TB_CABSOLICITUD2022 DIMNEV ON SP.IDSOLICITUD = DIMNEV.IDSOLICITUD AND DIMNEV.DIMENSION=23 AND DIMNEV.ANO = 2022
+LEFT JOIN DIMENSIONES.TB_CABSOLICITUD2022 DIMORD ON SP.IDSOLICITUD = DIMORD.IDSOLICITUD AND DIMORD.DIMENSION=13 AND DIMORD.ANO = 2022
+INNER JOIN GENERAL.TB_PACIENTES PAC ON PAC.IDPACIENTE = SP.IDPACIENTE
+INNER JOIN LABORATORIO.TB_DETSOLICITUD2022 DS ON  DS.IDSOLICITUD = SP.IDSOLICITUD
+LEFT JOIN  LABORATORIO.TB_DETCOMENTARIOS2022 C ON DS.IDSOLICITUD = C.IDSOLICITUD AND DS.IDPARAMETRO = C.IDPARAMETRO
+LEFT JOIN (
+SELECT H.IDSOLICITUD, H.IDPARAMETRO, H.RESULTADO, 
+I.NOMBRE AS MEDICAMENTO, J.NOMBRE AS MICRO FROM LABORATORIO.TB_DETMICROBIOLOGIA2022 H 
+LEFT JOIN LABORATORIO.TB_ANTIBIOTICOS I ON I.IDANTIBIOTICO = H.IDANTIBIOGRAMA
+LEFT JOIN LABORATORIO.TB_MICROORGANISMOS J ON J.IDMICROORGANISMO = H.IDMICROORGANISMO) H ON H.IDSOLICITUD = DS.IDSOLICITUD AND H.IDPARAMETRO = DS.IDPARAMETRO
+LEFT JOIN LABORATORIO.TB_CABCOMENTARIOS2022 COMEN ON COMEN.ANO = DS.ANO AND COMEN.IDSOLICITUD = DS.IDSOLICITUD
+LEFT JOIN DIMENSIONES.TB_LISTAS K ON K.IDLISTA = SP.D7 and K.LISTA = 'IPS'
+WHERE SP.ANULADA = 0 AND CONVERT(VARCHAR(6), SP.FECHASOLICITUD, 112) = 202202</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\AnoMes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8FFBED53-3D49-4B34-960C-D15231595862}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="AnoMes"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"SELECT [value]
+  FROM [SemaforizacionColcan].[dbo].[ParamExec]
+  WHERE package = 'stageFactdiagnosticos' AND variable = 'AñoMes' AND [status] = 1
+  ORDER BY [ORDER]"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="SELECT [value]&#xA;  FROM [SemaforizacionColcan].[dbo].[ParamExec]&#xA;  WHERE package = 'stageFactdiagnosticos' AND variable = 'AñoMes' AND [status] = 1&#xA;  ORDER BY [ORDER]"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::V_PeriodoProcesar" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{16A65548-88C8-4416-8B23-D51B40B8E9BE}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{17037254-C497-4A83-88EB-97355FEA59F5}"
+        DTS:ObjectName="{17037254-C497-4A83-88EB-97355FEA59F5}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::V_PeriodoProcesar" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Finalizar"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E8FBD6C8-5331-4160-897A-D4515AB78B15}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Finalizar"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"SELECT GETDATE()"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+              SQLTask:SqlStatementSource="SELECT GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Stage Factdiagnosticos"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{3039D20F-C304-4187-BF4D-60F9D42045C5}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stage Factdiagnosticos"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Foreach Loop Container\Stage Factdiagnosticos.EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{328D7E4E-D475-4720-82C7-90C60DCD3414}"
+              DTS:EventID="7143521"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{AB495E35-3E73-49CF-8C33-9E3574786C25}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Foreach Loop Container\Stage Factdiagnosticos.EventHandlers[OnPostExecute]\Update Ejecucion"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{F55C4D24-DB60-44C9-9901-C2156312CE4D}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Update Ejecucion">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE [dbo].[logDataLoaders] SET EndDateTime = GETDATE() WHERE KeyLoader = '" + @[User::V_PROJECT_KEY] + @[User::V_ANOMES] + "'"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+                      SQLTask:SqlStatementSource="UPDATE [dbo].[logDataLoaders] SET EndDateTime = GETDATE() WHERE KeyLoader = '202202'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Foreach Loop Container\Stage Factdiagnosticos.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{D6D8F629-DB05-411C-AA01-50B6695BD43A}"
+              DTS:EventID="7143521"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{6F4C90B4-E038-4E5F-85DC-7844392BCC06}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Foreach Loop Container\Stage Factdiagnosticos.EventHandlers[OnPreExecute]\Inicio - periodo 202202"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{1DCDDB0D-3719-4BD1-8F1B-EF05D43A82BD}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Inicio - periodo 202202">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="Name">"Inicio - periodo " +  @[User::V_ANOMES]</DTS:PropertyExpression>
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"INSERT INTO [dbo].[logDataLoaders] (DateLog, KeyLoader, PackageName, TaskName, StartDateTime)
+VALUES ('" + @[User::V_PROJECT_DATE] + "','" + @[User::V_PROJECT_KEY] + @[User::V_ANOMES] + "','" + @[System::PackageName] + "','" + @[System::TaskName] + "', GETDATE())"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+                      SQLTask:SqlStatementSource="INSERT INTO [dbo].[logDataLoaders] (DateLog, KeyLoader, PackageName, TaskName, StartDateTime)&#xA;VALUES ('20230104','202202','Stage_VentasCTS','Inicio - periodo 202202', GETDATE())" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="StageVentasCTS"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Stage].[VentasCTS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Connections[OleDbConnection]"
+                      connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[IdVenta]"
+                          cachedDataType="i4"
+                          cachedName="IdVenta"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[IdVenta]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[IdVenta]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[MedioPago]"
+                          cachedDataType="wstr"
+                          cachedLength="200"
+                          cachedName="MedioPago"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[MedioPago]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[MedioPago]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[observacion]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="200"
+                          cachedName="observacion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[Observacion]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[observacion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[usuario]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="usuario"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[Usuario]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[usuario]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[NumTransaccion]"
+                          cachedDataType="wstr"
+                          cachedLength="150"
+                          cachedName="NumTransaccion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[NumTransaccion]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[NumTransaccion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[Examen]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="Examen"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[Examen]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[Examen]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[fecha_creacion]"
+                          cachedDataType="i4"
+                          cachedName="fecha_creacion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[FechaCreacion]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[fecha_creacion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[numero_factura]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="numero_factura"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[NumFactura]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[numero_factura]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[id_solicitud_athenea]"
+                          cachedDataType="i4"
+                          cachedName="id_solicitud_athenea"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[IdSolicitudAthenea]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[id_solicitud_athenea]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[fecha_pago]"
+                          cachedDataType="dbDate"
+                          cachedName="fecha_pago"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[FechaPago]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[fecha_pago]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[nombre_usuario]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="nombre_usuario"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[NombreUsuario]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[nombre_usuario]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[tipo_examen]"
+                          cachedDataType="i4"
+                          cachedName="tipo_examen"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[TipoExamen]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[tipo_examen]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[IdTipoServ]"
+                          cachedDataType="i4"
+                          cachedName="IdTipoServ"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[idTipo]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[IdTipoServ]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[valor]"
+                          cachedDataType="i8"
+                          cachedName="valor"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[Valor]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[valor]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[IdEstadoVenta]"
+                          cachedDataType="i4"
+                          cachedName="IdEstadoVenta"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[IdEstadoVenta]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[IdEstadoVenta]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].Columns[documento]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="documento"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[NumeroIdentificacion]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[documento]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[IdVenta]"
+                          dataType="i4"
+                          name="IdVenta" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[FechaCreacion]"
+                          dataType="i4"
+                          name="FechaCreacion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[NumFactura]"
+                          dataType="wstr"
+                          length="32"
+                          name="NumFactura" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[IdSolicitudAthenea]"
+                          dataType="i4"
+                          name="IdSolicitudAthenea" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[MedioPago]"
+                          dataType="wstr"
+                          length="16"
+                          name="MedioPago" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[FechaPago]"
+                          dataType="dbTimeStamp"
+                          name="FechaPago" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[Observacion]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="Observacion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[Usuario]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="Usuario" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[NombreUsuario]"
+                          codePage="1252"
+                          dataType="str"
+                          length="128"
+                          name="NombreUsuario" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[NumTransaccion]"
+                          dataType="i4"
+                          name="NumTransaccion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[Examen]"
+                          dataType="wstr"
+                          length="16"
+                          name="Examen" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[TipoExamen]"
+                          dataType="i4"
+                          name="TipoExamen" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[idTipo]"
+                          dataType="i4"
+                          name="idTipo" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[Valor]"
+                          dataType="i4"
+                          name="Valor" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[IdEstadoVenta]"
+                          dataType="i4"
+                          name="IdEstadoVenta" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input].ExternalColumns[NumeroIdentificacion]"
+                          dataType="wstr"
+                          length="32"
+                          name="NumeroIdentificacion" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="VentasCTS"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select vta.IdVenta, CONVERT(VARCHAR(8), vta.FechaVenta, 112) fecha_creacion,  
+vta.IdEstadoVenta,
+CASE WHEN vta.NoFactura IS NULL THEN 'NA' ELSE vta.NoFactura END as numero_factura, 
+CASE WHEN vta.IdSolicitudAthenea IS NULL THEN 0 ELSE vta.IdSolicitudAthenea END as id_solicitud_athenea,
+pag.MedioPago, CAST(vta.FechaTransaccion as date) fecha_pago, SUBSTRING(pac.documento,1,20) as documento,
+CAST(substring(vta.observacion,1,200) AS VARCHAR(200)) as observacion,
+usu.NombreUsuario as usuario, usu.NombreCompleto as nombre_usuario,
+vta.NumTransaccion,
+exa.CodAthenea as Examen, 
+ISNULL(det.PrecioVenta,0) as valor,
+2 as tipo_examen,
+vta.IdTipoServ
+from ventas vta
+left join Paciente pac on pac.Id_Paciente = vta.Id_Paciente
+left join Ventas_Detalle det on det.IdVenta = vta.IdVenta
+left join Examenes exa on exa.IdExamen = det.IdExamen
+left join MediosPagos pag on pag.IdMedioPago = vta.IdMedioPago
+left join Usuarios usu on usu.IdUsuario = vta.IdUsuario
+where det.IdChequeo IS NULL
+and cast(vta.FechaVenta as date) between cast(GETDATE()-20 as date) and cast(GETDATE() as date)
+/*and cast(vta.FechaVenta as date)
+between '2021-05-01' and '2021-06-30'*/
+
+UNION
+
+select vta.IdVenta,  CONVERT(VARCHAR(8), vta.FechaVenta, 112)  fecha_creacion,  
+vta.IdEstadoVenta,
+CASE WHEN vta.NoFactura IS NULL THEN 'NA' ELSE vta.NoFactura END as numero_factura, 
+CASE WHEN vta.IdSolicitudAthenea IS NULL THEN 0 ELSE vta.IdSolicitudAthenea END as id_solicitud_athenea,
+pag.MedioPago, CAST(vta.FechaTransaccion as date) fecha_pago, SUBSTRING(pac.documento,1,20) as documento,
+CAST(vta.observacion AS VARCHAR(200)),
+usu.NombreUsuario as usuario, usu.NombreCompleto as nombre_usuario,
+vta.NumTransaccion,
+cheq.CodAthenea as Examen, 
+ISNULL(det.PrecioVenta,0) as valor,
+1 as tipo_examen,
+vta.IdTipoServ
+from ventas vta
+left join Paciente pac on pac.Id_Paciente = vta.Id_Paciente
+left join Ventas_Detalle det on det.IdVenta = vta.IdVenta
+left join Chequeos cheq on cheq.IdChequeo = det.IdChequeo
+left join MediosPagos pag on pag.IdMedioPago = vta.IdMedioPago
+left join Usuarios usu on usu.IdUsuario = vta.IdUsuario
+where det.IdExamen IS NULL
+and cast(vta.FechaVenta as date) between cast(GETDATE()-20 as date) and cast(GETDATE() as date)
+/*and cast(vta.FechaVenta as date)
+between '2021-11-01' and '2021-12-10'*/</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Connections[OleDbConnection]"
+                      connectionManagerID="{C9FE00D0-52D3-42EB-A016-C19C42662FE3}:invalid"
+                      connectionManagerRefId="{C9FE00D0-52D3-42EB-A016-C19C42662FE3}:invalid"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[IdVenta]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[IdVenta]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[IdVenta]"
+                          name="IdVenta"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[fecha_creacion]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[fecha_creacion]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[fecha_creacion]"
+                          name="fecha_creacion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[numero_factura]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[numero_factura]"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[numero_factura]"
+                          name="numero_factura"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[id_solicitud_athenea]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[id_solicitud_athenea]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[id_solicitud_athenea]"
+                          name="id_solicitud_athenea"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[MedioPago]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[MedioPago]"
+                          length="200"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[MedioPago]"
+                          name="MedioPago"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[fecha_pago]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[fecha_pago]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[fecha_pago]"
+                          name="fecha_pago"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[documento]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[documento]"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[documento]"
+                          name="documento"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[observacion]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[observacion]"
+                          length="200"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[observacion]"
+                          name="observacion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[usuario]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[usuario]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[usuario]"
+                          name="usuario"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[nombre_usuario]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[nombre_usuario]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[nombre_usuario]"
+                          name="nombre_usuario"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[NumTransaccion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[NumTransaccion]"
+                          length="150"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[NumTransaccion]"
+                          name="NumTransaccion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[Examen]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[Examen]"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[Examen]"
+                          name="Examen"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[valor]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[valor]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[valor]"
+                          name="valor"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[tipo_examen]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[tipo_examen]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[tipo_examen]"
+                          name="tipo_examen"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[IdTipoServ]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[IdTipoServ]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[IdTipoServ]"
+                          name="IdTipoServ"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[IdEstadoVenta]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[IdEstadoVenta]"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].Columns[IdEstadoVenta]"
+                          name="IdEstadoVenta"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[IdVenta]"
+                          dataType="i4"
+                          name="IdVenta" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[fecha_creacion]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="fecha_creacion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[numero_factura]"
+                          dataType="wstr"
+                          length="100"
+                          name="numero_factura" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[id_solicitud_athenea]"
+                          dataType="i4"
+                          name="id_solicitud_athenea" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[MedioPago]"
+                          dataType="wstr"
+                          length="200"
+                          name="MedioPago" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[fecha_pago]"
+                          dataType="dbDate"
+                          name="fecha_pago" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[documento]"
+                          dataType="wstr"
+                          length="20"
+                          name="documento" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[observacion]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="observacion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[usuario]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="usuario" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[nombre_usuario]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="nombre_usuario" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[NumTransaccion]"
+                          dataType="wstr"
+                          length="150"
+                          name="NumTransaccion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[Examen]"
+                          dataType="wstr"
+                          length="20"
+                          name="Examen" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[valor]"
+                          dataType="i8"
+                          name="valor" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[tipo_examen]"
+                          dataType="i4"
+                          name="tipo_examen" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[IdTipoServ]"
+                          dataType="i4"
+                          name="IdTipoServ" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output].ExternalColumns[IdEstadoVenta]"
+                          dataType="i4"
+                          name="IdEstadoVenta" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[IdVenta]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[IdVenta]"
+                          name="IdVenta" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[fecha_creacion]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[fecha_creacion]"
+                          name="fecha_creacion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[IdEstadoVenta]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[IdEstadoVenta]"
+                          name="IdEstadoVenta" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[numero_factura]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[numero_factura]"
+                          name="numero_factura" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[id_solicitud_athenea]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[id_solicitud_athenea]"
+                          name="id_solicitud_athenea" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[MedioPago]"
+                          dataType="wstr"
+                          length="200"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[MedioPago]"
+                          name="MedioPago" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[fecha_pago]"
+                          dataType="dbDate"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[fecha_pago]"
+                          name="fecha_pago" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[documento]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[documento]"
+                          name="documento" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[observacion]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[observacion]"
+                          name="observacion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[usuario]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[usuario]"
+                          name="usuario" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[nombre_usuario]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[nombre_usuario]"
+                          name="nombre_usuario" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[NumTransaccion]"
+                          dataType="wstr"
+                          length="150"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[NumTransaccion]"
+                          name="NumTransaccion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[Examen]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[Examen]"
+                          name="Examen" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[valor]"
+                          dataType="i8"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[valor]"
+                          name="valor" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[tipo_examen]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[tipo_examen]"
+                          name="tipo_examen" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[IdTipoServ]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[IdTipoServ]"
+                          name="IdTipoServ" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Stage Factdiagnosticos.Paths[OLE DB Source Output]"
+                  endId="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{00E7C722-9694-45B4-B6C8-B5DD1C03DA33}"
+          DTS:From="Package\Foreach Loop Container\Stage Factdiagnosticos"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\Finalizar" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{1ACB7C05-7247-409C-AB80-C7759581E7C1}"
+          DTS:ObjectName="{1ACB7C05-7247-409C-AB80-C7759581E7C1}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::V_ANOMES" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOG KEY"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C74ED6C2-A3B6-4D6A-BE58-B0C68CA82DF1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOG KEY"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="SELECT FLOOR(RAND()*(10000-5000+1)+5000)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::V_PROJECT_KEY" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{f7266b28-b62d-4b17-be32-18195b022e59}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stage.VentasCTS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{62710D31-4503-4193-A052-7E68F6B9BB5A}"
+      DTS:From="Package\LOG KEY"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Truncate Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F5879F66-4364-4533-BF69-B5F422952E6A}"
+      DTS:From="Package\AnoMes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Foreach Loop Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8A0E6174-12FF-43F0-9952-2DF50FFC3AED}"
+      DTS:From="Package\Truncate Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\AnoMes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{F53A9882-F694-46D4-B562-231C6EB7B4B8}"
+      DTS:EventID="7143521"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{F7AF5E3E-2500-459E-AB58-1D6EB3B2CF8D}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Stage FactDiagnosticos 202202"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6730BFD7-5AE8-4709-91A1-F42C87027F94}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stage FactDiagnosticos 202202">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Stage FactDiagnosticos " +  @[User::V_ANOMES]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"INSERT INTO dbo.logError  (PackageName, TaskName, ErrorCode, ErrorDescription) VALUES('" + @[System::PackageName] + "','" + @[System::TaskName] + "','" + (DT_WSTR,12)@[System::ErrorCode] + "','" + @[System::ErrorDescription] + "')"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+              SQLTask:SqlStatementSource="INSERT INTO dbo.logError  (PackageName, TaskName, ErrorCode, ErrorDescription) VALUES('Stage_VentasCTS','Stage FactDiagnosticos 202202','0','')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="116,42.6666666666667"
+          Id="Package\AnoMes"
+          TopLeft="595,37" />
+        <NodeLayout
+          Size="118.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\Finalizar"
+          TopLeft="64.3333331346513,126.899999232888" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Foreach Loop Container\Stage Factdiagnosticos"
+          TopLeft="34.5,23.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="125.583333233992,65.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.3999992328881"
+              Start="0,0"
+              End="0,53.8999992328881">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.8999992328881" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="258,224"
+          Size="258,266.666666666667"
+          Id="Package\Foreach Loop Container"
+          TopLeft="526.166666902602,136.700000023246" />
+        <NodeLayout
+          Size="121.333333333334,42"
+          Id="Package\LOG KEY"
+          TopLeft="117.833332749705,37.2666660002868" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="654.083333451301,79.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.0333333565793"
+              Start="0,0"
+              End="0,49.5333333565793">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5333333565793" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\Truncate Table"
+          TopLeft="312.833329843979,37.4000076401234" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="239.166666083038,58.5000034868718">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.6666637609403,0"
+              Start="0,0"
+              End="66.1666637609403,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="66.1666637609403,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="463.499996510645,58.533337153395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="131.500003489355,0"
+              Start="0,0"
+              End="124.000003489355,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="124.000003489355,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="194,54.6666666666667"
+          Id="Package.EventHandlers[OnError]\Stage FactDiagnosticos 202202"
+          TopLeft="321,63" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Stage Factdiagnosticos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="130.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\Stage Factdiagnosticos\VentasCTS"
+          TopLeft="205.583341982215,50.4666707114377" />
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\Stage Factdiagnosticos\StageVentasCTS"
+          TopLeft="197.750001657754,179.06666764299" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Stage Factdiagnosticos.Paths[OLE DB Source Output]"
+          TopLeft="273.666671819985,93.1333373781043">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85.9333302648862"
+              Start="0,0"
+              End="0,78.4333302648862">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.4333302648862" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\Foreach Loop Container\Stage Factdiagnosticos.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Foreach Loop Container\Stage Factdiagnosticos.EventHandlers[OnPreExecute]\Inicio - periodo 202202"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Foreach Loop Container\Stage Factdiagnosticos.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Foreach Loop Container\Stage Factdiagnosticos.EventHandlers[OnPostExecute]\Update Ejecucion"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

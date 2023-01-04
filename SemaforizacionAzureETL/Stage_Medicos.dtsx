@@ -1,0 +1,699 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/11/2019 11:47:41 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="COLCAN-BI"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{E6281DAF-1C25-4140-9FC7-F6EF7266A859}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Stage_Medicos"
+  DTS:PackageType="5"
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{CB0E3A57-9051-49CD-8769-5A9456993AFA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Borras stage medicos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CCAC8528-46A3-41AA-A770-A6D42BE0731B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Borras stage medicos"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="Truncate table stage.Medicos;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Medicos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{5C9C75A2-17FB-472E-AEAB-C994D5C625CC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Medicos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Medicos\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Medicos\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Medicos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[ACTIVO]"
+                      cachedDataType="bool"
+                      cachedName="ACTIVO"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[ACTIVO]" />
+                    <inputColumn
+                      refId="Package\Medicos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[CEDULAPROFESIONAL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="CEDULAPROFESIONAL"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[CEDULAPROFESIONAL]" />
+                    <inputColumn
+                      refId="Package\Medicos\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Medico]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="Medico"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[Medico]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Medicos\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Medico]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="60"
+                      lineageId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Medico]"
+                      name="Copia de Medico"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[Medico]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ACTIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ACTIVO]"
+                      name="Copia de ACTIVO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[ACTIVO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CEDULAPROFESIONAL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="30"
+                      lineageId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CEDULAPROFESIONAL]"
+                      name="Copia de CEDULAPROFESIONAL"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[CEDULAPROFESIONAL]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Medicos\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Medicos\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Medicos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Medicos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Medicos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Medicos\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Medicos\Medicos"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Medicos"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT CODIGOMEDICO, substring(NOMBRE,1,60) as Medico, CEDULAPROFESIONAL, IDCENTROATENCION, ACTIVO 
+FROM HC.TB_MEDICOS;</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Medicos\Medicos.Connections[OleDbConnection]"
+                  connectionManagerID="{EA13A1CF-4513-41F7-A69E-550CBEE06684}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[COLCANBI Athenea]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[CODIGOMEDICO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[CODIGOMEDICO]"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[CODIGOMEDICO]"
+                      name="CODIGOMEDICO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[CEDULAPROFESIONAL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[CEDULAPROFESIONAL]"
+                      length="30"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[CEDULAPROFESIONAL]"
+                      name="CEDULAPROFESIONAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[IDCENTROATENCION]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[IDCENTROATENCION]"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[IDCENTROATENCION]"
+                      name="IDCENTROATENCION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[ACTIVO]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[ACTIVO]"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[ACTIVO]"
+                      name="ACTIVO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[Medico]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[Medico]"
+                      length="60"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[Medico]"
+                      name="Medico"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[CODIGOMEDICO]"
+                      dataType="i4"
+                      name="CODIGOMEDICO" />
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[CEDULAPROFESIONAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="CEDULAPROFESIONAL" />
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[IDCENTROATENCION]"
+                      dataType="i4"
+                      name="IDCENTROATENCION" />
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[ACTIVO]"
+                      dataType="bool"
+                      name="ACTIVO" />
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].ExternalColumns[Medico]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="Medico" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[CODIGOMEDICO]"
+                      dataType="i4"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[CODIGOMEDICO]"
+                      name="CODIGOMEDICO" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[Medico]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[Medico]"
+                      name="Medico" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[CEDULAPROFESIONAL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[CEDULAPROFESIONAL]"
+                      name="CEDULAPROFESIONAL" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[IDCENTROATENCION]"
+                      dataType="i4"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[IDCENTROATENCION]"
+                      name="IDCENTROATENCION" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[ACTIVO]"
+                      dataType="bool"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[ACTIVO]"
+                      name="ACTIVO" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Medicos\Stage Medicos"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Stage Medicos"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Stage].[Medicos]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Medicos\Stage Medicos.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].Columns[CODIGOMEDICO]"
+                      cachedDataType="i4"
+                      cachedName="CODIGOMEDICO"
+                      externalMetadataColumnId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_Codigo]"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[CODIGOMEDICO]" />
+                    <inputColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].Columns[IDCENTROATENCION]"
+                      cachedDataType="i4"
+                      cachedName="IDCENTROATENCION"
+                      externalMetadataColumnId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_sede]"
+                      lineageId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB].Columns[IDCENTROATENCION]" />
+                    <inputColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].Columns[Copia de ACTIVO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Copia de ACTIVO"
+                      externalMetadataColumnId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estado]"
+                      lineageId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ACTIVO]" />
+                    <inputColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].Columns[Copia de CEDULAPROFESIONAL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Copia de CEDULAPROFESIONAL"
+                      externalMetadataColumnId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CedulaProfesional]"
+                      lineageId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CEDULAPROFESIONAL]" />
+                    <inputColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].Columns[Copia de Medico]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="Copia de Medico"
+                      externalMetadataColumnId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      lineageId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Medico]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_Codigo]"
+                      dataType="i4"
+                      name="BK_Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[CedulaProfesional]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CedulaProfesional" />
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_sede]"
+                      dataType="i4"
+                      name="BK_sede" />
+                    <externalMetadataColumn
+                      refId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Estado" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Medicos\Stage Medicos.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Medicos\Stage Medicos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Medicos\Stage Medicos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Medicos\Stage Medicos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Medicos\Stage Medicos.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Medicos.Paths[Salida de conversión de datos]"
+              endId="Package\Medicos\Stage Medicos.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de conversión de datos"
+              startId="Package\Medicos\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Medicos.Paths[Salida de origen de OLE DB]"
+              endId="Package\Medicos\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Medicos\Medicos.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7375E49F-6300-411E-9943-2CB426A603DB}"
+      DTS:From="Package\Borras stage medicos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Medicos" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Borras stage medicos"
+          TopLeft="366,45" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Medicos"
+          TopLeft="395,124" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="454.75,87">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Medicos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Medicos\Stage Medicos"
+          TopLeft="273,253" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Medicos\Medicos"
+          TopLeft="285,60" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Medicos\Conversión de datos"
+          TopLeft="254,152" />
+        <EdgeLayout
+          Id="Package\Medicos.Paths[Salida de origen de OLE DB]"
+          TopLeft="342.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Medicos.Paths[Salida de conversión de datos]"
+          TopLeft="344,194">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Medicos\Stage Medicos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Medicos\Medicos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

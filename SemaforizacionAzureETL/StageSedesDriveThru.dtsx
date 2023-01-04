@@ -1,0 +1,721 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/7/2020 11:52:04 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="COLCAN-BI"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{BFDC3D82-7A13-43F9-9451-1CC92051AABC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="StageSedesDriveThru"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{242820BD-84EE-4D29-95D4-6ADEA1D08C4A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SedesDriveThru]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{18C8E1EA-F714-4DB3-89AB-96BA1E604D27}"
+      DTS:ObjectName="SedesDriveThru">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="9226"
+          DTS:HeaderRowDelimiter="_x007C_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\ParametrosDWH\Vitalea\SedesDriveThru.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="codigo"
+              DTS:DTSID="{FCBF617D-A673-4959-B826-6C284DC902B3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Nombre"
+              DTS:DTSID="{46E8F0CA-E453-4747-ADCC-3FEF9998647B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Latitud"
+              DTS:DTSID="{7F4213AA-05EA-469C-B3FE-A0FBC28C5078}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Longitud"
+              DTS:DTSID="{2F74316A-B130-4CEA-9CDA-A83020A43069}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Archivo Plano Sedes DRIVE THRU"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{DAB91B86-1BB3-441B-A1F5-3ABACFA98989}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Archivo Plano Sedes DRIVE THRU"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Nombre"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Latitud]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Latitud"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Latitud]" />
+                    <inputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Longitud]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Longitud"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Longitud]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Nombre]"
+                      name="Copia de Nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Latitud]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Latitud]"
+                      name="Copia de Latitud"
+                      scale="7"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Latitud]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Longitud]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Longitud]"
+                      name="Copia de Longitud"
+                      scale="7"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Longitud]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Origen de archivo plano;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de archivo plano"
+              localeId="9226"
+              name="Origen de archivo plano"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si las columnas de longitud cero se tratan como NULL."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre de una columna de salida que contiene el nombre de archivo. Si no se especifica ningún nombre, no se genera ninguna columna de salida con el nombre de archivo."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SedesDriveThru]"
+                  connectionManagerRefId="Package.ConnectionManagers[SedesDriveThru]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano]"
+                  name="Salida de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[codigo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[codigo]"
+                      length="50"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[codigo]"
+                      name="codigo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Nombre]"
+                      length="200"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Latitud]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Latitud]"
+                      length="50"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Latitud]"
+                      name="Latitud"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Longitud]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Longitud]"
+                      length="50"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[Longitud]"
+                      name="Longitud"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[codigo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Latitud]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Latitud" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].ExternalColumns[Longitud]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Longitud" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de archivo plano">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Columna de salida de error de origen de archivo plano"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[Columna de salida de error de origen de archivo plano]"
+                      name="Columna de salida de error de origen de archivo plano" />
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de error de origen de archivo plano].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="SedesDriveThru"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Stage].[SedesDriveTHRU]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].Columns[codigo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="codigo"
+                      externalMetadataColumnId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Codigo]"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano].Columns[codigo]" />
+                    <inputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copia de Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Copia de Nombre"
+                      externalMetadataColumnId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Nombre]" />
+                    <inputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copia de Latitud]"
+                      cachedDataType="decimal"
+                      cachedName="Copia de Latitud"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Latitud]"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Latitud]" />
+                    <inputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copia de Longitud]"
+                      cachedDataType="decimal"
+                      cachedName="Copia de Longitud"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Longitud]"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Longitud]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Codigo]"
+                      dataType="i4"
+                      name="Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Latitud]"
+                      dataType="r8"
+                      name="Latitud" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Longitud]"
+                      dataType="r8"
+                      name="Longitud" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Archivo Plano Sedes DRIVE THRU.Paths[Salida de conversión de datos]"
+              endId="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de conversión de datos"
+              startId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Archivo Plano Sedes DRIVE THRU.Paths[Salida de origen de archivo plano]"
+              endId="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de archivo plano"
+              startId="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano.Outputs[Salida de origen de archivo plano]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{4417A612-B189-4A70-BEF2-990BB23B22AD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stage"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stage.SedesDriveTHRU" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{1FAF3BF8-7C37-4A8A-AF9A-647F096D3071}"
+      DTS:From="Package\Truncate Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Archivo Plano Sedes DRIVE THRU" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Archivo Plano Sedes DRIVE THRU"
+          TopLeft="184.5,131.5" />
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\Truncate Stage"
+          TopLeft="227.916666474193,54.5333333953222" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="303.374999903763,97.2000000619888">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.2999999380112"
+              Start="0,0"
+              End="0,26.7999999380112">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.7999999380112" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Archivo Plano Sedes DRIVE THRU">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru"
+          TopLeft="172,203" />
+        <NodeLayout
+          Size="190.666666666667,42"
+          Id="Package\Archivo Plano Sedes DRIVE THRU\Origen de archivo plano"
+          TopLeft="157,44" />
+        <NodeLayout
+          Size="174.666666666667,42"
+          Id="Package\Archivo Plano Sedes DRIVE THRU\Conversión de datos"
+          TopLeft="168,125" />
+        <EdgeLayout
+          Id="Package\Archivo Plano Sedes DRIVE THRU.Paths[Salida de origen de archivo plano]"
+          TopLeft="254,86">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Archivo Plano Sedes DRIVE THRU.Paths[Salida de conversión de datos]"
+          TopLeft="252,167">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Archivo Plano Sedes DRIVE THRU\SedesDriveThru">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

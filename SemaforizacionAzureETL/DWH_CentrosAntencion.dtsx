@@ -1,0 +1,1194 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/30/2021 2:12:29 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{0078631A-BE17-4E9E-B650-0E14C269FD7E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="DWH_CentrosAntencion"
+  DTS:PackageType="5"
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{4EDA6250-B83A-4D69-A8EF-A5B9AE4FDCF0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Centros de Atencion"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B839979D-0262-4047-B246-66F501D33B88}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Centros de Atencion"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Centros de Atencion\Insertar destino"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insertar destino"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimCentroAtencion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Centros de Atencion\Insertar destino.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[BK_CentroAtencion]"
+                      cachedDataType="i4"
+                      cachedName="BK_CentroAtencion"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[BK_CentroAtencion]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_CentroAtencion]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[CentroAtencionNombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="CentroAtencionNombre"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[CentroAtencionNombre]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[CentroAtencionNombre]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[Ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Ciudad"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Ciudad]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[Departamento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Departamento"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[Departamento]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Departamento]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[Longitud]"
+                      cachedDataType="r8"
+                      cachedName="Longitud"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[Longitud]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Longitud]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[Latitud]"
+                      cachedDataType="r8"
+                      cachedName="Latitud"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[Latitud]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Latitud]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[BK_IdSedeIndicadores]"
+                      cachedDataType="i4"
+                      cachedName="BK_IdSedeIndicadores"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdSedeIndicadores]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_IdSedeIndicadores]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[BK_IdSedeQuejasReclamos]"
+                      cachedDataType="i4"
+                      cachedName="BK_IdSedeQuejasReclamos"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdSedeQuejasReclamos]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_IdSedeQuejasReclamos]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[BK_IdGrupo]"
+                      cachedDataType="i4"
+                      cachedName="BK_IdGrupo"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdGrupo]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_IdGrupo]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].Columns[NombreGrupo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NombreGrupo"
+                      externalMetadataColumnId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[NombreGrupo]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[NombreGrupo]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[SRK_CentroAtencion]"
+                      dataType="i4"
+                      name="SRK_CentroAtencion" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[BK_CentroAtencion]"
+                      dataType="i4"
+                      name="BK_CentroAtencion" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[CentroAtencionNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CentroAtencionNombre" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Departamento" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[Longitud]"
+                      dataType="r8"
+                      name="Longitud" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[Latitud]"
+                      dataType="r8"
+                      name="Latitud" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdSedeIndicadores]"
+                      dataType="i4"
+                      name="BK_IdSedeIndicadores" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdSedeQuejasReclamos]"
+                      dataType="i4"
+                      name="BK_IdSedeQuejasReclamos" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdGrupo]"
+                      dataType="i4"
+                      name="BK_IdGrupo" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[NombreGrupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NombreGrupo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Centros de Atencion\Insertar destino.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\Insertar destino.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Insertar destino.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\Insertar destino.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Centros de Atencion\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimCentroAtencion] SET [CentroAtencionNombre] = ?,[Ciudad] = ?,[Latitud] = ?,[Longitud] = ? WHERE [BK_CentroAtencion] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Centros de Atencion\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].Columns[BK_CentroAtencion]"
+                      cachedDataType="i4"
+                      cachedName="BK_CentroAtencion"
+                      externalMetadataColumnId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_CentroAtencion]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].Columns[CentroAtencionNombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="CentroAtencionNombre"
+                      externalMetadataColumnId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[CentroAtencionNombre]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].Columns[Ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Ciudad"
+                      externalMetadataColumnId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Ciudad]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].Columns[Latitud]"
+                      cachedDataType="r8"
+                      cachedName="Latitud"
+                      externalMetadataColumnId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Latitud]" />
+                    <inputColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].Columns[Longitud]"
+                      cachedDataType="r8"
+                      cachedName="Longitud"
+                      externalMetadataColumnId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Longitud]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="r8"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="r8"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="i4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Centros de Atencion\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Centros de Atencion\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Centros de Atencion\Sedes"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Sedes"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[CentrosAtencion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Centros de Atencion\Sedes.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_CentroAtencion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[BK_CentroAtencion]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_CentroAtencion]"
+                      name="BK_CentroAtencion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[CentroAtencionNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[CentroAtencionNombre]"
+                      length="200"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[CentroAtencionNombre]"
+                      name="CentroAtencionNombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Longitud]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[Longitud]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Longitud]"
+                      name="Longitud"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Latitud]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[Latitud]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Latitud]"
+                      name="Latitud"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[Ciudad]"
+                      length="50"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Ciudad]"
+                      name="Ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[Departamento]"
+                      length="50"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Departamento]"
+                      name="Departamento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_IdSedeIndicadores]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[BK_IdSedeIndicadores]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_IdSedeIndicadores]"
+                      name="BK_IdSedeIndicadores"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_IdSedeQuejasReclamos]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[BK_IdSedeQuejasReclamos]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_IdSedeQuejasReclamos]"
+                      name="BK_IdSedeQuejasReclamos"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_IdGrupo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[BK_IdGrupo]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_IdGrupo]"
+                      name="BK_IdGrupo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[NombreGrupo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[NombreGrupo]"
+                      length="100"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[NombreGrupo]"
+                      name="NombreGrupo"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[BK_CentroAtencion]"
+                      dataType="i4"
+                      name="BK_CentroAtencion" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[CentroAtencionNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CentroAtencionNombre" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[Longitud]"
+                      dataType="r8"
+                      name="Longitud" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[Latitud]"
+                      dataType="r8"
+                      name="Latitud" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Departamento" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[BK_IdSedeIndicadores]"
+                      dataType="i4"
+                      name="BK_IdSedeIndicadores" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[BK_IdSedeQuejasReclamos]"
+                      dataType="i4"
+                      name="BK_IdSedeQuejasReclamos" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[BK_IdGrupo]"
+                      dataType="i4"
+                      name="BK_IdGrupo" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].ExternalColumns[NombreGrupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NombreGrupo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[BK_CentroAtencion]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[BK_CentroAtencion]"
+                      name="BK_CentroAtencion" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[CentroAtencionNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[CentroAtencionNombre]"
+                      name="CentroAtencionNombre" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[Ciudad]"
+                      name="Ciudad" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[Departamento]"
+                      name="Departamento" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[Longitud]"
+                      dataType="r8"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[Longitud]"
+                      name="Longitud" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[Latitud]"
+                      dataType="r8"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[Latitud]"
+                      name="Latitud" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[BK_IdSedeIndicadores]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[BK_IdSedeIndicadores]"
+                      name="BK_IdSedeIndicadores" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[BK_IdSedeQuejasReclamos]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[BK_IdSedeQuejasReclamos]"
+                      name="BK_IdSedeQuejasReclamos" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[BK_IdGrupo]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[BK_IdGrupo]"
+                      name="BK_IdGrupo" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[NombreGrupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[NombreGrupo]"
+                      name="NombreGrupo" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Centros de Atencion\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [BK_CentroAtencion], [CentroAtencionNombre], [Ciudad], [Latitud], [Longitud] FROM [dbo].[DimCentroAtencion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Centros de Atencion\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[BK_CentroAtencion]"
+                      cachedDataType="i4"
+                      cachedName="BK_CentroAtencion"
+                      externalMetadataColumnId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[BK_CentroAtencion]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[BK_CentroAtencion]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[CentroAtencionNombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="CentroAtencionNombre"
+                      externalMetadataColumnId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CentroAtencionNombre]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[CentroAtencionNombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Ciudad"
+                      externalMetadataColumnId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Ciudad]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Ciudad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Latitud]"
+                      cachedDataType="r8"
+                      cachedName="Latitud"
+                      externalMetadataColumnId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Latitud]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Latitud]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Longitud]"
+                      cachedDataType="r8"
+                      cachedName="Longitud"
+                      externalMetadataColumnId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Longitud]"
+                      lineageId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output].Columns[Longitud]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[BK_CentroAtencion]"
+                      dataType="i4"
+                      name="BK_CentroAtencion" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CentroAtencionNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CentroAtencionNombre" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Latitud]"
+                      dataType="r8"
+                      name="Latitud" />
+                    <externalMetadataColumn
+                      refId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Longitud]"
+                      dataType="r8"
+                      name="Longitud" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Centros de Atencion\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Centros de Atencion\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Centros de Atencion\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Centros de Atencion\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Centros de Atencion\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Centros de Atencion\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Centros de Atencion.Paths[Changing Attribute Updates Output]"
+              endId="Package\Centros de Atencion\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Changing Attribute Updates Output"
+              startId="Package\Centros de Atencion\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]" />
+            <path
+              refId="Package\Centros de Atencion.Paths[New Output]"
+              endId="Package\Centros de Atencion\Insertar destino.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\Centros de Atencion\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
+              refId="Package\Centros de Atencion.Paths[OLE DB Source Output]"
+              endId="Package\Centros de Atencion\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+              name="OLE DB Source Output"
+              startId="Package\Centros de Atencion\Sedes.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Centros de Atencion"
+          TopLeft="210,51" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Centros de Atencion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="106.666666666667,42"
+          Id="Package\Centros de Atencion\Sedes"
+          TopLeft="250.5,5.5" />
+        <NodeLayout
+          Size="209.333333333334,42"
+          Id="Package\Centros de Atencion\Slowly Changing Dimension"
+          TopLeft="199.166666666667,107.5" />
+        <EdgeLayout
+          Id="Package\Centros de Atencion.Paths[OLE DB Source Output]"
+          TopLeft="303.833333333333,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Centros de Atencion\Insertar destino"
+          TopLeft="5.50000000000004,209.5" />
+        <EdgeLayout
+          Id="Package\Centros de Atencion.Paths[New Output]"
+          TopLeft="270.277777777778,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-187.444444444444,60"
+              Start="0,0"
+              End="-187.444444444444,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2730720606827" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2730720606827"
+                    Point2="0,24.2730720606827"
+                    Point3="-4,24.2730720606827" />
+                  <mssgle:LineSegment
+                    End="-183.444444444444,24.2730720606827" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-183.444444444444,24.2730720606827"
+                    Point2="-187.444444444444,24.2730720606827"
+                    Point3="-187.444444444444,28.2730720606827" />
+                  <mssgle:LineSegment
+                    End="-187.444444444444,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-120.813608940972,29.2730720606827,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\Centros de Atencion\OLE DB Command"
+          TopLeft="220.5,209.5" />
+        <EdgeLayout
+          Id="Package\Centros de Atencion.Paths[Changing Attribute Updates Output]"
+          TopLeft="337.388888888889,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-33.5555555555555,60"
+              Start="0,0"
+              End="-33.5555555555555,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2730720606827" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2730720606827"
+                    Point2="0,24.2730720606827"
+                    Point3="-4,24.2730720606827" />
+                  <mssgle:LineSegment
+                    End="-29.5555555555555,24.2730720606827" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.5555555555555,24.2730720606827"
+                    Point2="-33.5555555555555,24.2730720606827"
+                    Point3="-33.5555555555555,28.2730720606827" />
+                  <mssgle:LineSegment
+                    End="-33.5555555555555,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-95.3116840277778,29.2730720606827,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Centros de Atencion\Sedes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Centros de Atencion\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{556F0240-B370-4925-A2F1-B6E0693E6F04}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DimCentroAtencion]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[BK_CentroAtencion]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;BK_CentroAtencion&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[BK_IdGrupo]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;BK_IdGrupo&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[BK_IdSedeIndicadores]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;BK_IdSedeIndicadores&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[BK_IdSedeQuejasReclamos]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;BK_IdSedeQuejasReclamos&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[CentroAtencionNombre]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CentroAtencionNombre&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[Ciudad]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Ciudad&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[Departamento]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Departamento&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[Latitud]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Latitud&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[Longitud]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Longitud&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Sedes.Outputs[OLE DB Source Output].Columns[NombreGrupo]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;NombreGrupo&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insertar destino&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,722 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/7/2020 9:00:42 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="COLCAN-BI"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{A7630CC4-56E9-4FC2-BCA8-B17DA84FA9DA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="StageSedesFront"
+  DTS:PackageType="5"
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{FEBE6A83-73E4-42EC-B2D8-38155F73A293}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dimSedesDriveThru"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AB9F5CC5-837F-40FB-8258-2CE0FE072034}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dimSedesDriveThru"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE vitalea.dimSedesDriveThru" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sedes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{8F3D8F68-9DAA-4247-BB09-E527AFB803F6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sedes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Sedes\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Sedes\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Sedes\Data Conversion.Inputs[Data Conversion Input].Columns[direccion]"
+                      cachedDataType="nText"
+                      cachedName="direccion"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[direccion]" />
+                    <inputColumn
+                      refId="Package\Sedes\Data Conversion.Inputs[Data Conversion Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="nombre"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Sedes\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Sedes\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sedes\Data Conversion.Outputs[Data Conversion Output].Columns[CP_direccion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Sedes\Data Conversion.Outputs[Data Conversion Output].Columns[CP_direccion]"
+                      name="CP_direccion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[direccion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Sedes\Data Conversion.Outputs[Data Conversion Output].Columns[CP_nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Sedes\Data Conversion.Outputs[Data Conversion Output].Columns[CP_nombre]"
+                      name="CP_nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Sedes\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Sedes\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sedes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Sedes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Sedes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Sedes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Sedes\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[SedesFront]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Sedes\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[activo]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="activo"
+                      externalMetadataColumnId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Activo]"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[activo]" />
+                    <inputColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[idcrm]"
+                      cachedDataType="i4"
+                      cachedName="idcrm"
+                      externalMetadataColumnId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[idcrm]"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[idcrm]" />
+                    <inputColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[tiposervicio]"
+                      cachedDataType="i4"
+                      cachedName="tiposervicio"
+                      externalMetadataColumnId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[tiposervicio]"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[tiposervicio]" />
+                    <inputColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CP_nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CP_nombre"
+                      externalMetadataColumnId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Sedes\Data Conversion.Outputs[Data Conversion Output].Columns[CP_nombre]" />
+                    <inputColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CP_direccion]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CP_direccion"
+                      externalMetadataColumnId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Direccion]"
+                      lineageId="Package\Sedes\Data Conversion.Outputs[Data Conversion Output].Columns[CP_direccion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="128"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Direccion]"
+                      dataType="wstr"
+                      length="128"
+                      name="Direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Activo]"
+                      dataType="i4"
+                      name="Activo" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[idcrm]"
+                      dataType="i4"
+                      name="idcrm" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[tiposervicio]"
+                      dataType="i4"
+                      name="tiposervicio" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Sedes\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sedes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Sedes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Sedes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Sedes\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Sedes\Sedes Front"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Sedes Front"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select id, nombre, SUBSTRING(direccion,1,100) as direccion, activo, idcrm, CASE tiposervicio WHEN 'DriveThru' THEN 4 END as tiposervicio from sedes;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"public"."sedes"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Sedes\Sedes Front.Connections[IDbConnection]"
+                  connectionManagerID="{C2DFE599-5649-4367-9C56-F4F5F6BA9041}:invalid"
+                  connectionManagerRefId="{C2DFE599-5649-4367-9C56-F4F5F6BA9041}:invalid"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[id]"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      length="100"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[direccion]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[direccion]"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[direccion]"
+                      name="direccion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[activo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[activo]"
+                      length="5"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[activo]"
+                      name="activo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[idcrm]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[idcrm]"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[idcrm]"
+                      name="idcrm"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[tiposervicio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[tiposervicio]"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].Columns[tiposervicio]"
+                      name="tiposervicio"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="100"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[direccion]"
+                      dataType="nText"
+                      name="direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[activo]"
+                      dataType="wstr"
+                      length="5"
+                      name="activo" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[idcrm]"
+                      dataType="i4"
+                      name="idcrm" />
+                    <externalMetadataColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET].ExternalColumns[tiposervicio]"
+                      dataType="i4"
+                      name="tiposervicio" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[direccion]"
+                      dataType="nText"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[direccion]"
+                      name="direccion" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[activo]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[activo]"
+                      name="activo" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[idcrm]"
+                      dataType="i4"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[idcrm]"
+                      name="idcrm" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[tiposervicio]"
+                      dataType="i4"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[tiposervicio]"
+                      name="tiposervicio" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Sedes\Sedes Front.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Sedes.Paths[Data Conversion Output]"
+              endId="Package\Sedes\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Sedes\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Sedes.Paths[Salida de origen de ADO NET]"
+              endId="Package\Sedes\Data Conversion.Inputs[Data Conversion Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Sedes\Sedes Front.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{cbcbbed7-0b80-4480-8b94-65ea1adbc872}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stage"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stage.SedesFront" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B145F7EE-213A-4899-BFB4-EFA4FF9E373C}"
+      DTS:From="Package\Truncate Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Sedes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CE255D20-B1A3-4181-AC27-5D9015BBDCBB}"
+      DTS:From="Package\Sedes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\dimSedesDriveThru" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="106.666666666667,42"
+          Id="Package\Sedes"
+          TopLeft="232,121" />
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\Truncate Stage"
+          TopLeft="211.166666977108,21.9333369286855" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="285.916666821887,64.6000035953521">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.3999964046479"
+              Start="0,0"
+              End="0,48.8999964046479">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.8999964046479" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.666666666667,42.6666666666667"
+          Id="Package\dimSedesDriveThru"
+          TopLeft="201.666663661599,220.999996048212" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="286.166665164133,163">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.9999960482122"
+              Start="0,0"
+              End="0,50.4999960482122">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.4999960482122" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sedes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="134.666666666667,42"
+          Id="Package\Sedes\Sedes Front"
+          TopLeft="207.499999813735,46.8000000929833" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\Sedes\OLE DB Destination"
+          TopLeft="182.499997280538,221.866662699382" />
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\Sedes\Data Conversion"
+          TopLeft="196.249997075647,125.666664419572" />
+        <EdgeLayout
+          Id="Package\Sedes.Paths[Salida de origen de ADO NET]"
+          TopLeft="274.874998444691,88.8000000929833">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.8666643265883"
+              Start="0,0"
+              End="0,29.3666643265883">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.3666643265883" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sedes.Paths[Data Conversion Output]"
+          TopLeft="271.708330511426,168.333331086238">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.5333316131432"
+              Start="0,0"
+              End="0,46.0333316131432">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.0333316131432" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sedes\Sedes Front">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sedes\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

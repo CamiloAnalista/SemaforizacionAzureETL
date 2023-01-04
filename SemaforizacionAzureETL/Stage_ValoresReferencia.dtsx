@@ -1,0 +1,1256 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/5/2018 10:36:53 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PRUEBAS-BI"
+  DTS:CreatorName="PRUEBAS-BI\Soportebi"
+  DTS:DTSID="{C0B1E757-046D-4FEE-9056-C34682FCA085}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Stage_ValoresReferencia"
+  DTS:PackageType="5"
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{89F25E25-ECE5-4EB9-9CA0-45744242E014}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ExcelValoresReferencia]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{438EDED5-F77A-421F-B497-49612908F8AC}"
+      DTS:ObjectName="ExcelValoresReferencia">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ParametrosDWH\Semaforizacion\VALORESREFERENCIA.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Stage Valores Referencia"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7B511200-E501-499F-9064-519BF17B34A0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Valores Referencia"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage Valores Referencia\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[BK_Examen]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BK_Examen"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[BK_Examen]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[NombreExamen]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NombreExamen"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NombreExamen]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[EdadMin]"
+                      cachedDataType="r8"
+                      cachedName="EdadMin"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EdadMin]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[EdadMax]"
+                      cachedDataType="r8"
+                      cachedName="EdadMax"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EdadMax]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Sexo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sexo"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[Sexo]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[ResultadoMin]"
+                      cachedDataType="r8"
+                      cachedName="ResultadoMin"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[ResultadoMin]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[ResultadoMax]"
+                      cachedDataType="r8"
+                      cachedName="ResultadoMax"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[ResultadoMax]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Igual]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Igual"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[Igual]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[TipoEdad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TipoEdad"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoEdad]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[EstadoComentario]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EstadoComentario"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EstadoComentario]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[TipoResultado]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TipoResultado"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoResultado]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[TipoEvaluacion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TipoEvaluacion"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoEvaluacion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de BK_Examen]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de BK_Examen]"
+                      name="Copia de BK_Examen"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[BK_Examen]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NombreExamen]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NombreExamen]"
+                      name="Copia de NombreExamen"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NombreExamen]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EdadMin]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EdadMin]"
+                      name="Copia de EdadMin"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EdadMin]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EdadMax]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EdadMax]"
+                      name="Copia de EdadMax"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EdadMax]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Sexo]"
+                      name="Copia de Sexo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[Sexo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ResultadoMin]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ResultadoMin]"
+                      name="Copia de ResultadoMin"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[ResultadoMin]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ResultadoMax]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ResultadoMax]"
+                      name="Copia de ResultadoMax"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[ResultadoMax]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Igual]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Igual]"
+                      name="Copia de Igual"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[Igual]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TipoEdad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TipoEdad]"
+                      name="Copia de TipoEdad"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoEdad]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EstadoComentario]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EstadoComentario]"
+                      name="Copia de EstadoComentario"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EstadoComentario]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TipoResultado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TipoResultado]"
+                      name="Copia de TipoResultado"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoResultado]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TipoEvaluacion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TipoEvaluacion]"
+                      name="Copia de TipoEvaluacion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoEvaluacion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Valores Referencia\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[ValoresReferencia]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Valores Referencia\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de BK_Examen]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Copia de BK_Examen"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_Examen]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de BK_Examen]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de EdadMax]"
+                      cachedDataType="i4"
+                      cachedName="Copia de EdadMax"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMax]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EdadMax]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de Sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de Sexo"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Sexo]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de Igual]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de Igual"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Igual]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Igual]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de TipoEdad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de TipoEdad"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoEdad]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TipoEdad]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de TipoResultado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Copia de TipoResultado"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoResultado]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TipoResultado]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de NombreExamen]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Copia de NombreExamen"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreExamen]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NombreExamen]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de EdadMin]"
+                      cachedDataType="i4"
+                      cachedName="Copia de EdadMin"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMin]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EdadMin]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de ResultadoMin]"
+                      cachedDataType="decimal"
+                      cachedName="Copia de ResultadoMin"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ResultadoMin]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ResultadoMin]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de ResultadoMax]"
+                      cachedDataType="decimal"
+                      cachedName="Copia de ResultadoMax"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ResultadoMax]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ResultadoMax]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de EstadoComentario]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de EstadoComentario"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoComentario]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EstadoComentario]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de TipoEvaluacion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Copia de TipoEvaluacion"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoEvaluacion]"
+                      lineageId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TipoEvaluacion]" />
+                    <inputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SRK_ValorReferencia]"
+                      cachedDataType="r8"
+                      cachedName="SRK_ValorReferencia"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_ParametroReferencia]"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[SRK_ValorReferencia]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMax]"
+                      dataType="i4"
+                      name="EdadMax" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Igual]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Igual" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoEdad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TipoEdad" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoResultado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TipoResultado" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_Examen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BK_Examen" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreExamen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="90"
+                      name="NombreExamen" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMin]"
+                      dataType="i4"
+                      name="EdadMin" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ResultadoMin]"
+                      dataType="numeric"
+                      name="ResultadoMin"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ResultadoMax]"
+                      dataType="numeric"
+                      name="ResultadoMax"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoComentario]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="EstadoComentario" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoEvaluacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TipoEvaluacion" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_ParametroReferencia]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="ID_ParametroReferencia" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Valores Referencia\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Valores Referencia\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Valores Referencia\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Valores Referencia\Origen de Excel 1"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen de Excel 1"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Hoja1$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Valores Referencia\Origen de Excel 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ExcelValoresReferencia]"
+                  connectionManagerRefId="Package.ConnectionManagers[ExcelValoresReferencia]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[SRK_ValorReferencia]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[SRK_ValorReferencia]"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[SRK_ValorReferencia]"
+                      name="SRK_ValorReferencia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[BK_IDParametro]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[BK_IDParametro]"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[BK_IDParametro]"
+                      name="BK_IDParametro"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[BK_Examen]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[BK_Examen]"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[BK_Examen]"
+                      name="BK_Examen"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NombreExamen]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[NombreExamen]"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NombreExamen]"
+                      name="NombreExamen"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EdadMin]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[EdadMin]"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EdadMin]"
+                      name="EdadMin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EdadMax]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[EdadMax]"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EdadMax]"
+                      name="EdadMax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[Sexo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[Sexo]"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[Sexo]"
+                      name="Sexo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[ResultadoMin]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[ResultadoMin]"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[ResultadoMin]"
+                      name="ResultadoMin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[ResultadoMax]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[ResultadoMax]"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[ResultadoMax]"
+                      name="ResultadoMax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[Igual]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[Igual]"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[Igual]"
+                      name="Igual"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EstadoComentario]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[EstadoComentario]"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[EstadoComentario]"
+                      name="EstadoComentario"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoEdad]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[TipoEdad]"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoEdad]"
+                      name="TipoEdad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoResultado]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[TipoResultado]"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoResultado]"
+                      name="TipoResultado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoEvaluacion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[TipoEvaluacion]"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[TipoEvaluacion]"
+                      name="TipoEvaluacion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[SRK_ValorReferencia]"
+                      dataType="r8"
+                      name="SRK_ValorReferencia" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[BK_IDParametro]"
+                      dataType="r8"
+                      name="BK_IDParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[BK_Examen]"
+                      dataType="wstr"
+                      length="255"
+                      name="BK_Examen" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[NombreExamen]"
+                      dataType="wstr"
+                      length="255"
+                      name="NombreExamen" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[EdadMin]"
+                      dataType="r8"
+                      name="EdadMin" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[EdadMax]"
+                      dataType="r8"
+                      name="EdadMax" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[Sexo]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[ResultadoMin]"
+                      dataType="r8"
+                      name="ResultadoMin" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[ResultadoMax]"
+                      dataType="r8"
+                      name="ResultadoMax" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[Igual]"
+                      dataType="wstr"
+                      length="255"
+                      name="Igual" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[EstadoComentario]"
+                      dataType="wstr"
+                      length="255"
+                      name="EstadoComentario" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[TipoEdad]"
+                      dataType="wstr"
+                      length="255"
+                      name="TipoEdad" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[TipoResultado]"
+                      dataType="wstr"
+                      length="255"
+                      name="TipoResultado" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[TipoEvaluacion]"
+                      dataType="wstr"
+                      length="255"
+                      name="TipoEvaluacion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[SRK_ValorReferencia]"
+                      dataType="r8"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[SRK_ValorReferencia]"
+                      name="SRK_ValorReferencia" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[BK_IDParametro]"
+                      dataType="r8"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[BK_IDParametro]"
+                      name="BK_IDParametro" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[BK_Examen]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[BK_Examen]"
+                      name="BK_Examen" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[NombreExamen]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[NombreExamen]"
+                      name="NombreExamen" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[EdadMin]"
+                      dataType="r8"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[EdadMin]"
+                      name="EdadMin" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[EdadMax]"
+                      dataType="r8"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[EdadMax]"
+                      name="EdadMax" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[Sexo]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[Sexo]"
+                      name="Sexo" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ResultadoMin]"
+                      dataType="r8"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ResultadoMin]"
+                      name="ResultadoMin" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ResultadoMax]"
+                      dataType="r8"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ResultadoMax]"
+                      name="ResultadoMax" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[Igual]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[Igual]"
+                      name="Igual" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[EstadoComentario]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[EstadoComentario]"
+                      name="EstadoComentario" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[TipoEdad]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[TipoEdad]"
+                      name="TipoEdad" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[TipoResultado]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[TipoResultado]"
+                      name="TipoResultado" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[TipoEvaluacion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[TipoEvaluacion]"
+                      name="TipoEvaluacion" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage Valores Referencia.Paths[Salida de conversión de datos]"
+              endId="Package\Stage Valores Referencia\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Salida de conversión de datos"
+              startId="Package\Stage Valores Referencia\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Stage Valores Referencia.Paths[Salida de origen de Excel]"
+              endId="Package\Stage Valores Referencia\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de Excel"
+              startId="Package\Stage Valores Referencia\Origen de Excel 1.Outputs[Salida de origen de Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stage Valores Referencia"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{79E18AD5-1C3F-47D3-9A7A-2FB88D13D3F1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stage Valores Referencia"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="Truncate table Stage.ValoresReferencia" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{AA406900-B256-48CA-AD6D-EBD0A0267C2B}"
+      DTS:From="Package\Truncate Stage Valores Referencia"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Stage Valores Referencia" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Stage Valores Referencia"
+          TopLeft="258,115" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Truncate Stage Valores Referencia"
+          TopLeft="237,37" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="356.75,79">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Stage Valores Referencia">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="175,43"
+          Id="Package\Stage Valores Referencia\Conversión de datos"
+          TopLeft="304.166662059724,157.333329226573" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Stage Valores Referencia\Origen de Excel 1"
+          TopLeft="297,64" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Stage Valores Referencia\OLE DB Destination"
+          TopLeft="341.666666666667,256.333333333333" />
+        <EdgeLayout
+          Id="Package\Stage Valores Referencia.Paths[Salida de origen de Excel]"
+          TopLeft="378,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.666662059724,51.333329226573"
+              Start="0,0"
+              End="13.666662059724,43.833329226573">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6666646132865" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.6666646132865"
+                    Point2="0,25.6666646132865"
+                    Point3="4,25.6666646132865" />
+                  <mssgle:LineSegment
+                    End="9.66666205972399,25.6666646132865" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.66666205972399,25.6666646132865"
+                    Point2="13.666662059724,25.6666646132865"
+                    Point3="13.666662059724,29.6666646132865" />
+                  <mssgle:LineSegment
+                    End="13.666662059724,43.833329226573" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stage Valores Referencia.Paths[Salida de conversión de datos]"
+          TopLeft="391.666662059724,200.333329226573">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38.500004606943,56.0000041067599"
+              Start="0,0"
+              End="38.500004606943,48.5000041067599">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.00000205338" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.00000205338"
+                    Point2="0,28.00000205338"
+                    Point3="4,28.00000205338" />
+                  <mssgle:LineSegment
+                    End="34.500004606943,28.00000205338" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.500004606943,28.00000205338"
+                    Point2="38.500004606943,28.00000205338"
+                    Point3="38.500004606943,32.00000205338" />
+                  <mssgle:LineSegment
+                    End="38.500004606943,48.5000041067599" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Valores Referencia\Origen de Excel 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Valores Referencia\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

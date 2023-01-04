@@ -1,0 +1,1829 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/25/2018 2:29:48 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PRUEBAS-BI"
+  DTS:CreatorName="PRUEBAS-BI\Soportebi"
+  DTS:DTSID="{121829E2-ADBE-4C44-AB85-0DD6FBFD69ED}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Stage_Paciente"
+  DTS:PackageType="5"
+  DTS:VersionBuild="169"
+  DTS:VersionGUID="{C88A9BD4-44CB-4F1D-8E19-35F5EA1C3ADD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5FBDCE18-2391-49E0-9C89-0446ACC79C3B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_ANOMES">
+      <DTS:VariableValue
+        DTS:DataType="8">202111</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0AC2A908-0BBC-42B2-A8F2-96C116C0BE68}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT DISTINCT Q.IDPACIENTE, &#xA;RTRIM(LTRIM(TI.NOMBRE)) AS TIPODOCUMENTO, &#xA;RTRIM(LTRIM(Q.NUMEROIDENTIFICACION)) AS NUMEROIDENTIFICACION, &#xA;RTRIM(LTRIM(Q.NOMBRE1)) AS NOMBRE1, &#xA;RTRIM(LTRIM(Q.NOMBRE2)) AS NOMBRE2, &#xA;RTRIM(LTRIM(Q.APELLIDO1)) AS APELLIDO1, &#xA;LTRIM(RTRIM(Q.APELLIDO2)) AS APELLIDO2,&#xA;CAST(Q.FECHANACIMIENTO AS date) FECHANACIMIENTO, &#xA;UPPER(RTRIM(LTRIM(S.NOMBRE))) AS SEXO,&#xA;LEFT(TRIM((SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=15 AND E.IDPACIENTE = Q.IDPACIENTE)),100) as TELEFONO,&#xA;ISNULL((SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=34 AND E.IDPACIENTE = Q.IDPACIENTE),'Otros') as RAZA,&#xA;(SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=10 AND E.IDPACIENTE = Q.IDPACIENTE) as Municipio,&#xA;LEFT(TRIM((SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=16 AND E.IDPACIENTE = Q.IDPACIENTE)),200) as Email,&#xA;LEFT(TRIM((SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=14 AND E.IDPACIENTE = Q.IDPACIENTE)),200) as Direccion,&#xA;(SELECT EPS.NOMBRE AS EPS from GENERAL.VW_PACIENTES_EPS F JOIN DIMENSIONES.VW_EPS EPS ON F.VALOR = EPS.IDLISTA AND F.IDPACIENTE = Q.IDPACIENTE) AS EPS,&#xA;&quot;+ @[User::V_ANOMES]+&quot;01 Periodo&#xA;FROM GENERAL.TB_PACIENTES Q&#xA;LEFT JOIN GENERAL.TB_TIPOSIDENTIFICACION TI ON Q.IDTIPOIDENTIFICACION = TI.IDTIPOIDENTIFICACION&#xA;LEFT JOIN GENERAL.TB_SEXO S ON Q.IDSEXO = S.IDSEXO&#xA;JOIN LABORATORIO.TB_CABSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot; SOL on Q.IDPACIENTE = SOL.IDPACIENTE&#xA;where CONVERT(varchar(6),SOL.FECHASOLICITUD,112) = &quot; + @[User::V_ANOMES]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_Pacientes">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT DISTINCT Q.IDPACIENTE, 
+RTRIM(LTRIM(TI.NOMBRE)) AS TIPODOCUMENTO, 
+RTRIM(LTRIM(Q.NUMEROIDENTIFICACION)) AS NUMEROIDENTIFICACION, 
+RTRIM(LTRIM(Q.NOMBRE1)) AS NOMBRE1, 
+RTRIM(LTRIM(Q.NOMBRE2)) AS NOMBRE2, 
+RTRIM(LTRIM(Q.APELLIDO1)) AS APELLIDO1, 
+LTRIM(RTRIM(Q.APELLIDO2)) AS APELLIDO2,
+CAST(Q.FECHANACIMIENTO AS date) FECHANACIMIENTO, 
+UPPER(RTRIM(LTRIM(S.NOMBRE))) AS SEXO,
+LEFT(TRIM((SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=15 AND E.IDPACIENTE = Q.IDPACIENTE)),100) as TELEFONO,
+ISNULL((SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=34 AND E.IDPACIENTE = Q.IDPACIENTE),'Otros') as RAZA,
+(SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=10 AND E.IDPACIENTE = Q.IDPACIENTE) as Municipio,
+LEFT(TRIM((SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=16 AND E.IDPACIENTE = Q.IDPACIENTE)),200) as Email,
+LEFT(TRIM((SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=14 AND E.IDPACIENTE = Q.IDPACIENTE)),200) as Direccion,
+(SELECT EPS.NOMBRE AS EPS from GENERAL.VW_PACIENTES_EPS F JOIN DIMENSIONES.VW_EPS EPS ON F.VALOR = EPS.IDLISTA AND F.IDPACIENTE = Q.IDPACIENTE) AS EPS,
+20211101 Periodo
+FROM GENERAL.TB_PACIENTES Q
+LEFT JOIN GENERAL.TB_TIPOSIDENTIFICACION TI ON Q.IDTIPOIDENTIFICACION = TI.IDTIPOIDENTIFICACION
+LEFT JOIN GENERAL.TB_SEXO S ON Q.IDSEXO = S.IDSEXO
+JOIN LABORATORIO.TB_CABSOLICITUD2021 SOL on Q.IDPACIENTE = SOL.IDPACIENTE
+where CONVERT(varchar(6),SOL.FECHASOLICITUD,112) = 202111</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C2B80A99-E96D-4A40-B96D-F370837E1B95}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PeriodoProcesar">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1548E238-8AD9-4531-B7B2-1113E0F3798A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PROJECT_DATE">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6B12B158-DF91-49A1-BF2C-CB794EA76F7A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_STR, 4, 1252) DATEPART(&quot;yy&quot; , GETDATE()) + RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;mm&quot; , GETDATE()), 2)+  RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;dd&quot; , GETDATE()), 2)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PROJECT_KEY">
+      <DTS:VariableValue
+        DTS:DataType="8">20230104</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\AnoMes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7e617138-ba5d-4cad-8af0-78e24fed132f}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="AnoMes"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"SELECT [value]
+  FROM [SemaforizacionColcan].[dbo].[ParamExec]
+  WHERE package = 'stageFactdiagnosticos' AND variable = 'AñoMes' AND [status] = 1
+  ORDER BY [ORDER]"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="SELECT [value]&#xA;  FROM [SemaforizacionColcan].[dbo].[ParamExec]&#xA;  WHERE package = 'stageFactdiagnosticos' AND variable = 'AñoMes' AND [status] = 1&#xA;  ORDER BY [ORDER]"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::V_PeriodoProcesar" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{73F4EA09-5B59-4602-8C0A-FA30443FBB41}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{8D452576-FB88-4F03-979E-DE1F7332ED32}"
+        DTS:ObjectName="{8D452576-FB88-4F03-979E-DE1F7332ED32}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::V_PeriodoProcesar" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Final"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8d8a6b47-cb26-4587-b3b2-1d84829a7a2c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Final"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Foreach Loop Container\Final.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{e15eb398-9cae-4878-a536-ee6242fe015b}"
+              DTS:EventID="7143521"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{70223bd0-8bda-492b-a775-e245f9ebd76b}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Foreach Loop Container\Final.EventHandlers[OnPreExecute]\Update Ejecucion"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{3d588f23-ba31-4688-9b24-b0dcbc9a216d}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Update Ejecucion">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE [dbo].[logDataLoaders] SET EndDateTime = GETDATE() WHERE KeyLoader = '" + @[User::V_PROJECT_KEY] + @[User::V_ANOMES]  + "'"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+                      SQLTask:SqlStatementSource="UPDATE [dbo].[logDataLoaders] SET EndDateTime = GETDATE() WHERE KeyLoader = '20230104202111'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+              SQLTask:SqlStatementSource="SELECT FLOOR(RAND()*(10000-5000+1)+5000)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Stage Paciente"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarea Flujo de datos"
+          DTS:DTSID="{46645a0c-921f-4827-a019-ec9354d15635}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stage Paciente"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Conversión de datos"
+                  name="Conversión de datos"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                      name="Entrada de conversión de datos">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[TIPODOCUMENTO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="35"
+                          cachedName="TIPODOCUMENTO"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[TIPODOCUMENTO]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[NUMEROIDENTIFICACION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="NUMEROIDENTIFICACION"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NUMEROIDENTIFICACION]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[NOMBRE1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="NOMBRE1"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NOMBRE1]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[NOMBRE2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="NOMBRE2"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NOMBRE2]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[APELLIDO1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="APELLIDO1"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[APELLIDO1]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[APELLIDO2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="APELLIDO2"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[APELLIDO2]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[FECHANACIMIENTO]"
+                          cachedDataType="dbDate"
+                          cachedName="FECHANACIMIENTO"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[FECHANACIMIENTO]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[SEXO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="15"
+                          cachedName="SEXO"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[SEXO]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[TELEFONO]"
+                          cachedCodepage="1252"
+                          cachedDataType="text"
+                          cachedName="TELEFONO"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[TELEFONO]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[RAZA]"
+                          cachedCodepage="1252"
+                          cachedDataType="text"
+                          cachedName="RAZA"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[RAZA]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Municipio]"
+                          cachedCodepage="1252"
+                          cachedDataType="text"
+                          cachedName="Municipio"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Municipio]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Email]"
+                          cachedCodepage="1252"
+                          cachedDataType="text"
+                          cachedName="Email"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Email]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Direccion]"
+                          cachedCodepage="1252"
+                          cachedDataType="text"
+                          cachedName="Direccion"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Direccion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[EPS]"
+                          cachedCodepage="1252"
+                          cachedDataType="text"
+                          cachedName="EPS"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[EPS]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos]"
+                      exclusionGroup="1"
+                      name="Salida de conversión de datos"
+                      synchronousInputId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TIPODOCUMENTO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TIPODOCUMENTO]"
+                          name="Copia de TIPODOCUMENTO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[TIPODOCUMENTO]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NUMEROIDENTIFICACION]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NUMEROIDENTIFICACION]"
+                          name="Copia de NUMEROIDENTIFICACION"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NUMEROIDENTIFICACION]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBRE1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBRE1]"
+                          name="Copia de NOMBRE1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NOMBRE1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBRE2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBRE2]"
+                          name="Copia de NOMBRE2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NOMBRE2]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de APELLIDO1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de APELLIDO1]"
+                          name="Copia de APELLIDO1"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[APELLIDO1]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de APELLIDO2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de APELLIDO2]"
+                          name="Copia de APELLIDO2"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[APELLIDO2]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de FECHANACIMIENTO]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de FECHANACIMIENTO]"
+                          name="Copia de FECHANACIMIENTO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[FECHANACIMIENTO]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de SEXO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="10"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de SEXO]"
+                          name="Copia de SEXO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[SEXO]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TELEFONO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TELEFONO]"
+                          name="Copia de TELEFONO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[TELEFONO]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de RAZA]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de RAZA]"
+                          name="Copia de RAZA"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[RAZA]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Municipio]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Municipio]"
+                          name="Copia de Municipio"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Municipio]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Email]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="200"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Email]"
+                          name="Copia de Email"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Email]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Direccion]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="200"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Direccion]"
+                          name="Copia de Direccion"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Direccion]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EPS]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EPS]"
+                          name="Copia de EPS"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[EPS]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de conversión de datos"
+                      synchronousInputId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino de OLE DB"
+                  name="Destino de OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[Stage].[Paciente]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                      errorOrTruncationOperation="Insertar"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de destino de OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de SEXO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="Copia de SEXO"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sexo]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de SEXO]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de FECHANACIMIENTO]"
+                          cachedDataType="dbDate"
+                          cachedName="Copia de FECHANACIMIENTO"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaNacimiento]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de FECHANACIMIENTO]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de APELLIDO2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copia de APELLIDO2"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segundo_Apellido]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de APELLIDO2]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de APELLIDO1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copia de APELLIDO1"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Primer_Apellido]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de APELLIDO1]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de NOMBRE2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copia de NOMBRE2"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segundo_Nombre]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBRE2]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de NOMBRE1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copia de NOMBRE1"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Primer_Nombre]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBRE1]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de NUMEROIDENTIFICACION]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="Copia de NUMEROIDENTIFICACION"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NumeroIdentificacion]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NUMEROIDENTIFICACION]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[IDPACIENTE]"
+                          cachedDataType="i4"
+                          cachedName="IDPACIENTE"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_PacienteID]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[IDPACIENTE]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de TIPODOCUMENTO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copia de TIPODOCUMENTO"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoDocumento]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TIPODOCUMENTO]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de TELEFONO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="Copia de TELEFONO"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Telefono]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TELEFONO]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de RAZA]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="Copia de RAZA"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Raza]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de RAZA]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de Municipio]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copia de Municipio"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Municipio]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Municipio]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de Direccion]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="200"
+                          cachedName="Copia de Direccion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Direccion]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Direccion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de Email]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="200"
+                          cachedName="Copia de Email"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Email]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Email]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de EPS]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="Copia de EPS"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EPS]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EPS]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Periodo]"
+                          cachedDataType="i4"
+                          cachedName="Periodo"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Periodo]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Periodo]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoDocumento]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TipoDocumento" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_PacienteID]"
+                          dataType="i4"
+                          name="BK_PacienteID" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NumeroIdentificacion]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="NumeroIdentificacion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Primer_Nombre]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Primer_Nombre" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segundo_Nombre]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Segundo_Nombre" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Primer_Apellido]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Primer_Apellido" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segundo_Apellido]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Segundo_Apellido" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaNacimiento]"
+                          dataType="dbDate"
+                          name="FechaNacimiento" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sexo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="Sexo" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Telefono]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Telefono" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Raza]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Raza" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Municipio]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Municipio" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Direccion]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="Direccion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Email]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="Email" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EPS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="EPS" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Periodo]"
+                          dataType="i4"
+                          name="Periodo" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de destino de OLE DB"
+                      synchronousInputId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origen de OLE DB"
+                  name="QUERY PACIENTES"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT Q.IDPACIENTE, 
+RTRIM(LTRIM(TI.NOMBRE)) AS TIPODOCUMENTO, 
+RTRIM(LTRIM(Q.NUMEROIDENTIFICACION)) AS NUMEROIDENTIFICACION, 
+RTRIM(LTRIM(Q.NOMBRE1)) AS NOMBRE1, 
+RTRIM(LTRIM(Q.NOMBRE2)) AS NOMBRE2, 
+RTRIM(LTRIM(Q.APELLIDO1)) AS APELLIDO1, 
+LTRIM(RTRIM(Q.APELLIDO2)) AS APELLIDO2,
+CAST(Q.FECHANACIMIENTO AS date) FECHANACIMIENTO, 
+UPPER(RTRIM(LTRIM(S.NOMBRE))) AS SEXO,
+(SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=15 AND E.IDPACIENTE = Q.IDPACIENTE) as TELEFONO,
+ISNULL((SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=34 AND E.IDPACIENTE = Q.IDPACIENTE),'Otros') as RAZA,
+(SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=10 AND E.IDPACIENTE = Q.IDPACIENTE) as Municipio,
+(SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=16 AND E.IDPACIENTE = Q.IDPACIENTE) as Email,
+(SELECT E.VALOR from [DIMENSIONES].[TB_PACIENTES] E JOIN [GENERAL].[TB_PACIENTES] F ON E.IDPACIENTE = F.IDPACIENTE WHERE E.DIMENSION=14 AND E.IDPACIENTE = Q.IDPACIENTE) as Direccion,
+(SELECT EPS.NOMBRE AS EPS from GENERAL.VW_PACIENTES_EPS F JOIN DIMENSIONES.VW_EPS EPS ON F.VALOR = EPS.IDLISTA AND F.IDPACIENTE = Q.IDPACIENTE) AS EPS
+INTO #PACIENTES
+FROM GENERAL.TB_PACIENTES Q
+LEFT JOIN GENERAL.TB_TIPOSIDENTIFICACION TI ON Q.IDTIPOIDENTIFICACION = TI.IDTIPOIDENTIFICACION
+LEFT JOIN GENERAL.TB_SEXO S ON Q.IDSEXO = S.IDSEXO
+JOIN LABORATORIO.TB_CABSOLICITUD2021 SOL on Q.IDPACIENTE = SOL.IDPACIENTE
+where CONVERT(varchar(6),SOL.FECHASOLICITUD,112) = 202102</property>
+                    <property
+                      dataType="System.String"
+                      description="Variable que contiene el comando SQL para ejecutar."
+                      name="SqlCommandVariable">User::V_Pacientes</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.String"
+                      description="Asignaciones entre los parámetros del comando SQL y las variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Connections[OleDbConnection]"
+                      connectionManagerID="{EA13A1CF-4513-41F7-A69E-550CBEE06684}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[COLCANBI Athenea]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB]"
+                      name="Salida de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[IDPACIENTE]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[IDPACIENTE]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[IDPACIENTE]"
+                          name="IDPACIENTE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[TIPODOCUMENTO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[TIPODOCUMENTO]"
+                          length="35"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[TIPODOCUMENTO]"
+                          name="TIPODOCUMENTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NUMEROIDENTIFICACION]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[NUMEROIDENTIFICACION]"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NUMEROIDENTIFICACION]"
+                          name="NUMEROIDENTIFICACION"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NOMBRE1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[NOMBRE1]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NOMBRE1]"
+                          name="NOMBRE1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NOMBRE2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[NOMBRE2]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[NOMBRE2]"
+                          name="NOMBRE2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[APELLIDO1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[APELLIDO1]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[APELLIDO1]"
+                          name="APELLIDO1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[APELLIDO2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[APELLIDO2]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[APELLIDO2]"
+                          name="APELLIDO2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[FECHANACIMIENTO]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[FECHANACIMIENTO]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[FECHANACIMIENTO]"
+                          name="FECHANACIMIENTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[SEXO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[SEXO]"
+                          length="15"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[SEXO]"
+                          name="SEXO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[TELEFONO]"
+                          codePage="1252"
+                          dataType="text"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[TELEFONO]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[TELEFONO]"
+                          name="TELEFONO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[RAZA]"
+                          codePage="1252"
+                          dataType="text"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[RAZA]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[RAZA]"
+                          name="RAZA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Municipio]"
+                          codePage="1252"
+                          dataType="text"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[Municipio]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Municipio]"
+                          name="Municipio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Email]"
+                          codePage="1252"
+                          dataType="text"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[Email]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Email]"
+                          name="Email"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Direccion]"
+                          codePage="1252"
+                          dataType="text"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[Direccion]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Direccion]"
+                          name="Direccion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[EPS]"
+                          codePage="1252"
+                          dataType="text"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[EPS]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[EPS]"
+                          name="EPS"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Periodo]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[Periodo]"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].Columns[Periodo]"
+                          name="Periodo"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[IDPACIENTE]"
+                          dataType="i4"
+                          name="IDPACIENTE" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[TIPODOCUMENTO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="35"
+                          name="TIPODOCUMENTO" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[NUMEROIDENTIFICACION]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="NUMEROIDENTIFICACION" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[NOMBRE1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NOMBRE1" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[NOMBRE2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NOMBRE2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[APELLIDO1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="APELLIDO1" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[APELLIDO2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="APELLIDO2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[FECHANACIMIENTO]"
+                          dataType="dbDate"
+                          name="FECHANACIMIENTO" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[SEXO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          name="SEXO" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[TELEFONO]"
+                          codePage="1252"
+                          dataType="text"
+                          name="TELEFONO" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[RAZA]"
+                          codePage="1252"
+                          dataType="text"
+                          name="RAZA" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[Municipio]"
+                          codePage="1252"
+                          dataType="text"
+                          name="Municipio" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[Email]"
+                          codePage="1252"
+                          dataType="text"
+                          name="Email" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[Direccion]"
+                          codePage="1252"
+                          dataType="text"
+                          name="Direccion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[EPS]"
+                          codePage="1252"
+                          dataType="text"
+                          name="EPS" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB].ExternalColumns[Periodo]"
+                          dataType="i4"
+                          name="Periodo" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB]"
+                      isErrorOut="true"
+                      name="Salida de error de origen de OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[IDPACIENTE]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[IDPACIENTE]"
+                          name="IDPACIENTE" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[TIPODOCUMENTO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="35"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[TIPODOCUMENTO]"
+                          name="TIPODOCUMENTO" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[NUMEROIDENTIFICACION]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[NUMEROIDENTIFICACION]"
+                          name="NUMEROIDENTIFICACION" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[NOMBRE1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[NOMBRE1]"
+                          name="NOMBRE1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[NOMBRE2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[NOMBRE2]"
+                          name="NOMBRE2" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[APELLIDO1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[APELLIDO1]"
+                          name="APELLIDO1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[APELLIDO2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[APELLIDO2]"
+                          name="APELLIDO2" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[FECHANACIMIENTO]"
+                          dataType="dbDate"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[FECHANACIMIENTO]"
+                          name="FECHANACIMIENTO" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[SEXO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="15"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[SEXO]"
+                          name="SEXO" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[TELEFONO]"
+                          codePage="1252"
+                          dataType="text"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[TELEFONO]"
+                          name="TELEFONO" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[RAZA]"
+                          codePage="1252"
+                          dataType="text"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[RAZA]"
+                          name="RAZA" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[Municipio]"
+                          codePage="1252"
+                          dataType="text"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[Municipio]"
+                          name="Municipio" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[Email]"
+                          codePage="1252"
+                          dataType="text"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[Email]"
+                          name="Email" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[Direccion]"
+                          codePage="1252"
+                          dataType="text"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[Direccion]"
+                          name="Direccion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[EPS]"
+                          codePage="1252"
+                          dataType="text"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[EPS]"
+                          name="EPS" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[Periodo]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[Periodo]"
+                          name="Periodo" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Stage Paciente.Paths[Salida de conversión de datos]"
+                  endId="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  name="Salida de conversión de datos"
+                  startId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Outputs[Salida de conversión de datos]" />
+                <path
+                  refId="Package\Foreach Loop Container\Stage Paciente.Paths[Salida de origen de OLE DB]"
+                  endId="Package\Foreach Loop Container\Stage Paciente\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Salida de origen de OLE DB"
+                  startId="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES.Outputs[Salida de origen de OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Truncate pacientes"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d2848ccd-8dba-46b8-9353-848fe569c28e}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate pacientes"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"TRUNCATE TABLE [dbo].[dimPaciente] WITH (PARTITIONS($PARTITION.PF_Partition('" + @[User::V_ANOMES] + "01')));
+"</DTS:PropertyExpression>
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Foreach Loop Container\Truncate pacientes.EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{B8404D4B-F20F-4E2A-B9BC-B18CD6CE8D3B}"
+              DTS:EventID="7143521"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{D6A42EDE-5EE0-44F4-8ED6-F0FA2995554B}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Foreach Loop Container\Truncate pacientes.EventHandlers[OnPreExecute]\Inicio - periodo 202111"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{fbf58775-3597-4831-9e2c-3ca2f29a22a8}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Inicio - periodo 202111">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="Name">"Inicio - periodo " +  @[User::V_ANOMES]</DTS:PropertyExpression>
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"INSERT INTO [dbo].[logDataLoaders] (DateLog, KeyLoader, PackageName, TaskName, StartDateTime)
+VALUES ('" + @[User::V_PROJECT_DATE] + "','" + @[User::V_PROJECT_KEY] + @[User::V_ANOMES] + "','" + @[System::PackageName] + "','" + @[System::TaskName] + "', GETDATE())"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+                      SQLTask:SqlStatementSource="INSERT INTO [dbo].[logDataLoaders] (DateLog, KeyLoader, PackageName, TaskName, StartDateTime)&#xA;VALUES ('','20230104202111','Stage_Paciente','Inicio - periodo 202111', GETDATE())" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[dimPaciente] WITH (PARTITIONS($PARTITION.PF_Partition('20211101')));&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5F8765DB-A76C-4CD2-9CD0-8B53381614DE}"
+          DTS:From="Package\Foreach Loop Container\Truncate pacientes"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\Stage Paciente" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{D7EE82D0-9D99-4208-80DE-CCA55D9B9B8E}"
+          DTS:From="Package\Foreach Loop Container\Stage Paciente"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Foreach Loop Container\Final" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{899F6D93-3541-488C-A2E9-B3DDDEBFEAC6}"
+          DTS:ObjectName="{899F6D93-3541-488C-A2E9-B3DDDEBFEAC6}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::V_ANOMES" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate StagePacientes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{53856F39-D1D0-40DE-9602-9F117DBF0089}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate StagePacientes"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stage.Paciente" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{325E044E-1ED0-4747-B8B3-2661D02B3E2B}"
+      DTS:From="Package\AnoMes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{971B08BD-6228-4F73-A63F-33DB03C9DD09}"
+      DTS:From="Package\Truncate StagePacientes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\AnoMes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="116,42"
+          Id="Package\AnoMes"
+          TopLeft="98,153.5" />
+        <NodeLayout
+          Size="149.333333333334,42"
+          Id="Package\Foreach Loop Container\Stage Paciente"
+          TopLeft="74.5,137.5" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Foreach Loop Container\Truncate pacientes"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="146.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.5"
+              Start="0,0"
+              End="0,28">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="101.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\Final"
+          TopLeft="97.0833327807486,236.900000046492" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="148.458333057041,179.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.4000000464916"
+              Start="0,0"
+              End="0,49.9000000464916">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.9000000464916" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="274.666666666667,337.333333333334"
+          Size="274.666666666667,380"
+          Id="Package\Foreach Loop Container"
+          TopLeft="359,29" />
+        <NodeLayout
+          Size="194.666666666667,42"
+          Id="Package\Truncate StagePacientes"
+          TopLeft="63.2500000558793,52.4333333255847" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="214,174.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="145,44.5"
+              Start="0,0"
+              End="137.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="68.5,0"
+                    Point2="72.5,0"
+                    Point3="72.5,4" />
+                  <mssgle:LineSegment
+                    End="72.5,40.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="72.5,40.5"
+                    Point2="72.5,44.5"
+                    Point3="76.5,44.5" />
+                  <mssgle:LineSegment
+                    End="137.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="158.291666694606,94.4333333255847">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.0666666744153"
+              Start="0,0"
+              End="0,51.5666666744153">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5666666744153" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Stage Paciente">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES"
+          TopLeft="198,91" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Foreach Loop Container\Stage Paciente\Conversión de datos"
+          TopLeft="191,169" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB"
+          TopLeft="198,246" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Stage Paciente.Paths[Salida de origen de OLE DB]"
+          TopLeft="282,133">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Stage Paciente.Paths[Salida de conversión de datos]"
+          TopLeft="281.5,211">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Stage Paciente\QUERY PACIENTES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Stage Paciente\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package\Foreach Loop Container\Truncate pacientes.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Foreach Loop Container\Truncate pacientes.EventHandlers[OnPreExecute]\Inicio - periodo 202111"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Foreach Loop Container\Final.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Foreach Loop Container\Final.EventHandlers[OnPreExecute]\Update Ejecucion"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

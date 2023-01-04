@@ -1,0 +1,1719 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/2/2018 5:00:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PRUEBAS-BI"
+  DTS:CreatorName="PRUEBAS-BI\Soportebi"
+  DTS:DTSID="{1E969948-6083-477F-87DD-98C6EC30190F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DWH_PacientesCovid"
+  DTS:PackageType="5"
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{0BF86E4C-74D8-4C13-B899-523B1F517915}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DimPacientesCovid"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{647B2973-F419-4D06-8163-7DF47887D73B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimPacientesCovid"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DimPacientesCovid\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dimPacientesCOVID]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimPacientesCovid\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IdNota]"
+                      cachedDataType="i4"
+                      cachedName="IdNota"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdNota]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdNota]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IdSolicitud]"
+                      cachedDataType="i4"
+                      cachedName="IdSolicitud"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdSolicitud]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdSolicitud]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Ano]"
+                      cachedDataType="i4"
+                      cachedName="Ano"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Ano]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ano]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Prefijo]"
+                      cachedDataType="i4"
+                      cachedName="Prefijo"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Prefijo]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[Prefijo]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IdParametro]"
+                      cachedDataType="i4"
+                      cachedName="IdParametro"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdParametro]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdParametro]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NUMERO_OCM_INS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NUMERO_OCM_INS"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUMERO_OCM_INS]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NUMERO_OCM_INS]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[COD_INTERNO_GVI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="600"
+                      cachedName="COD_INTERNO_GVI"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_INTERNO_GVI]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[COD_INTERNO_GVI]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OCUPACION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="OCUPACION"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OCUPACION]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[OCUPACION]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LOCALIDAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="LOCALIDAD"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOCALIDAD]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCALIDAD]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PRIMERA_VEZ_CONTROL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="PRIMERA_VEZ_CONTROL"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRIMERA_VEZ_CONTROL]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRIMERA_VEZ_CONTROL]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_PAIS_RESIDE]"
+                      cachedDataType="i4"
+                      cachedName="ID_PAIS_RESIDE"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_RESIDE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_PAIS_RESIDE]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_PAIS_RESIDE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_PAIS_RESIDE"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_RESIDE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_RESIDE]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_TIPO_VIAJERO]"
+                      cachedDataType="i4"
+                      cachedName="ID_TIPO_VIAJERO"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_VIAJERO]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TIPO_VIAJERO]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_TIPO_VIAJERO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_TIPO_VIAJERO"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_VIAJERO]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_VIAJERO]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_MUNICIPIO_VIAJE]"
+                      cachedDataType="i4"
+                      cachedName="ID_MUNICIPIO_VIAJE"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_VIAJE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_VIAJE]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_MUNICIPIO_VIAJE"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_VIAJE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_VIAJE]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_PAIS_PROCEDENCIA]"
+                      cachedDataType="i4"
+                      cachedName="ID_PAIS_PROCEDENCIA"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_PROCEDENCIA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_PAIS_PROCEDENCIA]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_PAIS_PROCEDENCIA"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_PROCEDENCIA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_PROCEDENCIA]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_CONDICION_FIN]"
+                      cachedDataType="i4"
+                      cachedName="ID_CONDICION_FIN"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONDICION_FIN]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CONDICION_FIN]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_CONDICION_FIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_CONDICION_FIN"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONDICION_FIN]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CONDICION_FIN]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_MUNICIPIO_MUESTRA]"
+                      cachedDataType="i4"
+                      cachedName="ID_MUNICIPIO_MUESTRA"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_MUESTRA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_MUESTRA]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_MUNICIPIO_MUESTRA"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_TIPO_MUESTRACOV]"
+                      cachedDataType="i4"
+                      cachedName="ID_TIPO_MUESTRACOV"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_MUESTRACOV]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TIPO_MUESTRACOV]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_TIPO_MUESTRACOV"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_MUESTRACOV]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_MUESTRACOV]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_NACIONALIDAD]"
+                      cachedDataType="i4"
+                      cachedName="ID_NACIONALIDAD"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_NACIONALIDAD]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_NACIONALIDAD]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_NACIONALIDAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_NACIONALIDAD"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_NACIONALIDAD]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_NACIONALIDAD]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_REGIMEN]"
+                      cachedDataType="i4"
+                      cachedName="ID_REGIMEN"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_REGIMEN]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_REGIMEN]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_REGIMEN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_REGIMEN"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_REGIMEN]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_REGIMEN]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_TIPO_ESTRATEG]"
+                      cachedDataType="i4"
+                      cachedName="ID_TIPO_ESTRATEG"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_ESTRATEG]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TIPO_ESTRATEG]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_TIPO_ESTRATEG"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_ESTRATEG]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_ESTRATEG]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_CODIGOEPS]"
+                      cachedDataType="i4"
+                      cachedName="ID_CODIGOEPS"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOEPS]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CODIGOEPS]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_CODIGOEPS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_CODIGOEPS"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOEPS]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_CODIGOTOMA]"
+                      cachedDataType="i4"
+                      cachedName="ID_CODIGOTOMA"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOTOMA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CODIGOTOMA]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_CODIGOTOMA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_CODIGOTOMA"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOTOMA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOTOMA]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_TRABAJASALUD]"
+                      cachedDataType="i4"
+                      cachedName="ID_TRABAJASALUD"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TRABAJASALUD]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TRABAJASALUD]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_TRABAJASALUD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_TRABAJASALUD"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TRABAJASALUD]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TRABAJASALUD]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_CONTACTOCONCASO]"
+                      cachedDataType="i4"
+                      cachedName="ID_CONTACTOCONCASO"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONTACTOCONCASO]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CONTACTOCONCASO]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_CONTACTOCONCASO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_CONTACTOCONCASO"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONTACTOCONCASO]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CONTACTOCONCASO]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_TOMA]"
+                      cachedDataType="dbDate"
+                      cachedName="FECHA_TOMA"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_TOMA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_TOMA]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_LLEGAVIAJE]"
+                      cachedDataType="dbDate"
+                      cachedName="FECHA_LLEGAVIAJE"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_LLEGAVIAJE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_LLEGAVIAJE]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_SINTOMAS]"
+                      cachedDataType="dbDate"
+                      cachedName="FECHA_SINTOMAS"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_SINTOMAS]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_SINTOMAS]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_RECEPCION]"
+                      cachedDataType="dbDate"
+                      cachedName="FECHA_RECEPCION"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_RECEPCION]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_RECEPCION]" />
+                    <inputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_MUERTE]"
+                      cachedDataType="dbDate"
+                      cachedName="FECHA_MUERTE"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_MUERTE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_MUERTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SRK_COVIDDimensiones]"
+                      dataType="i4"
+                      name="SRK_COVIDDimensiones" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdNota]"
+                      dataType="i4"
+                      name="IdNota" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdSolicitud]"
+                      dataType="i4"
+                      name="IdSolicitud" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Ano]"
+                      dataType="i4"
+                      name="Ano" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Prefijo]"
+                      dataType="i4"
+                      name="Prefijo" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdParametro]"
+                      dataType="i4"
+                      name="IdParametro" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUMERO_OCM_INS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NUMERO_OCM_INS" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_INTERNO_GVI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      name="COD_INTERNO_GVI" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OCUPACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="OCUPACION" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOCALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="LOCALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRIMERA_VEZ_CONTROL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PRIMERA_VEZ_CONTROL" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_RESIDE]"
+                      dataType="i4"
+                      name="ID_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_VIAJERO]"
+                      dataType="i4"
+                      name="ID_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_VIAJE]"
+                      dataType="i4"
+                      name="ID_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_PROCEDENCIA]"
+                      dataType="i4"
+                      name="ID_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONDICION_FIN]"
+                      dataType="i4"
+                      name="ID_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_MUESTRA]"
+                      dataType="i4"
+                      name="ID_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_MUESTRACOV]"
+                      dataType="i4"
+                      name="ID_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_NACIONALIDAD]"
+                      dataType="i4"
+                      name="ID_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_REGIMEN]"
+                      dataType="i4"
+                      name="ID_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_ESTRATEG]"
+                      dataType="i4"
+                      name="ID_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOEPS]"
+                      dataType="i4"
+                      name="ID_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOTOMA]"
+                      dataType="i4"
+                      name="ID_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TRABAJASALUD]"
+                      dataType="i4"
+                      name="ID_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONTACTOCONCASO]"
+                      dataType="i4"
+                      name="ID_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      name="FECHA_TOMA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_LLEGAVIAJE]"
+                      dataType="dbDate"
+                      name="FECHA_LLEGAVIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_SINTOMAS]"
+                      dataType="dbDate"
+                      name="FECHA_SINTOMAS" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_RECEPCION]"
+                      dataType="dbDate"
+                      name="FECHA_RECEPCION" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_MUERTE]"
+                      dataType="dbDate"
+                      name="FECHA_MUERTE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimPacientesCovid\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimPacientesCovid\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[dimPacientesCOVID]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimPacientesCovid\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdNota]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdNota]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdNota]"
+                      name="IdNota"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdSolicitud]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdSolicitud]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdSolicitud]"
+                      name="IdSolicitud"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ano]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Ano]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[Ano]"
+                      name="Ano"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[Prefijo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Prefijo]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[Prefijo]"
+                      name="Prefijo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdParametro]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdParametro]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdParametro]"
+                      name="IdParametro"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NUMERO_OCM_INS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NUMERO_OCM_INS]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NUMERO_OCM_INS]"
+                      name="NUMERO_OCM_INS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[COD_INTERNO_GVI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[COD_INTERNO_GVI]"
+                      length="600"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[COD_INTERNO_GVI]"
+                      name="COD_INTERNO_GVI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[OCUPACION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OCUPACION]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[OCUPACION]"
+                      name="OCUPACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LOCALIDAD]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCALIDAD]"
+                      name="LOCALIDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRIMERA_VEZ_CONTROL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRIMERA_VEZ_CONTROL]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRIMERA_VEZ_CONTROL]"
+                      name="PRIMERA_VEZ_CONTROL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_PAIS_RESIDE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_PAIS_RESIDE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_PAIS_RESIDE]"
+                      name="ID_PAIS_RESIDE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_PAIS_RESIDE]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_RESIDE]"
+                      name="NOMBRE_PAIS_RESIDE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TIPO_VIAJERO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_VIAJERO]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TIPO_VIAJERO]"
+                      name="ID_TIPO_VIAJERO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_VIAJERO]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_VIAJERO]"
+                      name="NOMBRE_TIPO_VIAJERO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_VIAJE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_MUNICIPIO_VIAJE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_VIAJE]"
+                      name="ID_MUNICIPIO_VIAJE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_MUNICIPIO_VIAJE]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      name="NOMBRE_MUNICIPIO_VIAJE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_PAIS_PROCEDENCIA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_PAIS_PROCEDENCIA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_PAIS_PROCEDENCIA]"
+                      name="ID_PAIS_PROCEDENCIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_PAIS_PROCEDENCIA]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      name="NOMBRE_PAIS_PROCEDENCIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CONDICION_FIN]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_CONDICION_FIN]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CONDICION_FIN]"
+                      name="ID_CONDICION_FIN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CONDICION_FIN]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CONDICION_FIN]"
+                      name="NOMBRE_CONDICION_FIN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_MUESTRA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_MUNICIPIO_MUESTRA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_MUESTRA]"
+                      name="ID_MUNICIPIO_MUESTRA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      name="NOMBRE_MUNICIPIO_MUESTRA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TIPO_MUESTRACOV]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_MUESTRACOV]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TIPO_MUESTRACOV]"
+                      name="ID_TIPO_MUESTRACOV"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_MUESTRACOV]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      name="NOMBRE_TIPO_MUESTRACOV"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_NACIONALIDAD]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_NACIONALIDAD]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_NACIONALIDAD]"
+                      name="ID_NACIONALIDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_NACIONALIDAD]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_NACIONALIDAD]"
+                      name="NOMBRE_NACIONALIDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_REGIMEN]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_REGIMEN]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_REGIMEN]"
+                      name="ID_REGIMEN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_REGIMEN]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_REGIMEN]"
+                      name="NOMBRE_REGIMEN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TIPO_ESTRATEG]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_ESTRATEG]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TIPO_ESTRATEG]"
+                      name="ID_TIPO_ESTRATEG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_ESTRATEG]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      name="NOMBRE_TIPO_ESTRATEG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CODIGOEPS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_CODIGOEPS]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CODIGOEPS]"
+                      name="ID_CODIGOEPS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOEPS]"
+                      name="NOMBRE_CODIGOEPS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CODIGOTOMA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_CODIGOTOMA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CODIGOTOMA]"
+                      name="ID_CODIGOTOMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CODIGOTOMA]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOTOMA]"
+                      name="NOMBRE_CODIGOTOMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TRABAJASALUD]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_TRABAJASALUD]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_TRABAJASALUD]"
+                      name="ID_TRABAJASALUD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TRABAJASALUD]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_TRABAJASALUD]"
+                      name="NOMBRE_TRABAJASALUD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CONTACTOCONCASO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_CONTACTOCONCASO]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[ID_CONTACTOCONCASO]"
+                      name="ID_CONTACTOCONCASO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CONTACTOCONCASO]"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[NOMBRE_CONTACTOCONCASO]"
+                      name="NOMBRE_CONTACTOCONCASO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_TOMA]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_TOMA]"
+                      name="FECHA_TOMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_LLEGAVIAJE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_LLEGAVIAJE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_LLEGAVIAJE]"
+                      name="FECHA_LLEGAVIAJE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_SINTOMAS]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_SINTOMAS]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_SINTOMAS]"
+                      name="FECHA_SINTOMAS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_RECEPCION]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_RECEPCION]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_RECEPCION]"
+                      name="FECHA_RECEPCION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_MUERTE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_MUERTE]"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].Columns[FECHA_MUERTE]"
+                      name="FECHA_MUERTE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdNota]"
+                      dataType="i4"
+                      name="IdNota" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdSolicitud]"
+                      dataType="i4"
+                      name="IdSolicitud" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Ano]"
+                      dataType="i4"
+                      name="Ano" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Prefijo]"
+                      dataType="i4"
+                      name="Prefijo" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdParametro]"
+                      dataType="i4"
+                      name="IdParametro" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NUMERO_OCM_INS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NUMERO_OCM_INS" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[COD_INTERNO_GVI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      name="COD_INTERNO_GVI" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OCUPACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="OCUPACION" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LOCALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="LOCALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRIMERA_VEZ_CONTROL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PRIMERA_VEZ_CONTROL" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_PAIS_RESIDE]"
+                      dataType="i4"
+                      name="ID_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_VIAJERO]"
+                      dataType="i4"
+                      name="ID_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_MUNICIPIO_VIAJE]"
+                      dataType="i4"
+                      name="ID_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_PAIS_PROCEDENCIA]"
+                      dataType="i4"
+                      name="ID_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_CONDICION_FIN]"
+                      dataType="i4"
+                      name="ID_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_MUNICIPIO_MUESTRA]"
+                      dataType="i4"
+                      name="ID_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_MUESTRACOV]"
+                      dataType="i4"
+                      name="ID_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_NACIONALIDAD]"
+                      dataType="i4"
+                      name="ID_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_REGIMEN]"
+                      dataType="i4"
+                      name="ID_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_ESTRATEG]"
+                      dataType="i4"
+                      name="ID_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_CODIGOEPS]"
+                      dataType="i4"
+                      name="ID_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_CODIGOTOMA]"
+                      dataType="i4"
+                      name="ID_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_TRABAJASALUD]"
+                      dataType="i4"
+                      name="ID_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ID_CONTACTOCONCASO]"
+                      dataType="i4"
+                      name="ID_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      name="FECHA_TOMA" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_LLEGAVIAJE]"
+                      dataType="dbDate"
+                      name="FECHA_LLEGAVIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_SINTOMAS]"
+                      dataType="dbDate"
+                      name="FECHA_SINTOMAS" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_RECEPCION]"
+                      dataType="dbDate"
+                      name="FECHA_RECEPCION" />
+                    <externalMetadataColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FECHA_MUERTE]"
+                      dataType="dbDate"
+                      name="FECHA_MUERTE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdNota]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdNota]"
+                      name="IdNota" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdSolicitud]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdSolicitud]"
+                      name="IdSolicitud" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Ano]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Ano]"
+                      name="Ano" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Prefijo]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Prefijo]"
+                      name="Prefijo" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdParametro]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdParametro]"
+                      name="IdParametro" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NUMERO_OCM_INS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NUMERO_OCM_INS]"
+                      name="NUMERO_OCM_INS" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[COD_INTERNO_GVI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[COD_INTERNO_GVI]"
+                      name="COD_INTERNO_GVI" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OCUPACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OCUPACION]"
+                      name="OCUPACION" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LOCALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LOCALIDAD]"
+                      name="LOCALIDAD" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRIMERA_VEZ_CONTROL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRIMERA_VEZ_CONTROL]"
+                      name="PRIMERA_VEZ_CONTROL" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_PAIS_RESIDE]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_PAIS_RESIDE]"
+                      name="ID_PAIS_RESIDE" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_PAIS_RESIDE]"
+                      name="NOMBRE_PAIS_RESIDE" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_VIAJERO]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_VIAJERO]"
+                      name="ID_TIPO_VIAJERO" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_VIAJERO]"
+                      name="NOMBRE_TIPO_VIAJERO" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_MUNICIPIO_VIAJE]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_MUNICIPIO_VIAJE]"
+                      name="ID_MUNICIPIO_VIAJE" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      name="NOMBRE_MUNICIPIO_VIAJE" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_PAIS_PROCEDENCIA]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_PAIS_PROCEDENCIA]"
+                      name="ID_PAIS_PROCEDENCIA" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      name="NOMBRE_PAIS_PROCEDENCIA" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_CONDICION_FIN]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_CONDICION_FIN]"
+                      name="ID_CONDICION_FIN" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CONDICION_FIN]"
+                      name="NOMBRE_CONDICION_FIN" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_MUNICIPIO_MUESTRA]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_MUNICIPIO_MUESTRA]"
+                      name="ID_MUNICIPIO_MUESTRA" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      name="NOMBRE_MUNICIPIO_MUESTRA" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_MUESTRACOV]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_MUESTRACOV]"
+                      name="ID_TIPO_MUESTRACOV" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      name="NOMBRE_TIPO_MUESTRACOV" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_NACIONALIDAD]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_NACIONALIDAD]"
+                      name="ID_NACIONALIDAD" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_NACIONALIDAD]"
+                      name="NOMBRE_NACIONALIDAD" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_REGIMEN]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_REGIMEN]"
+                      name="ID_REGIMEN" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_REGIMEN]"
+                      name="NOMBRE_REGIMEN" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_ESTRATEG]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_ESTRATEG]"
+                      name="ID_TIPO_ESTRATEG" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      name="NOMBRE_TIPO_ESTRATEG" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_CODIGOEPS]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_CODIGOEPS]"
+                      name="ID_CODIGOEPS" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CODIGOEPS]"
+                      name="NOMBRE_CODIGOEPS" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_CODIGOTOMA]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_CODIGOTOMA]"
+                      name="ID_CODIGOTOMA" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CODIGOTOMA]"
+                      name="NOMBRE_CODIGOTOMA" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_TRABAJASALUD]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_TRABAJASALUD]"
+                      name="ID_TRABAJASALUD" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TRABAJASALUD]"
+                      name="NOMBRE_TRABAJASALUD" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_CONTACTOCONCASO]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ID_CONTACTOCONCASO]"
+                      name="ID_CONTACTOCONCASO" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CONTACTOCONCASO]"
+                      name="NOMBRE_CONTACTOCONCASO" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_TOMA]"
+                      name="FECHA_TOMA" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_LLEGAVIAJE]"
+                      dataType="dbDate"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_LLEGAVIAJE]"
+                      name="FECHA_LLEGAVIAJE" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_SINTOMAS]"
+                      dataType="dbDate"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_SINTOMAS]"
+                      name="FECHA_SINTOMAS" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_RECEPCION]"
+                      dataType="dbDate"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_RECEPCION]"
+                      name="FECHA_RECEPCION" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_MUERTE]"
+                      dataType="dbDate"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FECHA_MUERTE]"
+                      name="FECHA_MUERTE" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimPacientesCovid.Paths[OLE DB Source Output]"
+              endId="Package\DimPacientesCovid\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DimPacientesCovid\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\DimPacientesCovid"
+          TopLeft="350,57.6666666666667" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DimPacientesCovid">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\DimPacientesCovid\OLE DB Source"
+          TopLeft="324.374995166436,49.3999991166592" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\DimPacientesCovid\OLE DB Destination"
+          TopLeft="310.624995371327,166.399997024536" />
+        <EdgeLayout
+          Id="Package\DimPacientesCovid.Paths[OLE DB Source Output]"
+          TopLeft="398.166661935548,92.0666657833258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,74.3333312412103"
+              Start="0,0"
+              End="0,66.8333312412103">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.8333312412103" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimPacientesCovid\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimPacientesCovid\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

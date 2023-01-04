@@ -1,0 +1,1862 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/16/2021 3:57:32 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{FF788C33-2BDB-49B5-B26C-FC3703C8D665}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Stage_Cliente"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{28ADA871-3D1D-490B-8E0F-B074C2FF5B43}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Satge Clientes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ECB05FA5-BC5A-4291-9A10-C1266C72BA52}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Satge Clientes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Satge Clientes\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[NIT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NIT"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NIT]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[CODIGO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="CODIGO"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CODIGO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[DIRECCION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DIRECCION"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[DIRECCION]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[TELEFONO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="TELEFONO"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[TELEFONO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[NOMBRE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="NOMBRE"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NOMBRE]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[CONTACTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="75"
+                      cachedName="CONTACTO"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CONTACTO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[ACTIVO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="ACTIVO"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[ACTIVO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[GRUPOFACTURACION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="GRUPOFACTURACION"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[GRUPOFACTURACION]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[SUBSEGMENTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SUBSEGMENTO"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[SUBSEGMENTO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[SEGMENTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SEGMENTO"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[SEGMENTO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[GRUPO_MERCADO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="GRUPO_MERCADO"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[GRUPO_MERCADO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[ZONA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ZONA"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[ZONA]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[FORMA_PAGO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="FORMA_PAGO"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[FORMA_PAGO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[CIUDAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CIUDAD"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CIUDAD]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[NOMBRE_GESTOR_CARTERA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBRE_GESTOR_CARTERA"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NOMBRE_GESTOR_CARTERA]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[COBRADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="COBRADOR"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[COBRADOR]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[CORREO_FACT_ELEC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="400"
+                      cachedName="CORREO_FACT_ELEC"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CORREO_FACT_ELEC]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[USUARIO_FACT_ELEC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="USUARIO_FACT_ELEC"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[USUARIO_FACT_ELEC]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[PLAZO_CREDITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="PLAZO_CREDITO"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[PLAZO_CREDITO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input].Columns[IDCORDINADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="IDCORDINADOR"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[IDCORDINADOR]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NIT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NIT]"
+                      name="Copia de NIT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NIT]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de SUBSEGMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de SUBSEGMENTO]"
+                      name="Copia de SUBSEGMENTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[SUBSEGMENTO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CODIGO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CODIGO]"
+                      name="Copia de CODIGO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CODIGO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de DIRECCION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de DIRECCION]"
+                      name="Copia de DIRECCION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[DIRECCION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de TELEFONO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de TELEFONO]"
+                      name="Copia de TELEFONO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[TELEFONO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="150"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NOMBRE]"
+                      name="Copia de NOMBRE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NOMBRE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CONTACTO]"
+                      name="Copia de CONTACTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CONTACTO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de ACTIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de ACTIVO]"
+                      name="Copia de ACTIVO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[ACTIVO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de USUARIO_FACT_ELEC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de USUARIO_FACT_ELEC]"
+                      name="Copia de USUARIO_FACT_ELEC"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[USUARIO_FACT_ELEC]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GRUPOFACTURACION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GRUPOFACTURACION]"
+                      name="Copy of GRUPOFACTURACION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[GRUPOFACTURACION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CORREO_FACT_ELEC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="400"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CORREO_FACT_ELEC]"
+                      name="Copia de CORREO_FACT_ELEC"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CORREO_FACT_ELEC]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de GRUPO_MERCADO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de GRUPO_MERCADO]"
+                      name="Copia de GRUPO_MERCADO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[GRUPO_MERCADO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de ZONA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de ZONA]"
+                      name="Copia de ZONA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[ZONA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de FORMA_PAGO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de FORMA_PAGO]"
+                      name="Copia de FORMA_PAGO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[FORMA_PAGO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CIUDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CIUDAD]"
+                      name="Copia de CIUDAD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CIUDAD]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NOMBRE_GESTOR_CARTERA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NOMBRE_GESTOR_CARTERA]"
+                      name="Copia de NOMBRE_GESTOR_CARTERA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NOMBRE_GESTOR_CARTERA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de COBRADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de COBRADOR]"
+                      name="Copia de COBRADOR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[COBRADOR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de SEGMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de SEGMENTO]"
+                      name="Copia de SEGMENTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[SEGMENTO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de PLAZO_CREDITO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de PLAZO_CREDITO]"
+                      name="Copia de PLAZO_CREDITO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[PLAZO_CREDITO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IDCORDINADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IDCORDINADOR]"
+                      name="Copy of IDCORDINADOR"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[IDCORDINADOR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Satge Clientes\Dim  Clientes"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Dim  Clientes"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[Cliente]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Satge Clientes\Dim  Clientes.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[IDENTIDAD]"
+                      cachedDataType="i4"
+                      cachedName="IDENTIDAD"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[BK_Cliente]"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[IDENTIDAD]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de CODIGO]"
+                      cachedDataType="i4"
+                      cachedName="Copia de CODIGO"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[CodigoCliente]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CODIGO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de DIRECCION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de DIRECCION"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Direccion]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de DIRECCION]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de TELEFONO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de TELEFONO"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Telefono]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de TELEFONO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de NOMBRE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Copia de NOMBRE"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NOMBRE]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de CONTACTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de CONTACTO"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Contacto]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CONTACTO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de NIT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Copia de NIT"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Nit]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NIT]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de ACTIVO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Copia de ACTIVO"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Activo]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de ACTIVO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copy of GRUPOFACTURACION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copy of GRUPOFACTURACION"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[GrupoFacturacion]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GRUPOFACTURACION]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de SEGMENTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de SEGMENTO"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Segmento]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de SEGMENTO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de SUBSEGMENTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de SUBSEGMENTO"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[SubSegmento]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de SUBSEGMENTO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de GRUPO_MERCADO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de GRUPO_MERCADO"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[GrupoMercado]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de GRUPO_MERCADO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de ZONA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de ZONA"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Zona]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de ZONA]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de PLAZO_CREDITO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de PLAZO_CREDITO"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Plazo_credito]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de PLAZO_CREDITO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de FORMA_PAGO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de FORMA_PAGO"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Forma_pago]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de FORMA_PAGO]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de CIUDAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de CIUDAD"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CIUDAD]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de NOMBRE_GESTOR_CARTERA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de NOMBRE_GESTOR_CARTERA"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Gestor_cartera]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de NOMBRE_GESTOR_CARTERA]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de COBRADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de COBRADOR"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Cobrador]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de COBRADOR]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de CORREO_FACT_ELEC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="400"
+                      cachedName="Copia de CORREO_FACT_ELEC"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Correo_fact_elec]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de CORREO_FACT_ELEC]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copia de USUARIO_FACT_ELEC]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de USUARIO_FACT_ELEC"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Usuario_fact_elec]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copia de USUARIO_FACT_ELEC]" />
+                    <inputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].Columns[Copy of IDCORDINADOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of IDCORDINADOR"
+                      externalMetadataColumnId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[BK_Asesor]"
+                      lineageId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IDCORDINADOR]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[BK_Cliente]"
+                      dataType="i4"
+                      name="BK_Cliente" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[CodigoCliente]"
+                      dataType="i4"
+                      name="CodigoCliente" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Telefono" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Contacto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Contacto" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Activo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Activo" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Nit]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Nit" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[BK_Asesor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BK_Asesor" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[GrupoFacturacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="GrupoFacturacion" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Segmento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Segmento" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[SubSegmento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="SubSegmento" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[GrupoMercado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="GrupoMercado" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Zona]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Zona" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Forma_pago]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Forma_pago" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Plazo_credito]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Plazo_credito" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Gestor_cartera]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Gestor_cartera" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Cobrador]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Cobrador" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Correo_fact_elec]"
+                      codePage="1252"
+                      dataType="str"
+                      length="400"
+                      name="Correo_fact_elec" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input].ExternalColumns[Usuario_fact_elec]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Usuario_fact_elec" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Satge Clientes\Dim  Clientes.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Satge Clientes\Dim  Clientes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\Dim  Clientes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Satge Clientes\Dim  Clientes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Satge Clientes\QUERY CLIENTES"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="QUERY CLIENTES"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT GN.IDENTIDAD, GN.CODIGO, GN.DIRECCION, GN.TELEFONO, GN.NOMBRE, GN.CONTACTO, 
+CASE WHEN GN.ACTIVO = 1 THEN 'ACTIVO' WHEN GN.ACTIVO = 0 THEN 'INACTIVO' ELSE 'N/A' END AS ACTIVO,
+
+CONVERT(varchar(50),Replace(REPLACE(GN.D0,' ',''), Substring(REPLACE(GN.D0,' ',''), PatIndex('%[a-zA-Z : . ;]%', REPLACE(GN.D0,' ','')), 1), '')) as NIT,
+
+(SELECT GF.NOMBRE FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN GENERAL.VW_CORDINADORES GF ON ENM.D3 = GF.IDCORDINADOR
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS IDCORDINADOR,
+
+(SELECT  GF.NOMBRE FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN  GENERAL.VW_GRUPOSFACTURACION GF ON ENM.D4 = GF.IDLISTA
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS GRUPOFACTURACION,
+
+(SELECT  ISNULL(SUS.NOMBRE, 'Sin Asignar') FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.TB_ENTIDADES DNM ON ENM.IDENTIDAD = DNM.IDENTIDAD AND DNM.DIMENSION = 116
+LEFT JOIN DIMENSIONES.VW_SUBSEGMENTO SUS ON DNM.VALOR = SUS.IDLISTA AND SUS.ANULADO = 0
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS SUBSEGMENTO,
+
+(SELECT  ISNULL(SUS.NOMBRE, 'Sin Asignar') FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.TB_ENTIDADES DNM ON ENM.IDENTIDAD = DNM.IDENTIDAD AND DNM.DIMENSION = 115
+LEFT JOIN DIMENSIONES.VW_SEGMENTO SUS ON DNM.VALOR = SUS.IDLISTA AND SUS.ANULADO = 0
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS SEGMENTO,
+
+(SELECT ISNULL(ME.NOMBRE, 'Sin Asignar') FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.TB_ENTIDADES DNM ON ENM.IDENTIDAD = DNM.IDENTIDAD AND DNM.DIMENSION = 109
+LEFT JOIN DIMENSIONES.VW_GRUPO_DE_MERCADO ME ON DNM.VALOR = ME.IDLISTA AND ME.ANULADO = 0
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS GRUPO_MERCADO,
+
+(SELECT  ISNULL(ME.NOMBRE, 'Sin Asignar') FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.VW_ZONA ME ON ENM.D2 = ME.IDLISTA AND ME.ANULADO = 0
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS ZONA,
+
+(SELECT  ISNULL(ME.NOMBRE, 'Sin Asignar') FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.VW_FORMA_DE_PAGO ME ON ENM.D5 = ME.IDLISTA AND ME.ANULADO = 0
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS FORMA_PAGO,
+
+SUBSTRING(GN.D6,1,100) AS PLAZO_CREDITO,
+
+(SELECT  DNM.VALOR FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.TB_ENTIDADES DNM ON ENM.IDENTIDAD = DNM.IDENTIDAD AND DNM.DIMENSION = 13
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS CIUDAD,
+
+(SELECT  ISNULL(ME.NOMBRE, 'Sin Asignar') FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.TB_ENTIDADES DNM ON ENM.IDENTIDAD = DNM.IDENTIDAD AND DNM.DIMENSION = 112
+LEFT JOIN DIMENSIONES.VW_GESTOR_DE_CARTERA ME ON DNM.VALOR = ME.IDLISTA AND ME.ANULADO = 0
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD AND DNM.IDENTIDAD NOT IN(14895)) AS NOMBRE_GESTOR_CARTERA,
+
+(SELECT ISNULL(ME.NOMBRE, 'Sin Asignar') FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.TB_ENTIDADES DNM ON ENM.IDENTIDAD = DNM.IDENTIDAD AND DNM.DIMENSION = 142
+LEFT JOIN DIMENSIONES.VW_COBRADOR ME ON DNM.VALOR = ME.IDLISTA AND ME.ANULADO = 0
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS COBRADOR,
+
+(SELECT  ISNULL(DNM.VALOR, 'Sin Asignar') FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.TB_ENTIDADES DNM ON ENM.IDENTIDAD = DNM.IDENTIDAD AND DNM.DIMENSION = 122
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS CORREO_FACT_ELEC,
+
+(SELECT  ISNULL(DNM.VALOR, 'Sin Asignar') FROM GENERAL.TB_ENTIDADES  ENM
+LEFT JOIN DIMENSIONES.TB_ENTIDADES DNM ON ENM.IDENTIDAD = DNM.IDENTIDAD AND DNM.DIMENSION = 121 
+WHERE ENM.IDENTIDAD = GN.IDENTIDAD) AS USUARIO_FACT_ELEC
+
+FROM  GENERAL.TB_ENTIDADES GN
+
+WHERE TRY_CAST(GN.CODIGO AS INT) is not null</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Satge Clientes\QUERY CLIENTES.Connections[OleDbConnection]"
+                  connectionManagerID="{EA13A1CF-4513-41F7-A69E-550CBEE06684}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[COLCANBI Athenea]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[IDENTIDAD]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[IDENTIDAD]"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[IDENTIDAD]"
+                      name="IDENTIDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[CODIGO]"
+                      length="10"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CODIGO]"
+                      name="CODIGO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[DIRECCION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[DIRECCION]"
+                      length="50"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[DIRECCION]"
+                      name="DIRECCION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[TELEFONO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[TELEFONO]"
+                      length="25"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[TELEFONO]"
+                      name="TELEFONO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE]"
+                      length="150"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NOMBRE]"
+                      name="NOMBRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[CONTACTO]"
+                      length="75"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CONTACTO]"
+                      name="CONTACTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[ACTIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[ACTIVO]"
+                      length="8"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[ACTIVO]"
+                      name="ACTIVO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[GRUPOFACTURACION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[GRUPOFACTURACION]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[GRUPOFACTURACION]"
+                      name="GRUPOFACTURACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[SUBSEGMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[SUBSEGMENTO]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[SUBSEGMENTO]"
+                      name="SUBSEGMENTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[SEGMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[SEGMENTO]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[SEGMENTO]"
+                      name="SEGMENTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[GRUPO_MERCADO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[GRUPO_MERCADO]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[GRUPO_MERCADO]"
+                      name="GRUPO_MERCADO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[ZONA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[ZONA]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[ZONA]"
+                      name="ZONA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[FORMA_PAGO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[FORMA_PAGO]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[FORMA_PAGO]"
+                      name="FORMA_PAGO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[PLAZO_CREDITO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[PLAZO_CREDITO]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[PLAZO_CREDITO]"
+                      name="PLAZO_CREDITO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CIUDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[CIUDAD]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CIUDAD]"
+                      name="CIUDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NOMBRE_GESTOR_CARTERA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_GESTOR_CARTERA]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NOMBRE_GESTOR_CARTERA]"
+                      name="NOMBRE_GESTOR_CARTERA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[COBRADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[COBRADOR]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[COBRADOR]"
+                      name="COBRADOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CORREO_FACT_ELEC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[CORREO_FACT_ELEC]"
+                      length="400"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[CORREO_FACT_ELEC]"
+                      name="CORREO_FACT_ELEC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[USUARIO_FACT_ELEC]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[USUARIO_FACT_ELEC]"
+                      length="100"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[USUARIO_FACT_ELEC]"
+                      name="USUARIO_FACT_ELEC"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[IDCORDINADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[IDCORDINADOR]"
+                      length="80"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[IDCORDINADOR]"
+                      name="IDCORDINADOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NIT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[NIT]"
+                      length="50"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].Columns[NIT]"
+                      name="NIT"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[IDENTIDAD]"
+                      dataType="i2"
+                      name="IDENTIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CODIGO" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[DIRECCION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DIRECCION" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[TELEFONO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="TELEFONO" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="NOMBRE" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      name="CONTACTO" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[ACTIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="ACTIVO" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[GRUPOFACTURACION]"
+                      codePage="1252"
+                      dataType="text"
+                      name="GRUPOFACTURACION" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[SUBSEGMENTO]"
+                      codePage="1252"
+                      dataType="text"
+                      name="SUBSEGMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[SEGMENTO]"
+                      codePage="1252"
+                      dataType="text"
+                      name="SEGMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[GRUPO_MERCADO]"
+                      codePage="1252"
+                      dataType="text"
+                      name="GRUPO_MERCADO" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[ZONA]"
+                      codePage="1252"
+                      dataType="text"
+                      name="ZONA" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[FORMA_PAGO]"
+                      codePage="1252"
+                      dataType="text"
+                      name="FORMA_PAGO" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[PLAZO_CREDITO]"
+                      codePage="1252"
+                      dataType="text"
+                      name="PLAZO_CREDITO" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[CIUDAD]"
+                      codePage="1252"
+                      dataType="text"
+                      name="CIUDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_GESTOR_CARTERA]"
+                      codePage="1252"
+                      dataType="text"
+                      name="NOMBRE_GESTOR_CARTERA" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[COBRADOR]"
+                      codePage="1252"
+                      dataType="text"
+                      name="COBRADOR" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[CORREO_FACT_ELEC]"
+                      codePage="1252"
+                      dataType="text"
+                      name="CORREO_FACT_ELEC" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[USUARIO_FACT_ELEC]"
+                      codePage="1252"
+                      dataType="text"
+                      name="USUARIO_FACT_ELEC" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[IDCORDINADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="IDCORDINADOR" />
+                    <externalMetadataColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output].ExternalColumns[NIT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NIT" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[IDENTIDAD]"
+                      dataType="i2"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[IDENTIDAD]"
+                      name="IDENTIDAD" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[CODIGO]"
+                      name="CODIGO" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[DIRECCION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[DIRECCION]"
+                      name="DIRECCION" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[TELEFONO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[TELEFONO]"
+                      name="TELEFONO" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[NOMBRE]"
+                      name="NOMBRE" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[CONTACTO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[CONTACTO]"
+                      name="CONTACTO" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[ACTIVO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[ACTIVO]"
+                      name="ACTIVO" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[NIT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[NIT]"
+                      name="NIT" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[IDCORDINADOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[IDCORDINADOR]"
+                      name="IDCORDINADOR" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[GRUPOFACTURACION]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[GRUPOFACTURACION]"
+                      name="GRUPOFACTURACION" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[SUBSEGMENTO]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[SUBSEGMENTO]"
+                      name="SUBSEGMENTO" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[SEGMENTO]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[SEGMENTO]"
+                      name="SEGMENTO" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[GRUPO_MERCADO]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[GRUPO_MERCADO]"
+                      name="GRUPO_MERCADO" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[ZONA]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[ZONA]"
+                      name="ZONA" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[FORMA_PAGO]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[FORMA_PAGO]"
+                      name="FORMA_PAGO" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[PLAZO_CREDITO]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[PLAZO_CREDITO]"
+                      name="PLAZO_CREDITO" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[CIUDAD]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[CIUDAD]"
+                      name="CIUDAD" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[NOMBRE_GESTOR_CARTERA]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[NOMBRE_GESTOR_CARTERA]"
+                      name="NOMBRE_GESTOR_CARTERA" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[COBRADOR]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[COBRADOR]"
+                      name="COBRADOR" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[CORREO_FACT_ELEC]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[CORREO_FACT_ELEC]"
+                      name="CORREO_FACT_ELEC" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[USUARIO_FACT_ELEC]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[USUARIO_FACT_ELEC]"
+                      name="USUARIO_FACT_ELEC" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Satge Clientes.Paths[Data Conversion Output]"
+              endId="Package\Satge Clientes\Dim  Clientes.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Satge Clientes\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Satge Clientes.Paths[OLE DB Source Output]"
+              endId="Package\Satge Clientes\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Satge Clientes\QUERY CLIENTES.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stage Cliente"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{86A2938A-303B-435D-8AAC-FE617F19367E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stage Cliente"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="Truncate table Stage.Cliente;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{947BA14D-957B-4F45-901E-D1F6F0F9119A}"
+      DTS:From="Package\Truncate Stage Cliente"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Satge Clientes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Satge Clientes"
+          TopLeft="202,123" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Truncate Stage Cliente"
+          TopLeft="192,48" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="285,90">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10,33"
+              Start="0,0"
+              End="-10,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5"
+                    Point2="0,16.5"
+                    Point3="-4,16.5" />
+                  <mssgle:LineSegment
+                    End="-6,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6,16.5"
+                    Point2="-10,16.5"
+                    Point3="-10,20.5" />
+                  <mssgle:LineSegment
+                    End="-10,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Satge Clientes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Satge Clientes\Dim  Clientes"
+          TopLeft="236.5,209.5" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Satge Clientes\Data Conversion"
+          TopLeft="223.5,119.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Satge Clientes\QUERY CLIENTES"
+          TopLeft="222.5,45.4999999999999" />
+        <EdgeLayout
+          Id="Package\Satge Clientes.Paths[OLE DB Source Output]"
+          TopLeft="303,87.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.0000000000001"
+              Start="0,0"
+              End="0,24.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Satge Clientes.Paths[Data Conversion Output]"
+          TopLeft="304.5,161.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Satge Clientes\Dim  Clientes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Satge Clientes\QUERY CLIENTES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
