@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1738
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SemaforizacionProd_20230104", "SemaforizacionProd_20230104\SemaforizacionProd_20230104.dtproj", "{BBD61F26-6AB3-4C71-94B3-B028B3692890}"
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SemaforizacionAzureETL", "SemaforizacionAzureETL\SemaforizacionAzureETL.dtproj", "{BBD61F26-6AB3-4C71-94B3-B028B3692890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
