@@ -1,0 +1,1712 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/27/2021 3:43:03 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{A4A9C698-1EAB-4F04-A0CA-6E6B8FADF058}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Stage_CentrosAtencion"
+  DTS:PackageType="5"
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{66162280-5A70-49A6-A8BB-EA6764AC1F1D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PlanoCoordenadaSedes]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Flat File Connection Manager"
+      DTS:DTSID="{B66A1945-1BB6-43C3-8265-4D85D02A6E90}"
+      DTS:ObjectName="PlanoCoordenadaSedes">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\ParametrosDWH\Comercial\ID SEDESGRUPO.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BK_CentroAtencion"
+              DTS:DTSID="{A01D467F-40B9-4CF4-85B2-9DFE70C8B5F2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CentroAtencionNombre"
+              DTS:DTSID="{324DECF1-ABD7-4384-8B9C-506E296D51FF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Ciudad"
+              DTS:DTSID="{F5338B3C-5061-4B24-9FD1-F4ECF4B14392}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Departamento"
+              DTS:DTSID="{35752700-3F5D-4BC9-8CED-0B099355A7C7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Longitud"
+              DTS:DTSID="{8B04A088-3229-4EE8-A100-C526CFE5BD68}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Latitud"
+              DTS:DTSID="{80F3BD00-74E9-4D62-B9BB-8E30D2B8CBD7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BK_IdSedeIndicadores"
+              DTS:DTSID="{E6EE02A7-12E8-41E4-9992-B0621ED56480}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Bk_IdSedeQuejasReclamos"
+              DTS:DTSID="{B8FD9CD0-9151-4B0F-850D-F449286CFDC5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="IDGRUPO"
+              DTS:DTSID="{A19C9329-90E7-4091-95BA-56F2199EDDDC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOMBREGRUPO"
+              DTS:DTSID="{D0031101-CD51-432B-9018-5CFB51A13AF9}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Stage Centros atencion plano"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6D834E13-50D7-4BA7-AAF3-D33900ACC12D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Centros atencion plano"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="ARCHIVO PLANO SEDES"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[PlanoCoordenadaSedes]"
+                  connectionManagerRefId="Package.ConnectionManagers[PlanoCoordenadaSedes]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[BK_CentroAtencion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[BK_CentroAtencion]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[BK_CentroAtencion]"
+                      name="BK_CentroAtencion"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[CentroAtencionNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[CentroAtencionNombre]"
+                      length="50"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[CentroAtencionNombre]"
+                      name="CentroAtencionNombre"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Ciudad]"
+                      length="50"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Ciudad]"
+                      name="Ciudad"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Departamento]"
+                      length="50"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Departamento]"
+                      name="Departamento"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Longitud]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Longitud]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Longitud]"
+                      name="Longitud"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Latitud]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Latitud]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Latitud]"
+                      name="Latitud"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[BK_IdSedeIndicadores]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[BK_IdSedeIndicadores]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[BK_IdSedeIndicadores]"
+                      name="BK_IdSedeIndicadores"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[IDGRUPO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[IDGRUPO]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[IDGRUPO]"
+                      name="IDGRUPO"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[NOMBREGRUPO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[NOMBREGRUPO]"
+                      length="100"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[NOMBREGRUPO]"
+                      name="NOMBREGRUPO"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Bk_IdSedeQuejasReclamos]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Bk_IdSedeQuejasReclamos]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Bk_IdSedeQuejasReclamos]"
+                      name="Bk_IdSedeQuejasReclamos"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si los datos están en formato binario."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[BK_CentroAtencion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BK_CentroAtencion" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[CentroAtencionNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CentroAtencionNombre" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Departamento" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Longitud]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Longitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Latitud]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Latitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[BK_IdSedeIndicadores]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BK_IdSedeIndicadores" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[IDGRUPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="IDGRUPO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[NOMBREGRUPO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NOMBREGRUPO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].ExternalColumns[Bk_IdSedeQuejasReclamos]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Bk_IdSedeQuejasReclamos" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Centros atencion plano\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[CentrosAtencion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Centros atencion plano\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BK_CentroAtencion]"
+                      cachedDataType="i4"
+                      cachedName="BK_CentroAtencion"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_CentroAtencion]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[BK_CentroAtencion]" />
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CentroAtencionNombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CentroAtencionNombre"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CentroAtencionNombre]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[CentroAtencionNombre]" />
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Ciudad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Ciudad"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Ciudad]" />
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Departamento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Departamento"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Departamento]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Departamento]" />
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Longitud]"
+                      cachedDataType="r8"
+                      cachedName="Longitud"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitud]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Longitud]" />
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Latitud]"
+                      cachedDataType="r8"
+                      cachedName="Latitud"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Latitud]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Latitud]" />
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BK_IdSedeIndicadores]"
+                      cachedDataType="i4"
+                      cachedName="BK_IdSedeIndicadores"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdSedeIndicadores]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[BK_IdSedeIndicadores]" />
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Bk_IdSedeQuejasReclamos]"
+                      cachedDataType="i4"
+                      cachedName="Bk_IdSedeQuejasReclamos"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdSedeQuejasReclamos]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[Bk_IdSedeQuejasReclamos]" />
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDGRUPO]"
+                      cachedDataType="i4"
+                      cachedName="IDGRUPO"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdGrupo]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[IDGRUPO]" />
+                    <inputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBREGRUPO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="NOMBREGRUPO"
+                      externalMetadataColumnId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreGrupo]"
+                      lineageId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output].Columns[NOMBREGRUPO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_CentroAtencion]"
+                      dataType="i4"
+                      name="BK_CentroAtencion" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CentroAtencionNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CentroAtencionNombre" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Departamento" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitud]"
+                      dataType="r8"
+                      name="Longitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Latitud]"
+                      dataType="r8"
+                      name="Latitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdSedeIndicadores]"
+                      dataType="i4"
+                      name="BK_IdSedeIndicadores" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdSedeQuejasReclamos]"
+                      dataType="i4"
+                      name="BK_IdSedeQuejasReclamos" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IdGrupo]"
+                      dataType="i4"
+                      name="BK_IdGrupo" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreGrupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NombreGrupo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Centros atencion plano\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Centros atencion plano\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Centros atencion plano\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Centros atencion plano\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage Centros atencion plano.Paths[Flat File Source Output]"
+              endId="Package\Stage Centros atencion plano\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stages CentrosAtencion"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{5BE7E481-E53C-4467-B266-F6809450FE1F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stages CentrosAtencion"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stages CentrosAtencion\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Stages CentrosAtencion\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stages CentrosAtencion\Data Conversion.Inputs[Data Conversion Input].Columns[IDCENTROATENCION]"
+                      cachedDataType="i2"
+                      cachedName="IDCENTROATENCION"
+                      lineageId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[IDCENTROATENCION]" />
+                    <inputColumn
+                      refId="Package\Stages CentrosAtencion\Data Conversion.Inputs[Data Conversion Input].Columns[NOMBRE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="75"
+                      cachedName="NOMBRE"
+                      lineageId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NOMBRE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Stages CentrosAtencion\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IDCENTROATENCION]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IDCENTROATENCION]"
+                      name="Copy of IDCENTROATENCION"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[IDCENTROATENCION]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of NOMBRE]"
+                      name="Copy of NOMBRE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NOMBRE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Stages CentrosAtencion\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stages CentrosAtencion\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Stages CentrosAtencion\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Stages CentrosAtencion\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Output].Columns[Latitud]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Output].Columns[Latitud]"
+                      name="Latitud"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Output].Columns[Longitud]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Output].Columns[Longitud]"
+                      name="Longitud"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Stages CentrosAtencion\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stages CentrosAtencion\Insert Destination 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[CentrosAtencion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stages CentrosAtencion\Insert Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].Columns[Longitud]"
+                      cachedDataType="i4"
+                      cachedName="Longitud"
+                      externalMetadataColumnId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Longitud]"
+                      lineageId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Output].Columns[Longitud]" />
+                    <inputColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].Columns[Latitud]"
+                      cachedDataType="i4"
+                      cachedName="Latitud"
+                      externalMetadataColumnId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Latitud]"
+                      lineageId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Output].Columns[Latitud]" />
+                    <inputColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].Columns[Copy of IDCENTROATENCION]"
+                      cachedDataType="i4"
+                      cachedName="Copy of IDCENTROATENCION"
+                      externalMetadataColumnId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BK_CentroAtencion]"
+                      lineageId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IDCENTROATENCION]" />
+                    <inputColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].Columns[Copy of NOMBRE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copy of NOMBRE"
+                      externalMetadataColumnId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[CentroAtencionNombre]"
+                      lineageId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of NOMBRE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BK_CentroAtencion]"
+                      dataType="i4"
+                      name="BK_CentroAtencion" />
+                    <externalMetadataColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[CentroAtencionNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CentroAtencionNombre" />
+                    <externalMetadataColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Longitud]"
+                      dataType="r8"
+                      name="Longitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Latitud]"
+                      dataType="r8"
+                      name="Latitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Ciudad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Departamento" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stages CentrosAtencion\Insert Destination 1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Insert Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Insert Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Insert Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stages CentrosAtencion\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Stage].[CentrosAtencion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Stage].[CentrosAtencion]) [refTable]
+where [refTable].[BK_CentroAtencion] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="BK_CentroAtencion" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CentroAtencionNombre" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Ciudad" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Departamento" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Longitud" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Latitud" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IDCENTROATENCION]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stages CentrosAtencion\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stages CentrosAtencion\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stages CentrosAtencion\Lookup.Inputs[Lookup Input].Columns[Copy of IDCENTROATENCION]"
+                      cachedDataType="i4"
+                      cachedName="Copy of IDCENTROATENCION"
+                      lineageId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IDCENTROATENCION]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">BK_CentroAtencion</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stages CentrosAtencion\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Stages CentrosAtencion\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stages CentrosAtencion\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Stages CentrosAtencion\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stages CentrosAtencion\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Stages CentrosAtencion\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stages CentrosAtencion\Origen de OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen de OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select IDCENTROATENCION, NOMBRE 
+from GENERAL.TB_CENTROSATENCION;</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stages CentrosAtencion\Origen de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{EA13A1CF-4513-41F7-A69E-550CBEE06684}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[COLCANBI Athenea]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[IDCENTROATENCION]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[IDCENTROATENCION]"
+                      lineageId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[IDCENTROATENCION]"
+                      name="IDCENTROATENCION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NOMBRE]"
+                      length="75"
+                      lineageId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NOMBRE]"
+                      name="NOMBRE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[IDCENTROATENCION]"
+                      dataType="i2"
+                      name="IDCENTROATENCION" />
+                    <externalMetadataColumn
+                      refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      name="NOMBRE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[IDCENTROATENCION]"
+                      dataType="i2"
+                      lineageId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[IDCENTROATENCION]"
+                      name="IDCENTROATENCION" />
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="75"
+                      lineageId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NOMBRE]"
+                      name="NOMBRE" />
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stages CentrosAtencion.Paths[Data Conversion Output]"
+              endId="Package\Stages CentrosAtencion\Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Stages CentrosAtencion\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Stages CentrosAtencion.Paths[Derived Column Output]"
+              endId="Package\Stages CentrosAtencion\Insert Destination 1.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Stages CentrosAtencion\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Stages CentrosAtencion.Paths[Lookup No Match Output]"
+              endId="Package\Stages CentrosAtencion\Derived Column.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\Stages CentrosAtencion\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Stages CentrosAtencion.Paths[Salida de origen de OLE DB]"
+              endId="Package\Stages CentrosAtencion\Data Conversion.Inputs[Data Conversion Input]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Stages CentrosAtencion\Origen de OLE DB.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stage CentrosAtencion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{90D649FF-B37B-499A-AB97-837176B12DBF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stage CentrosAtencion"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stage.CentrosAtencion;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A2132E71-C141-47F7-8BBE-F287BF034531}"
+      DTS:From="Package\Truncate Stage CentrosAtencion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Stages CentrosAtencion" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4EF5A10B-609B-47E6-94A5-F6E9D6A6E1B8}"
+      DTS:From="Package\Stages CentrosAtencion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Stage Centros atencion plano" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Stage Centros atencion plano"
+          TopLeft="194,230" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Stages CentrosAtencion"
+          TopLeft="201,127" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\Truncate Stage CentrosAtencion"
+          TopLeft="185.583333861083,29.1333333488306" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="298.541666930542,71.1333333488306">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.8666666511694"
+              Start="0,0"
+              End="0,48.3666666511694">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.3666666511694" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="299.25,169">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Stage Centros atencion plano">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145,43"
+          Id="Package\Stage Centros atencion plano\OLE DB Destination"
+          TopLeft="285,134" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Stage Centros atencion plano\ARCHIVO PLANO SEDES"
+          TopLeft="263,59" />
+        <EdgeLayout
+          Id="Package\Stage Centros atencion plano.Paths[Flat File Source Output]"
+          TopLeft="358.75,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Centros atencion plano\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Stages CentrosAtencion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Stages CentrosAtencion\Derived Column"
+          TopLeft="585,147" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Stages CentrosAtencion\Insert Destination 1"
+          TopLeft="575,312.9375" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Stages CentrosAtencion\Origen de OLE DB"
+          TopLeft="209,33.5" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Stages CentrosAtencion\Lookup"
+          TopLeft="366,154" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Stages CentrosAtencion\Data Conversion"
+          TopLeft="119,153" />
+        <EdgeLayout
+          Id="Package\Stages CentrosAtencion.Paths[Salida de origen de OLE DB]"
+          TopLeft="291,75.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-94,77.5"
+              Start="0,0"
+              End="-94,70">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.75"
+                    Point2="0,38.75"
+                    Point3="-4,38.75" />
+                  <mssgle:LineSegment
+                    End="-90,38.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-90,38.75"
+                    Point2="-94,38.75"
+                    Point3="-94,42.75" />
+                  <mssgle:LineSegment
+                    End="-94,70" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stages CentrosAtencion.Paths[Lookup No Match Output]"
+          TopLeft="479,171.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="106,0"
+              Start="0,0"
+              End="98.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="98.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-6.55638671875,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stages CentrosAtencion.Paths[Derived Column Output]"
+          TopLeft="661.5,189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,123.9375"
+              Start="0,0"
+              End="0,116.4375">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,116.4375" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stages CentrosAtencion.Paths[Data Conversion Output]"
+          TopLeft="275,174.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91,0"
+              Start="0,0"
+              End="83.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="83.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stages CentrosAtencion\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Stage].[CentrosAtencion]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stages CentrosAtencion\Insert Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stages CentrosAtencion\Origen de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,804 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/2/2022 7:56:53 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{6364E6F6-E5ED-464E-AC1A-D27592DA4447}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="DWH_ExcelCriticos"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{6A590B80-CE0F-4B59-BF48-CFC2582F067F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Excel Valores Referencia Criticos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8324FE49-8A84-4C19-8965-06839028E0B6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Excel Valores Referencia Criticos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Excel Valores Referencia Criticos\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Criticos].[dimValorReferenciaCriticos]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BK_Examen]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="BK_Examen"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_Examen]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_Examen]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Grupo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Grupo"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Grupo]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Grupo]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TipoResultado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="TipoResultado"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoResultado]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[TipoResultado]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CriticoBajo]"
+                      cachedDataType="numeric"
+                      cachedName="CriticoBajo"
+                      cachedPrecision="18"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CriticoBajo]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[CriticoBajo]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CriticoAlto]"
+                      cachedDataType="numeric"
+                      cachedName="CriticoAlto"
+                      cachedPrecision="18"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CriticoAlto]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[CriticoAlto]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Resultado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Resultado"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Resultado]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Resultado]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EdadMin]"
+                      cachedDataType="i4"
+                      cachedName="EdadMin"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMin]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMin]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EdadMax]"
+                      cachedDataType="i4"
+                      cachedName="EdadMax"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMax]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMax]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TipoEdad]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TipoEdad"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoEdad]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[TipoEdad]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Sexo"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Muestra]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Muestra"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Muestra]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Muestra]" />
+                    <inputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BK_IDParametro]"
+                      cachedDataType="i4"
+                      cachedName="BK_IDParametro"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IDParametro]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IDParametro]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SRK_ExcelCriticos]"
+                      dataType="i4"
+                      name="SRK_ExcelCriticos" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_Examen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BK_Examen" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Grupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Grupo" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoResultado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TipoResultado" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CriticoBajo]"
+                      dataType="numeric"
+                      name="CriticoBajo"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CriticoAlto]"
+                      dataType="numeric"
+                      name="CriticoAlto"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Resultado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Resultado" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMin]"
+                      dataType="i4"
+                      name="EdadMin" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMax]"
+                      dataType="i4"
+                      name="EdadMax" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoEdad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TipoEdad" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Muestra" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IDParametro]"
+                      dataType="i4"
+                      name="BK_IDParametro" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Excel Valores Referencia Criticos\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[ValorReferenciaCriticos]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_Examen]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_Examen]"
+                      length="10"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_Examen]"
+                      name="BK_Examen"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Grupo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Grupo]"
+                      length="100"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Grupo]"
+                      name="Grupo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[TipoResultado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TipoResultado]"
+                      length="20"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[TipoResultado]"
+                      name="TipoResultado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[CriticoBajo]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CriticoBajo]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[CriticoBajo]"
+                      name="CriticoBajo"
+                      precision="18"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[CriticoAlto]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CriticoAlto]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[CriticoAlto]"
+                      name="CriticoAlto"
+                      precision="18"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Resultado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Resultado]"
+                      length="100"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Resultado]"
+                      name="Resultado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMin]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EdadMin]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMin]"
+                      name="EdadMin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMax]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EdadMax]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMax]"
+                      name="EdadMax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[TipoEdad]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TipoEdad]"
+                      length="50"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[TipoEdad]"
+                      name="TipoEdad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Sexo]"
+                      length="50"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]"
+                      name="Sexo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Muestra]"
+                      length="50"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[Muestra]"
+                      name="Muestra"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IDParametro]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_IDParametro]"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IDParametro]"
+                      name="BK_IDParametro"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_Examen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BK_Examen" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Grupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Grupo" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TipoResultado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TipoResultado" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CriticoBajo]"
+                      dataType="numeric"
+                      name="CriticoBajo"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CriticoAlto]"
+                      dataType="numeric"
+                      name="CriticoAlto"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Resultado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Resultado" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EdadMin]"
+                      dataType="i4"
+                      name="EdadMin" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EdadMax]"
+                      dataType="i4"
+                      name="EdadMax" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TipoEdad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TipoEdad" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Muestra" />
+                    <externalMetadataColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_IDParametro]"
+                      dataType="i4"
+                      name="BK_IDParametro" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_IDParametro]"
+                      dataType="i4"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_IDParametro]"
+                      name="BK_IDParametro" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_Examen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_Examen]"
+                      name="BK_Examen" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Grupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Grupo]"
+                      name="Grupo" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TipoResultado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TipoResultado]"
+                      name="TipoResultado" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CriticoBajo]"
+                      dataType="numeric"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CriticoBajo]"
+                      name="CriticoBajo"
+                      precision="18"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CriticoAlto]"
+                      dataType="numeric"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CriticoAlto]"
+                      name="CriticoAlto"
+                      precision="18"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Resultado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Resultado]"
+                      name="Resultado" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EdadMin]"
+                      dataType="i4"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EdadMin]"
+                      name="EdadMin" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EdadMax]"
+                      dataType="i4"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EdadMax]"
+                      name="EdadMax" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TipoEdad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TipoEdad]"
+                      name="TipoEdad" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Sexo]"
+                      name="Sexo" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Muestra]"
+                      name="Muestra" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Excel Valores Referencia Criticos.Paths[OLE DB Source Output]"
+              endId="Package\Excel Valores Referencia Criticos\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Excel Valores Referencia Criticos\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate DWH excel criticos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{314B6072-6FF6-4F0A-92DB-0FDCB335D705}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate DWH excel criticos"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="truncate table [Criticos].[dimValorReferenciaCriticos];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D298DD5D-60FA-449D-A698-18B32B2859A9}"
+      DTS:From="Package\truncate DWH excel criticos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Excel Valores Referencia Criticos" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="231,42"
+          Id="Package\Excel Valores Referencia Criticos"
+          TopLeft="287,126" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\truncate DWH excel criticos"
+          TopLeft="298,46" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="402.5,88">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Excel Valores Referencia Criticos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Excel Valores Referencia Criticos\OLE DB Source"
+          TopLeft="337,69" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Excel Valores Referencia Criticos\OLE DB Destination"
+          TopLeft="328,149" />
+        <EdgeLayout
+          Id="Package\Excel Valores Referencia Criticos.Paths[OLE DB Source Output]"
+          TopLeft="412.75,111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Excel Valores Referencia Criticos\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Excel Valores Referencia Criticos\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

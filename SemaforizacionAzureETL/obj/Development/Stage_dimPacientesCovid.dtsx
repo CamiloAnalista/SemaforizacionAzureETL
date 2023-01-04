@@ -1,0 +1,2635 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/16/2021 4:10:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{C1929BC5-A93B-4F06-B2D7-111C29F3796B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Stage_dimPacientesCovid"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{3BB7A8DC-CF47-421C-8387-A25F15BA60DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Stage PacientesCovidPCR"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{716A5870-AE19-4A2C-84BE-9B312FE35132}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage PacientesCovidPCR"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage PacientesCovidPCR\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[dimPacientesCOVID]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDNOTA]"
+                      cachedDataType="i4"
+                      cachedName="IDNOTA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdNota]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDNOTA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDSOLICITUD]"
+                      cachedDataType="i4"
+                      cachedName="IDSOLICITUD"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdSolicitud]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDSOLICITUD]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ANO]"
+                      cachedDataType="i2"
+                      cachedName="ANO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Ano]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ANO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PREFIJO]"
+                      cachedDataType="i4"
+                      cachedName="PREFIJO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Prefijo]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[PREFIJO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDPARAMETRO]"
+                      cachedDataType="i4"
+                      cachedName="IDPARAMETRO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdParametro]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDPARAMETRO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NUMERO_OCM_INS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NUMERO_OCM_INS"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUMERO_OCM_INS]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NUMERO_OCM_INS]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[COD_INTERNO_GVI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="COD_INTERNO_GVI"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_INTERNO_GVI]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[COD_INTERNO_GVI]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OCUPACION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="OCUPACION"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OCUPACION]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[OCUPACION]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LOCALIDAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="LOCALIDAD"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOCALIDAD]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[LOCALIDAD]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PRIMERA_VEZ_CONTROL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="PRIMERA_VEZ_CONTROL"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRIMERA_VEZ_CONTROL]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[PRIMERA_VEZ_CONTROL]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_PAIS_RESIDE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_PAIS_RESIDE"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_RESIDE]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_PAIS_RESIDE]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_PAIS_RESIDE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_PAIS_RESIDE"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_RESIDE]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_RESIDE]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_TIPO_VIAJERO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_TIPO_VIAJERO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_VIAJERO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TIPO_VIAJERO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_TIPO_VIAJERO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_TIPO_VIAJERO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_VIAJERO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_VIAJERO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_MUNICIPIO_VIAJE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_MUNICIPIO_VIAJE"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_VIAJE]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_VIAJE]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_MUNICIPIO_VIAJE"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_VIAJE]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_VIAJE]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_PAIS_PROCEDENCIA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_PAIS_PROCEDENCIA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_PROCEDENCIA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_PAIS_PROCEDENCIA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_PAIS_PROCEDENCIA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_PROCEDENCIA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_PROCEDENCIA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_CONDICION_FIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_CONDICION_FIN"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONDICION_FIN]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CONDICION_FIN]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_CONDICION_FIN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_CONDICION_FIN"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONDICION_FIN]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CONDICION_FIN]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_MUNICIPIO_MUESTRA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_MUNICIPIO_MUESTRA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_MUESTRA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_MUESTRA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_MUNICIPIO_MUESTRA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_TIPO_MUESTRACOV]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_TIPO_MUESTRACOV"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_MUESTRACOV]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TIPO_MUESTRACOV]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_TIPO_MUESTRACOV"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_MUESTRACOV]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_MUESTRACOV]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_NACIONALIDAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_NACIONALIDAD"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_NACIONALIDAD]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_NACIONALIDAD]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_NACIONALIDAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_NACIONALIDAD"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_NACIONALIDAD]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_NACIONALIDAD]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_REGIMEN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_REGIMEN"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_REGIMEN]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_REGIMEN]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_REGIMEN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_REGIMEN"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_REGIMEN]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_REGIMEN]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_TIPO_ESTRATEG]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_TIPO_ESTRATEG"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_ESTRATEG]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TIPO_ESTRATEG]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_TIPO_ESTRATEG"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_ESTRATEG]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_ESTRATEG]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_CODIGOEPS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_CODIGOEPS"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOEPS]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CODIGOEPS]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_CODIGOEPS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_CODIGOEPS"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOEPS]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_CODIGOTOMA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_CODIGOTOMA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOTOMA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CODIGOTOMA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_CODIGOTOMA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_CODIGOTOMA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOTOMA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOTOMA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_TRABAJASALUD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_TRABAJASALUD"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TRABAJASALUD]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TRABAJASALUD]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_TRABAJASALUD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_TRABAJASALUD"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TRABAJASALUD]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TRABAJASALUD]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_CONTACTOCONCASO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ID_CONTACTOCONCASO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONTACTOCONCASO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CONTACTOCONCASO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NOMBRE_CONTACTOCONCASO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NOMBRE_CONTACTOCONCASO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONTACTOCONCASO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CONTACTOCONCASO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_TOMA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="FECHA_TOMA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_TOMA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_TOMA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_LLEGAVIAJE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="FECHA_LLEGAVIAJE"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_LLEGAVIAJE]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_LLEGAVIAJE]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_SINTOMAS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="FECHA_SINTOMAS"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_SINTOMAS]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_SINTOMAS]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_RECEPCION]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="FECHA_RECEPCION"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_RECEPCION]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_RECEPCION]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FECHA_MUERTE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="FECHA_MUERTE"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_MUERTE]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_MUERTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdNota]"
+                      dataType="i4"
+                      name="IdNota" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdSolicitud]"
+                      dataType="i4"
+                      name="IdSolicitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Ano]"
+                      dataType="i4"
+                      name="Ano" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Prefijo]"
+                      dataType="i4"
+                      name="Prefijo" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdParametro]"
+                      dataType="i4"
+                      name="IdParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUMERO_OCM_INS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NUMERO_OCM_INS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[COD_INTERNO_GVI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      name="COD_INTERNO_GVI" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OCUPACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="OCUPACION" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOCALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="LOCALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRIMERA_VEZ_CONTROL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PRIMERA_VEZ_CONTROL" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_RESIDE]"
+                      dataType="i4"
+                      name="ID_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_VIAJERO]"
+                      dataType="i4"
+                      name="ID_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_VIAJE]"
+                      dataType="i4"
+                      name="ID_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_PROCEDENCIA]"
+                      dataType="i4"
+                      name="ID_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONDICION_FIN]"
+                      dataType="i4"
+                      name="ID_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_MUESTRA]"
+                      dataType="i4"
+                      name="ID_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_MUESTRACOV]"
+                      dataType="i4"
+                      name="ID_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_NACIONALIDAD]"
+                      dataType="i4"
+                      name="ID_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_REGIMEN]"
+                      dataType="i4"
+                      name="ID_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_ESTRATEG]"
+                      dataType="i4"
+                      name="ID_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOEPS]"
+                      dataType="i4"
+                      name="ID_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOTOMA]"
+                      dataType="i4"
+                      name="ID_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_TRABAJASALUD]"
+                      dataType="i4"
+                      name="ID_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONTACTOCONCASO]"
+                      dataType="i4"
+                      name="ID_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      name="FECHA_TOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_LLEGAVIAJE]"
+                      dataType="dbDate"
+                      name="FECHA_LLEGAVIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_SINTOMAS]"
+                      dataType="dbDate"
+                      name="FECHA_SINTOMAS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_RECEPCION]"
+                      dataType="dbDate"
+                      name="FECHA_RECEPCION" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_MUERTE]"
+                      dataType="dbDate"
+                      name="FECHA_MUERTE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="QUERY PacientesAnticuerpos"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT A.IDNOTA, A.IDSOLICITUD, A.ANO, B.PREFIJO, A.IDPARAMETRO, 
+FORMULARIO.value('data(/root/formato/EPSPACIENTE/row/texto/text())[1]','varchar(200)') AS NOMBREEPSPACIENTE,
+CONVERT(DATE, FORMULARIO.value('data(/root/formato/FECHATOMA/text())[1]', 'varchar(max)'), 120) AS FECHA_TOMA
+FROM LABORATORIO.VW_FORMULARIOS A
+JOIN LABORATORIO.VW_CABSOLICITUD B ON A.ANO = B.ANO AND B.IDSOLICITUD = A.IDSOLICITUD
+WHERE 
+/*B.PREFIJO between 20210701 and 20210901*/
+CONVERT(date, CAST(B.PREFIJO AS CHAR(12)), 112)  BETWEEN
+cast (GETDATE() - 5 as  date) AND cast(GETDATE() as  date)
+and A.IDFORMULARIO IN (47, 48, 49, 50, 57) and B.ANULADA = 0</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Connections[OleDbConnection]"
+                  connectionManagerID="{EA13A1CF-4513-41F7-A69E-550CBEE06684}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[COLCANBI Athenea]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[IDNOTA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[IDNOTA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[IDNOTA]"
+                      name="IDNOTA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[IDSOLICITUD]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[IDSOLICITUD]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[IDSOLICITUD]"
+                      name="IDSOLICITUD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[ANO]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[ANO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[ANO]"
+                      name="ANO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[PREFIJO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[PREFIJO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[PREFIJO]"
+                      name="PREFIJO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[IDPARAMETRO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[IDPARAMETRO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[IDPARAMETRO]"
+                      name="IDPARAMETRO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[FECHA_TOMA]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[FECHA_TOMA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[FECHA_TOMA]"
+                      name="FECHA_TOMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[NOMBREEPSPACIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[NOMBREEPSPACIENTE]"
+                      length="200"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[NOMBREEPSPACIENTE]"
+                      name="NOMBREEPSPACIENTE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[IDNOTA]"
+                      dataType="i4"
+                      name="IDNOTA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[IDSOLICITUD]"
+                      dataType="i4"
+                      name="IDSOLICITUD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[ANO]"
+                      dataType="i2"
+                      name="ANO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[PREFIJO]"
+                      dataType="i4"
+                      name="PREFIJO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[IDPARAMETRO]"
+                      dataType="i4"
+                      name="IDPARAMETRO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      name="FECHA_TOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].ExternalColumns[NOMBREEPSPACIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="NOMBREEPSPACIENTE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[IDNOTA]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[IDNOTA]"
+                      name="IDNOTA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[IDSOLICITUD]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[IDSOLICITUD]"
+                      name="IDSOLICITUD" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[ANO]"
+                      dataType="i2"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[ANO]"
+                      name="ANO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[PREFIJO]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[PREFIJO]"
+                      name="PREFIJO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[IDPARAMETRO]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[IDPARAMETRO]"
+                      name="IDPARAMETRO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[NOMBREEPSPACIENTE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[NOMBREEPSPACIENTE]"
+                      name="NOMBREEPSPACIENTE" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[FECHA_TOMA]"
+                      name="FECHA_TOMA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="QUERY PacientesPCR"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT A.IDNOTA, A.IDSOLICITUD, A.ANO, B.PREFIJO, A.IDTIPONOTA, A.IDFORMULARIO, A.IDPARAMETRO, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/NUMORDENINS/text())[1]', 'varchar(max)'),'') AS varchar) AS NUMERO_OCM_INS, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/CODINTERNOGVI/text())[1]', 'varchar(600)'),'') AS varchar) AS COD_INTERNO_GVI, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/OCUPACION/text())[1]', 'varchar(100)'),'') AS varchar) AS OCUPACION,
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/LOCALIDAD/text())[1]', 'varchar(100)'),'') AS varchar) AS LOCALIDAD, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/PRIMOCONTROL/text())[1]', 'varchar(100)'),'') AS varchar) AS PRIMERA_VEZ_CONTROL, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/PAISRESIDEN/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_PAIS_RESIDE, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/PAISRESIDEN/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_PAIS_RESIDE, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/VIAJEROCOV/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_TIPO_VIAJERO, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/VIAJEROCOV/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_TIPO_VIAJERO, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/MUNICIPIOVIAJE/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_MUNICIPIO_VIAJE, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/MUNICIPIOVIAJE/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_MUNICIPIO_VIAJE, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/PAISPROCEDENCIA/row/valor/text())[1]', 'varchar(30)'),0) AS varchar) AS ID_PAIS_PROCEDENCIA, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/PAISPROCEDENCIA/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_PAIS_PROCEDENCIA, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/CONDICIONFIN/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_CONDICION_FIN, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/CONDICIONFIN/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_CONDICION_FIN, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/MUNICIPIOMUESTRA/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_MUNICIPIO_MUESTRA, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/MUNICIPIOMUESTRA/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_MUNICIPIO_MUESTRA, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/TIPOMUESTRACOV/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_TIPO_MUESTRACOV, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/TIPOMUESTRACOV/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_TIPO_MUESTRACOV, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/NACIONALIDADCOV/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_NACIONALIDAD, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/NACIONALIDADCOV/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_NACIONALIDAD, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/REGIMENCOV/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_REGIMEN, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/REGIMENCOV/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_REGIMEN, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/TIPOESTRATEG/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_TIPO_ESTRATEG, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/TIPOESTRATEG/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_TIPO_ESTRATEG, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/CODIGOEPS/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_CODIGOEPS, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/CODIGOEPS/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_CODIGOEPS, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/CODIGOTOMO/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_CODIGOTOMA, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/CODIGOTOMO/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_CODIGOTOMA, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/TRABAJASALUD/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_TRABAJASALUD, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/TRABAJASALUD/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_TRABAJASALUD, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/CONTACTOCASO/row/valor/text())[1]', 'varchar(max)'),0) AS varchar) AS ID_CONTACTOCONCASO, 
+CAST(ISNULL(FORMULARIO.value('data(/root/formato/CONTACTOCASO/row/texto/text())[1]', 'varchar(max)'),'') AS varchar) AS NOMBRE_CONTACTOCONCASO, 
+CAST(ISNULL(CONVERT(DATETIME, FORMULARIO.value('data(/root/formato/FECHATOMA/text())[1]', 'DATE'), 120),'') AS date) AS FECHA_TOMA, 
+CAST(ISNULL(CONVERT(DATETIME, FORMULARIO.value('data(/root/formato/FECHALLEGAVIAJ/text())[1]', 'DATE'), 120),'') AS date) AS FECHA_LLEGAVIAJE, 
+CAST(ISNULL(CONVERT(DATETIME, FORMULARIO.value('data(/root/formato/FECHASINTOMAS/text())[1]', 'DATE'), 120),'') AS date) AS FECHA_SINTOMAS, 
+CAST(ISNULL(CONVERT(DATETIME, FORMULARIO.value('data(/root/formato/FECHARECIBO/text())[1]', 'DATE'), 120),'') AS date) AS FECHA_RECEPCION, 
+CAST(ISNULL(CONVERT(DATETIME, FORMULARIO.value('data(/root/formato/FECHAMUERTE/text())[1]', 'DATE'), 120),'') AS date) AS FECHA_MUERTE
+FROM LABORATORIO.VW_FORMULARIOS A
+JOIN LABORATORIO.VW_CABSOLICITUD B ON A.ANO = B.ANO AND B.IDSOLICITUD = A.IDSOLICITUD
+WHERE 
+/*CONVERT(date, CAST(B.PREFIJO AS CHAR(12)), 112)  BETWEEN
+cast (GETDATE() - 5 as  date) AND cast(GETDATE() as  date) and*/
+B.PREFIJO &gt;= 20210701 and
+ (IDFORMULARIO IN (44,45,46,52,58)) and B.ANULADA = 0</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Connections[OleDbConnection]"
+                  connectionManagerID="{EA13A1CF-4513-41F7-A69E-550CBEE06684}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[COLCANBI Athenea]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDNOTA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDNOTA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDNOTA]"
+                      name="IDNOTA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDSOLICITUD]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDSOLICITUD]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDSOLICITUD]"
+                      name="IDSOLICITUD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ANO]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ANO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ANO]"
+                      name="ANO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[PREFIJO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[PREFIJO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[PREFIJO]"
+                      name="PREFIJO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDTIPONOTA]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDTIPONOTA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDTIPONOTA]"
+                      name="IDTIPONOTA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDFORMULARIO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDFORMULARIO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDFORMULARIO]"
+                      name="IDFORMULARIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDPARAMETRO]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDPARAMETRO]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[IDPARAMETRO]"
+                      name="IDPARAMETRO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NUMERO_OCM_INS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NUMERO_OCM_INS]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NUMERO_OCM_INS]"
+                      name="NUMERO_OCM_INS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[COD_INTERNO_GVI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[COD_INTERNO_GVI]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[COD_INTERNO_GVI]"
+                      name="COD_INTERNO_GVI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[OCUPACION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[OCUPACION]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[OCUPACION]"
+                      name="OCUPACION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[LOCALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[LOCALIDAD]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[LOCALIDAD]"
+                      name="LOCALIDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[PRIMERA_VEZ_CONTROL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[PRIMERA_VEZ_CONTROL]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[PRIMERA_VEZ_CONTROL]"
+                      name="PRIMERA_VEZ_CONTROL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_PAIS_RESIDE]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_PAIS_RESIDE]"
+                      name="ID_PAIS_RESIDE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_PAIS_RESIDE]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_RESIDE]"
+                      name="NOMBRE_PAIS_RESIDE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_VIAJERO]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TIPO_VIAJERO]"
+                      name="ID_TIPO_VIAJERO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_VIAJERO]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_VIAJERO]"
+                      name="NOMBRE_TIPO_VIAJERO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_MUNICIPIO_VIAJE]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_VIAJE]"
+                      name="ID_MUNICIPIO_VIAJE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_MUNICIPIO_VIAJE]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      name="NOMBRE_MUNICIPIO_VIAJE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_PAIS_PROCEDENCIA]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_PAIS_PROCEDENCIA]"
+                      name="ID_PAIS_PROCEDENCIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_PAIS_PROCEDENCIA]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      name="NOMBRE_PAIS_PROCEDENCIA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_CONDICION_FIN]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CONDICION_FIN]"
+                      name="ID_CONDICION_FIN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CONDICION_FIN]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CONDICION_FIN]"
+                      name="NOMBRE_CONDICION_FIN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_MUNICIPIO_MUESTRA]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_MUNICIPIO_MUESTRA]"
+                      name="ID_MUNICIPIO_MUESTRA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      name="NOMBRE_MUNICIPIO_MUESTRA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_MUESTRACOV]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TIPO_MUESTRACOV]"
+                      name="ID_TIPO_MUESTRACOV"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_MUESTRACOV]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      name="NOMBRE_TIPO_MUESTRACOV"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_NACIONALIDAD]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_NACIONALIDAD]"
+                      name="ID_NACIONALIDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_NACIONALIDAD]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_NACIONALIDAD]"
+                      name="NOMBRE_NACIONALIDAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_REGIMEN]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_REGIMEN]"
+                      name="ID_REGIMEN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_REGIMEN]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_REGIMEN]"
+                      name="NOMBRE_REGIMEN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_ESTRATEG]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TIPO_ESTRATEG]"
+                      name="ID_TIPO_ESTRATEG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_ESTRATEG]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      name="NOMBRE_TIPO_ESTRATEG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_CODIGOEPS]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CODIGOEPS]"
+                      name="ID_CODIGOEPS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOEPS]"
+                      name="NOMBRE_CODIGOEPS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_CODIGOTOMA]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CODIGOTOMA]"
+                      name="ID_CODIGOTOMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CODIGOTOMA]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CODIGOTOMA]"
+                      name="NOMBRE_CODIGOTOMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_TRABAJASALUD]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_TRABAJASALUD]"
+                      name="ID_TRABAJASALUD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TRABAJASALUD]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_TRABAJASALUD]"
+                      name="NOMBRE_TRABAJASALUD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_CONTACTOCONCASO]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[ID_CONTACTOCONCASO]"
+                      name="ID_CONTACTOCONCASO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CONTACTOCONCASO]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[NOMBRE_CONTACTOCONCASO]"
+                      name="NOMBRE_CONTACTOCONCASO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_TOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_TOMA]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_TOMA]"
+                      name="FECHA_TOMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_LLEGAVIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_LLEGAVIAJE]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_LLEGAVIAJE]"
+                      name="FECHA_LLEGAVIAJE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_SINTOMAS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_SINTOMAS]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_SINTOMAS]"
+                      name="FECHA_SINTOMAS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_RECEPCION]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_RECEPCION]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_RECEPCION]"
+                      name="FECHA_RECEPCION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_MUERTE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_MUERTE]"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].Columns[FECHA_MUERTE]"
+                      name="FECHA_MUERTE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDNOTA]"
+                      dataType="i4"
+                      name="IDNOTA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDSOLICITUD]"
+                      dataType="i4"
+                      name="IDSOLICITUD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ANO]"
+                      dataType="i2"
+                      name="ANO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[PREFIJO]"
+                      dataType="i4"
+                      name="PREFIJO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDTIPONOTA]"
+                      dataType="i4"
+                      name="IDTIPONOTA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDFORMULARIO]"
+                      dataType="i4"
+                      name="IDFORMULARIO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[IDPARAMETRO]"
+                      dataType="i4"
+                      name="IDPARAMETRO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NUMERO_OCM_INS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NUMERO_OCM_INS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[COD_INTERNO_GVI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="COD_INTERNO_GVI" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[OCUPACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="OCUPACION" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[LOCALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="LOCALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[PRIMERA_VEZ_CONTROL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="PRIMERA_VEZ_CONTROL" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[ID_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ID_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[NOMBRE_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="NOMBRE_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      name="FECHA_TOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_LLEGAVIAJE]"
+                      dataType="dbDate"
+                      name="FECHA_LLEGAVIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_SINTOMAS]"
+                      dataType="dbDate"
+                      name="FECHA_SINTOMAS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_RECEPCION]"
+                      dataType="dbDate"
+                      name="FECHA_RECEPCION" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output].ExternalColumns[FECHA_MUERTE]"
+                      dataType="dbDate"
+                      name="FECHA_MUERTE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDNOTA]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDNOTA]"
+                      name="IDNOTA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDSOLICITUD]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDSOLICITUD]"
+                      name="IDSOLICITUD" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ANO]"
+                      dataType="i2"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ANO]"
+                      name="ANO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[PREFIJO]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[PREFIJO]"
+                      name="PREFIJO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDTIPONOTA]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDTIPONOTA]"
+                      name="IDTIPONOTA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDFORMULARIO]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDFORMULARIO]"
+                      name="IDFORMULARIO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDPARAMETRO]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[IDPARAMETRO]"
+                      name="IDPARAMETRO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NUMERO_OCM_INS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NUMERO_OCM_INS]"
+                      name="NUMERO_OCM_INS" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[COD_INTERNO_GVI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[COD_INTERNO_GVI]"
+                      name="COD_INTERNO_GVI" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[OCUPACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[OCUPACION]"
+                      name="OCUPACION" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[LOCALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[LOCALIDAD]"
+                      name="LOCALIDAD" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[PRIMERA_VEZ_CONTROL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[PRIMERA_VEZ_CONTROL]"
+                      name="PRIMERA_VEZ_CONTROL" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_PAIS_RESIDE]"
+                      name="ID_PAIS_RESIDE" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_PAIS_RESIDE]"
+                      name="NOMBRE_PAIS_RESIDE" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_VIAJERO]"
+                      name="ID_TIPO_VIAJERO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_VIAJERO]"
+                      name="NOMBRE_TIPO_VIAJERO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_MUNICIPIO_VIAJE]"
+                      name="ID_MUNICIPIO_VIAJE" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_MUNICIPIO_VIAJE]"
+                      name="NOMBRE_MUNICIPIO_VIAJE" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_PAIS_PROCEDENCIA]"
+                      name="ID_PAIS_PROCEDENCIA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_PAIS_PROCEDENCIA]"
+                      name="NOMBRE_PAIS_PROCEDENCIA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_CONDICION_FIN]"
+                      name="ID_CONDICION_FIN" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CONDICION_FIN]"
+                      name="NOMBRE_CONDICION_FIN" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_MUNICIPIO_MUESTRA]"
+                      name="ID_MUNICIPIO_MUESTRA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      name="NOMBRE_MUNICIPIO_MUESTRA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_MUESTRACOV]"
+                      name="ID_TIPO_MUESTRACOV" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_MUESTRACOV]"
+                      name="NOMBRE_TIPO_MUESTRACOV" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_NACIONALIDAD]"
+                      name="ID_NACIONALIDAD" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_NACIONALIDAD]"
+                      name="NOMBRE_NACIONALIDAD" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_REGIMEN]"
+                      name="ID_REGIMEN" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_REGIMEN]"
+                      name="NOMBRE_REGIMEN" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_TIPO_ESTRATEG]"
+                      name="ID_TIPO_ESTRATEG" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TIPO_ESTRATEG]"
+                      name="NOMBRE_TIPO_ESTRATEG" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_CODIGOEPS]"
+                      name="ID_CODIGOEPS" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CODIGOEPS]"
+                      name="NOMBRE_CODIGOEPS" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_CODIGOTOMA]"
+                      name="ID_CODIGOTOMA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CODIGOTOMA]"
+                      name="NOMBRE_CODIGOTOMA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_TRABAJASALUD]"
+                      name="ID_TRABAJASALUD" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_TRABAJASALUD]"
+                      name="NOMBRE_TRABAJASALUD" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ID_CONTACTOCONCASO]"
+                      name="ID_CONTACTOCONCASO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[NOMBRE_CONTACTOCONCASO]"
+                      name="NOMBRE_CONTACTOCONCASO" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_TOMA]"
+                      name="FECHA_TOMA" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_LLEGAVIAJE]"
+                      dataType="dbDate"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_LLEGAVIAJE]"
+                      name="FECHA_LLEGAVIAJE" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_SINTOMAS]"
+                      dataType="dbDate"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_SINTOMAS]"
+                      name="FECHA_SINTOMAS" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_RECEPCION]"
+                      dataType="dbDate"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_RECEPCION]"
+                      name="FECHA_RECEPCION" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_MUERTE]"
+                      dataType="dbDate"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[FECHA_MUERTE]"
+                      name="FECHA_MUERTE" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage PacientesCovidPCR\StagePacientesCovid"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="StagePacientesCovid"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[dimPacientesCOVID]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].Columns[IDNOTA]"
+                      cachedDataType="i4"
+                      cachedName="IDNOTA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[IdNota]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[IDNOTA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].Columns[IDSOLICITUD]"
+                      cachedDataType="i4"
+                      cachedName="IDSOLICITUD"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[IdSolicitud]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[IDSOLICITUD]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].Columns[ANO]"
+                      cachedDataType="i2"
+                      cachedName="ANO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[Ano]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[ANO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].Columns[PREFIJO]"
+                      cachedDataType="i4"
+                      cachedName="PREFIJO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[Prefijo]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[PREFIJO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].Columns[IDPARAMETRO]"
+                      cachedDataType="i4"
+                      cachedName="IDPARAMETRO"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[IdParametro]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[IDPARAMETRO]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].Columns[FECHA_TOMA]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FECHA_TOMA"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_TOMA]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[FECHA_TOMA]" />
+                    <inputColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].Columns[NOMBREEPSPACIENTE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="NOMBREEPSPACIENTE"
+                      externalMetadataColumnId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      lineageId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB].Columns[NOMBREEPSPACIENTE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[IdNota]"
+                      dataType="i4"
+                      name="IdNota" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[IdSolicitud]"
+                      dataType="i4"
+                      name="IdSolicitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[Ano]"
+                      dataType="i4"
+                      name="Ano" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[Prefijo]"
+                      dataType="i4"
+                      name="Prefijo" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[IdParametro]"
+                      dataType="i4"
+                      name="IdParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NUMERO_OCM_INS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NUMERO_OCM_INS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[COD_INTERNO_GVI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      name="COD_INTERNO_GVI" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[OCUPACION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="OCUPACION" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[LOCALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="LOCALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[PRIMERA_VEZ_CONTROL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PRIMERA_VEZ_CONTROL" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_RESIDE]"
+                      dataType="i4"
+                      name="ID_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_RESIDE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_PAIS_RESIDE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_VIAJERO]"
+                      dataType="i4"
+                      name="ID_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_VIAJERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_VIAJERO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_VIAJE]"
+                      dataType="i4"
+                      name="ID_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_VIAJE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_MUNICIPIO_VIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_PAIS_PROCEDENCIA]"
+                      dataType="i4"
+                      name="ID_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_PAIS_PROCEDENCIA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_PAIS_PROCEDENCIA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONDICION_FIN]"
+                      dataType="i4"
+                      name="ID_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONDICION_FIN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CONDICION_FIN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_MUNICIPIO_MUESTRA]"
+                      dataType="i4"
+                      name="ID_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_MUNICIPIO_MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_MUNICIPIO_MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_MUESTRACOV]"
+                      dataType="i4"
+                      name="ID_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_MUESTRACOV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_MUESTRACOV" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_NACIONALIDAD]"
+                      dataType="i4"
+                      name="ID_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_NACIONALIDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_NACIONALIDAD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_REGIMEN]"
+                      dataType="i4"
+                      name="ID_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_REGIMEN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_REGIMEN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_TIPO_ESTRATEG]"
+                      dataType="i4"
+                      name="ID_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TIPO_ESTRATEG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TIPO_ESTRATEG" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOEPS]"
+                      dataType="i4"
+                      name="ID_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOEPS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CODIGOEPS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_CODIGOTOMA]"
+                      dataType="i4"
+                      name="ID_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CODIGOTOMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CODIGOTOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_TRABAJASALUD]"
+                      dataType="i4"
+                      name="ID_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_TRABAJASALUD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_TRABAJASALUD" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[ID_CONTACTOCONCASO]"
+                      dataType="i4"
+                      name="ID_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[NOMBRE_CONTACTOCONCASO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NOMBRE_CONTACTOCONCASO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_TOMA]"
+                      dataType="dbDate"
+                      name="FECHA_TOMA" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_LLEGAVIAJE]"
+                      dataType="dbDate"
+                      name="FECHA_LLEGAVIAJE" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_SINTOMAS]"
+                      dataType="dbDate"
+                      name="FECHA_SINTOMAS" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_RECEPCION]"
+                      dataType="dbDate"
+                      name="FECHA_RECEPCION" />
+                    <externalMetadataColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_MUERTE]"
+                      dataType="dbDate"
+                      name="FECHA_MUERTE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage PacientesCovidPCR.Paths[OLE DB Source Output]"
+              endId="Package\Stage PacientesCovidPCR\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Stage PacientesCovidPCR\QUERY PacientesPCR.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Stage PacientesCovidPCR.Paths[Salida de origen de OLE DB]"
+              endId="Package\Stage PacientesCovidPCR\StagePacientesCovid.Inputs[OLE DB Destination Input]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate stage PacientesCovid"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0579E9DB-C658-4EAF-8171-1443421F128D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate stage PacientesCovid"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="Truncate table [Stage].[dimPacientesCovid]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{01EEF172-F280-4B64-9985-A4536AAE04E3}"
+      DTS:From="Package\Truncate stage PacientesCovid"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Stage PacientesCovidPCR" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="198.666666666667,42.6666666666667"
+          Id="Package\Stage PacientesCovidPCR"
+          TopLeft="184,115" />
+        <NodeLayout
+          Size="224,42.6666666666667"
+          Id="Package\Truncate stage PacientesCovid"
+          TopLeft="326,54" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="326,75.3333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-42.6666666666667,39.6666666666667"
+              Start="0,0"
+              End="-42.6666666666667,32.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-38.6666666666667,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-38.6666666666667,0"
+                    Point2="-42.6666666666667,0"
+                    Point3="-42.6666666666667,4" />
+                  <mssgle:LineSegment
+                    End="-42.6666666666667,32.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Stage PacientesCovidPCR">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145.333333333334,49.3333333333334"
+          Id="Package\Stage PacientesCovidPCR\OLE DB Destination"
+          TopLeft="292.374999748543,212.400000395179" />
+        <NodeLayout
+          Size="176,42.6666666666667"
+          Id="Package\Stage PacientesCovidPCR\StagePacientesCovid"
+          TopLeft="61.1250031944364,210.616669305066" />
+        <NodeLayout
+          Size="216,42.6666666666667"
+          Id="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos"
+          TopLeft="38.7500034458935,81.7166689098874" />
+        <EdgeLayout
+          Id="Package\Stage PacientesCovidPCR.Paths[Salida de origen de OLE DB]"
+          TopLeft="147.937503320165,124.383335576554">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86.2333337285123"
+              Start="0,0"
+              End="0,78.7333337285123">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.7333337285123" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42.6666666666667"
+          Id="Package\Stage PacientesCovidPCR\QUERY PacientesPCR"
+          TopLeft="336.249994989485,82.8333325197299" />
+        <EdgeLayout
+          Id="Package\Stage PacientesCovidPCR.Paths[OLE DB Source Output]"
+          TopLeft="426.249994989485,125.499999186397">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-61.2083285742751,86.9000012087822"
+              Start="0,0"
+              End="-61.2083285742751,79.4000012087822">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.4500006043911" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.4500006043911"
+                    Point2="0,43.4500006043911"
+                    Point3="-4,43.4500006043911" />
+                  <mssgle:LineSegment
+                    End="-57.2083285742751,43.4500006043911" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-57.2083285742751,43.4500006043911"
+                    Point2="-61.2083285742751,43.4500006043911"
+                    Point3="-61.2083285742751,47.4500006043911" />
+                  <mssgle:LineSegment
+                    End="-61.2083285742751,79.4000012087822" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage PacientesCovidPCR\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage PacientesCovidPCR\StagePacientesCovid">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage PacientesCovidPCR\QUERY PacientesAnticuerpos">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage PacientesCovidPCR\QUERY PacientesPCR">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

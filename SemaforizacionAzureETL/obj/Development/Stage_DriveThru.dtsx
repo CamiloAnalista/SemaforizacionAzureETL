@@ -1,0 +1,1409 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/9/2022 3:50:26 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{562D2465-FF03-4A91-B005-C6C8873B076A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Stage_DriveThru"
+  DTS:PackageType="5"
+  DTS:VersionBuild="86"
+  DTS:VersionGUID="{A07D9668-1A27-428F-A093-0DEF2923AD9D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DCBEA52D-3C2E-42E0-B7B3-A093A9821447}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;2021&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_ano">
+      <DTS:VariableValue
+        DTS:DataType="8">2021</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E23B18F0-FA27-4B18-8BCF-980EF06F8D45}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_ANOMES">
+      <DTS:VariableValue
+        DTS:DataType="8">202202</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{777B4142-BE65-4A9A-83DC-694CC92184DB}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;202107&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_periodo">
+      <DTS:VariableValue
+        DTS:DataType="8">202107</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{18734F16-4508-4BF0-8538-24D9C9E6F956}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PeriodoProcesar">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5CB6FFEE-452A-417D-869C-BB9530AEA215}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_STR, 4, 1252) DATEPART(&quot;yy&quot; , GETDATE()) + RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;mm&quot; , GETDATE()), 2)+  RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;dd&quot; , GETDATE()), 2)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PROJECT_DATE">
+      <DTS:VariableValue
+        DTS:DataType="8">20221116</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1D9A8966-24AB-4306-89CC-0E1D791A0C1F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PROJECT_KEY">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A67A90B1-737F-4E52-B9CC-3ECDD22897F3}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT a.id, a.drivethru, CAST(a.fechatransaccion AS VARCHAR(16)),&#xA;CASE WHEN a.idtransaccion IS NULL THEN '0' ELSE CAST(a.idtransaccion as VARCHAR) END &#xA;AS idtransaccion, CAST(a.metodo as VARCHAR) as metodo,&#xA;CAST(a.estado as VARCHAR) as estado, CAST(b.turno as VARCHAR(16)) as turno, b.examen,&#xA;d.id as idsede, CAST(TRIM(c.numeroidentificacion) as VARCHAR) as numeroidentificacion&#xA;FROM drivethru b&#xA;left join drivethrupagos a on b.id = a.drivethru&#xA;join drivethrucliente c on b.cliente = c.id&#xA;join sedes d on d.id = b.idsede&#xA;where c.numeroidentificacion &lt;&gt; '' &#xA;AND to_char(a.fechatransaccion, 'YYYYMM') = ' &quot; + @[User::V_ANOMES] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_QUERY_SOURCE">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT a.id, a.drivethru, CAST(a.fechatransaccion AS VARCHAR(16)),
+CASE WHEN a.idtransaccion IS NULL THEN '0' ELSE CAST(a.idtransaccion as VARCHAR) END 
+AS idtransaccion, CAST(a.metodo as VARCHAR) as metodo,
+CAST(a.estado as VARCHAR) as estado, CAST(b.turno as VARCHAR(16)) as turno, b.examen,
+d.id as idsede, CAST(TRIM(c.numeroidentificacion) as VARCHAR) as numeroidentificacion
+FROM drivethru b
+left join drivethrupagos a on b.id = a.drivethru
+join drivethrucliente c on b.cliente = c.id
+join sedes d on d.id = b.idsede
+where c.numeroidentificacion &lt;&gt; '' 
+AND to_char(a.fechatransaccion, 'YYYYMM') = ' 202202'</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\AnoMes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3968B3BA-EE1D-4968-8AA3-77D0BE6E0172}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="AnoMes"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"SELECT [value]
+  FROM [SemaforizacionColcan].[dbo].[ParamExec]
+  WHERE package = 'stageFactdiagnosticos' AND variable = 'AñoMes' AND [status] = 1
+  ORDER BY [ORDER]"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="SELECT [value]&#xA;  FROM [SemaforizacionColcan].[dbo].[ParamExec]&#xA;  WHERE package = 'stageFactdiagnosticos' AND variable = 'AñoMes' AND [status] = 1&#xA;  ORDER BY [ORDER]"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::V_PeriodoProcesar" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{AF8F525C-9A34-4E8A-952A-EAA14522FD52}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{DEB1595F-BD54-4C9D-9D8D-5AB9F10A9057}"
+        DTS:ObjectName="{DEB1595F-BD54-4C9D-9D8D-5AB9F10A9057}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::V_PeriodoProcesar" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{F3582523-169F-4D5F-AD7B-AE223DC0208C}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DRIVE THRU (FRONT)"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Foreach Loop Container\DRIVE THRU (FRONT).EventHandlers[OnPostExecute]"
+              DTS:CreationName="OnPostExecute"
+              DTS:DTSID="{8E19560F-254E-4DB2-8861-85152B5DEBB5}"
+              DTS:EventID="7143521"
+              DTS:EventName="OnPostExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{1051CA94-1AC7-4352-B6E0-646E344D7D6C}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Foreach Loop Container\DRIVE THRU (FRONT).EventHandlers[OnPostExecute]\Update Ejecucion"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{662F2DEE-D5AF-46C7-BB48-CD818C8A071F}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Update Ejecucion">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"UPDATE [dbo].[logDataLoaders] SET EndDateTime = GETDATE() WHERE KeyLoader = '" + @[User::V_PROJECT_KEY] + @[User::V_ANOMES] + "'"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+                      SQLTask:SqlStatementSource="UPDATE [dbo].[logDataLoaders] SET EndDateTime = GETDATE() WHERE KeyLoader = '202202'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+            <DTS:EventHandler
+              DTS:refId="Package\Foreach Loop Container\DRIVE THRU (FRONT).EventHandlers[OnPreExecute]"
+              DTS:CreationName="OnPreExecute"
+              DTS:DTSID="{F54AAD34-C218-4544-909C-9758680B04B1}"
+              DTS:EventID="7143521"
+              DTS:EventName="OnPreExecute"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{CD99E37A-FDE3-4079-9E12-35869B8CC5A9}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\Foreach Loop Container\DRIVE THRU (FRONT).EventHandlers[OnPreExecute]\Inicio - periodo 202202"
+                  DTS:CreationName="Microsoft.ExecuteSQLTask"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{17F96FA5-B75A-4A6E-862F-55D8F5A94B47}"
+                  DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Inicio - periodo 202202">
+                  <DTS:Variables />
+                  <DTS:PropertyExpression
+                    DTS:Name="Name">"Inicio - periodo " +  @[User::V_ANOMES]</DTS:PropertyExpression>
+                  <DTS:PropertyExpression
+                    DTS:Name="SqlStatementSource">"INSERT INTO [dbo].[logDataLoaders] (DateLog, KeyLoader, PackageName, TaskName, StartDateTime)
+VALUES ('" + @[User::V_PROJECT_DATE] + "','" + @[User::V_PROJECT_KEY] + @[User::V_ANOMES] + "','" + @[System::PackageName] + "','" + @[System::TaskName] + "', GETDATE())"</DTS:PropertyExpression>
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+                      SQLTask:SqlStatementSource="INSERT INTO [dbo].[logDataLoaders] (DateLog, KeyLoader, PackageName, TaskName, StartDateTime)&#xA;VALUES ('20221116','202202','Stage_DriveThru','Inicio - periodo 202202', GETDATE())" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+                  description="Conversión de datos"
+                  name="Conversión de datos"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                      name="Entrada de conversión de datos">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[numeroidentificacion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="numeroidentificacion"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[numeroidentificacion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[idtransaccion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="idtransaccion"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[idtransaccion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[estado]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="estado"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[estado]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[metodo]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="metodo"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[metodo]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[examen]"
+                          cachedDataType="wstr"
+                          cachedLength="150"
+                          cachedName="examen"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[examen]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[fechatransaccion]"
+                          cachedDataType="wstr"
+                          cachedLength="16"
+                          cachedName="fechatransaccion"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[fechatransaccion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[turno]"
+                          cachedDataType="wstr"
+                          cachedLength="16"
+                          cachedName="turno"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[turno]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos]"
+                      exclusionGroup="1"
+                      name="Salida de conversión de datos"
+                      synchronousInputId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de idtransaccion]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de idtransaccion]"
+                          name="Copia de idtransaccion"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[idtransaccion]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de estado]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de estado]"
+                          name="Copia de estado"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[estado]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de numeroidentificacion]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="20"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de numeroidentificacion]"
+                          name="Copia de numeroidentificacion"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[numeroidentificacion]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de metodo]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de metodo]"
+                          name="Copia de metodo"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[metodo]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of examen]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of examen]"
+                          name="Copy of examen"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[examen]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of fechatransaccion]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of fechatransaccion]"
+                          name="Copy of fechatransaccion"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[fechatransaccion]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of turno]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of turno]"
+                          name="Copy of turno"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[turno]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de conversión de datos"
+                      synchronousInputId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+                  name="Origen Front"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT a.id, a.drivethru, CAST(a.fechatransaccion AS VARCHAR(16)),
+CASE WHEN a.idtransaccion IS NULL THEN '0' ELSE CAST(a.idtransaccion as VARCHAR) END 
+AS idtransaccion, CAST(a.metodo as VARCHAR) as metodo,
+CAST(a.estado as VARCHAR) as estado, CAST(b.turno as VARCHAR(16)) as turno, b.examen,
+d.id as idsede, CAST(TRIM(c.numeroidentificacion) as VARCHAR) as numeroidentificacion
+FROM drivethru b
+left join drivethrupagos a on b.id = a.drivethru
+join drivethrucliente c on b.cliente = c.id
+join sedes d on d.id = b.idsede
+where c.numeroidentificacion &lt;&gt; '' 
+AND to_char(a.fechatransaccion, 'YYYYMM') = '202201'</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Source database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Connections[IDbConnection]"
+                      connectionManagerID="{C2DFE599-5649-4367-9C56-F4F5F6BA9041}:invalid"
+                      connectionManagerRefId="{C2DFE599-5649-4367-9C56-F4F5F6BA9041}:invalid"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[id]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[id]"
+                          name="id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[drivethru]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[drivethru]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[drivethru]"
+                          name="drivethru"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[fechatransaccion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[fechatransaccion]"
+                          length="16"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[fechatransaccion]"
+                          name="fechatransaccion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[idtransaccion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[idtransaccion]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[idtransaccion]"
+                          name="idtransaccion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[metodo]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[metodo]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[metodo]"
+                          name="metodo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[estado]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[estado]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[estado]"
+                          name="estado"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[turno]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[turno]"
+                          length="16"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[turno]"
+                          name="turno"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[examen]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[examen]"
+                          length="150"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[examen]"
+                          name="examen"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[idsede]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[idsede]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[idsede]"
+                          name="idsede"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[numeroidentificacion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[numeroidentificacion]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[numeroidentificacion]"
+                          name="numeroidentificacion"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[id]"
+                          dataType="i4"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[drivethru]"
+                          dataType="i4"
+                          name="drivethru" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[fechatransaccion]"
+                          dataType="wstr"
+                          length="16"
+                          name="fechatransaccion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[idtransaccion]"
+                          dataType="wstr"
+                          length="255"
+                          name="idtransaccion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[metodo]"
+                          dataType="wstr"
+                          length="255"
+                          name="metodo" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[estado]"
+                          dataType="wstr"
+                          length="255"
+                          name="estado" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[turno]"
+                          dataType="wstr"
+                          length="16"
+                          name="turno" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[examen]"
+                          dataType="wstr"
+                          length="150"
+                          name="examen" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[idsede]"
+                          dataType="i4"
+                          name="idsede" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].ExternalColumns[numeroidentificacion]"
+                          dataType="wstr"
+                          length="255"
+                          name="numeroidentificacion" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[id]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[id]"
+                          name="id" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[drivethru]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[drivethru]"
+                          name="drivethru" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[fechatransaccion]"
+                          dataType="wstr"
+                          length="16"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[fechatransaccion]"
+                          name="fechatransaccion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[idtransaccion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[idtransaccion]"
+                          name="idtransaccion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[metodo]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[metodo]"
+                          name="metodo" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[estado]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[estado]"
+                          name="estado" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[turno]"
+                          dataType="wstr"
+                          length="16"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[turno]"
+                          name="turno" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[examen]"
+                          dataType="wstr"
+                          length="150"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[examen]"
+                          name="examen" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[idsede]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[idsede]"
+                          name="idsede" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[numeroidentificacion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[numeroidentificacion]"
+                          name="numeroidentificacion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino de OLE DB"
+                  name="StageDriveThru"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowset">[Stage].[DriveThru]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Comando SQL para ejecutar."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Connections[OleDbConnection]"
+                      connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                      description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB]"
+                      errorOrTruncationOperation="Insertar"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de destino de OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[id]"
+                          cachedDataType="i4"
+                          cachedName="id"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[id]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[drivethru]"
+                          cachedDataType="i4"
+                          cachedName="drivethru"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Drivethru]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[drivethru]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copia de estado]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copia de estado"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estado]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de estado]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copia de metodo]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copia de metodo"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[MetodoPago]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de metodo]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copia de idtransaccion]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copia de idtransaccion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdTransaccion]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de idtransaccion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[idsede]"
+                          cachedDataType="i4"
+                          cachedName="idsede"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[idSede]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output].Columns[idsede]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copia de numeroidentificacion]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="Copia de numeroidentificacion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[NumeroIdentificacion]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de numeroidentificacion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copy of examen]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of examen"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Examen]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of examen]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copy of fechatransaccion]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Copy of fechatransaccion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaTransaccion]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of fechatransaccion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].Columns[Copy of turno]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="Copy of turno"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Turno]"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copy of turno]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[ID]"
+                          dataType="i4"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Drivethru]"
+                          dataType="i4"
+                          name="Drivethru" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[IdTransaccion]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="IdTransaccion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Estado]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="Estado" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Turno]"
+                          dataType="dbTimeStamp"
+                          name="Turno" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[MetodoPago]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          name="MetodoPago" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaTransaccion]"
+                          dataType="dbTimeStamp"
+                          name="FechaTransaccion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[Examen]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="Examen" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[idSede]"
+                          dataType="i4"
+                          name="idSede" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB].ExternalColumns[NumeroIdentificacion]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          name="NumeroIdentificacion" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Outputs[Salida de error de destino de OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Salida de error de destino de OLE DB"
+                      synchronousInputId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\DRIVE THRU (FRONT).Paths[ADO NET Source Output]"
+                  endId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="ADO NET Source Output"
+                  startId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front.Outputs[ADO NET Source Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\DRIVE THRU (FRONT).Paths[Salida de conversión de datos]"
+                  endId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru.Inputs[Entrada de destino de OLE DB]"
+                  name="Salida de conversión de datos"
+                  startId="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos.Outputs[Salida de conversión de datos]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Finalizar"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9A6B1DA7-9980-4385-9810-BEA5FA60DAC2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Finalizar"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"SELECT GETDATE()"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+              SQLTask:SqlStatementSource="SELECT GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{165ED9BD-ADE9-4139-ACAD-BE68F9F795FD}"
+          DTS:From="Package\Foreach Loop Container\DRIVE THRU (FRONT)"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Foreach Loop Container\Finalizar" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{3115CC17-C338-4A35-B4B5-C8EFDEAE1E68}"
+          DTS:ObjectName="{3115CC17-C338-4A35-B4B5-C8EFDEAE1E68}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::V_ANOMES" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOG KEY"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{60FF4688-177A-4587-B35E-D71BF283D938}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOG KEY"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="SELECT FLOOR(RAND()*(10000-5000+1)+5000)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::V_PROJECT_KEY" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{222FBFE5-BD6E-4519-8A69-BB4200981497}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stage.DriveThru;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1A0A053-BEE2-4D8A-9EF2-903C091A246D}"
+      DTS:From="Package\LOG KEY"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Truncate Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9B46D14A-4233-4771-B5B3-F0238214CF2F}"
+      DTS:From="Package\AnoMes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Foreach Loop Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8AEE9CD0-F233-470E-ABF7-69F9D549D56F}"
+      DTS:From="Package\Truncate Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\AnoMes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{6E9D35CB-E5C0-4B26-955E-189C9C36A601}"
+      DTS:EventID="7143521"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{0CEC10FB-83F4-4593-BB7F-356576DE3E03}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Stage FactDiagnosticos 202202"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BEA2DDF3-0EB6-42F1-80A8-23C0CAA924B4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stage FactDiagnosticos 202202">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Stage FactDiagnosticos " +  @[User::V_ANOMES]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"INSERT INTO dbo.logError  (PackageName, TaskName, ErrorCode, ErrorDescription) VALUES('" + @[System::PackageName] + "','" + @[System::TaskName] + "','" + (DT_WSTR,12)@[System::ErrorCode] + "','" + @[System::ErrorDescription] + "')"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+              SQLTask:SqlStatementSource="INSERT INTO dbo.logError  (PackageName, TaskName, ErrorCode, ErrorDescription) VALUES('Stage_DriveThru','Stage FactDiagnosticos 202202','0','')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="116,42.6666666666667"
+          Id="Package\AnoMes"
+          TopLeft="595,37" />
+        <NodeLayout
+          Size="118.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\Finalizar"
+          TopLeft="64.3333331346513,126.899999232888" />
+        <NodeLayout
+          Size="185.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\DRIVE THRU (FRONT)"
+          TopLeft="34.5,23.5" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="125.416666567326,66.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.7333325662214"
+              Start="0,0"
+              End="0,53.2333325662214">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.2333325662214" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="258,224"
+          Size="258,266.666666666667"
+          Id="Package\Foreach Loop Container"
+          TopLeft="526.166666902602,136.700000023246" />
+        <NodeLayout
+          Size="121.333333333334,42"
+          Id="Package\LOG KEY"
+          TopLeft="117.833332749705,37.2666660002868" />
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\Truncate Table"
+          TopLeft="312.833329843979,37.4000076401234" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="239.166666083038,58.5000034868718">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.6666637609403,0"
+              Start="0,0"
+              End="66.1666637609403,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="66.1666637609403,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="654.083333451301,79.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.0333333565793"
+              Start="0,0"
+              End="0,49.5333333565793">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5333333565793" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="463.499996510645,58.533337153395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="131.500003489355,0"
+              Start="0,0"
+              End="124.000003489355,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="124.000003489355,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="194,54.6666666666667"
+          Id="Package.EventHandlers[OnError]\Stage FactDiagnosticos 202202"
+          TopLeft="321,63" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\DRIVE THRU (FRONT)">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Conversión de datos"
+          TopLeft="165.083334991087,119.466670711438" />
+        <NodeLayout
+          Size="153.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\DRIVE THRU (FRONT)\StageDriveThru"
+          TopLeft="176.583335102846,218.300010127425" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\DRIVE THRU (FRONT).Paths[Salida de conversión de datos]"
+          TopLeft="252.833335046967,162.133337378104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.1666727493203"
+              Start="0,0"
+              End="0,48.6666727493203">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.6666727493203" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="139.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front"
+          TopLeft="176,12" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\DRIVE THRU (FRONT).Paths[ADO NET Source Output]"
+          TopLeft="249.041667495544,54.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64.800004044771"
+              Start="0,0"
+              End="0,57.300004044771">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.300004044771" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\Foreach Loop Container\DRIVE THRU (FRONT).EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Foreach Loop Container\DRIVE THRU (FRONT).EventHandlers[OnPreExecute]\Inicio - periodo 202202"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Foreach Loop Container\DRIVE THRU (FRONT).EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package\Foreach Loop Container\DRIVE THRU (FRONT).EventHandlers[OnPostExecute]\Update Ejecucion"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\DRIVE THRU (FRONT)\Origen Front">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

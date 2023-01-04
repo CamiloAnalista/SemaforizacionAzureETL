@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="VitaleaWeb"
+  DTS:DTSID="{2F3F1289-4726-4E9F-902E-B14463D56188}"
+  DTS:CreationName="ODBC">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Dsn=Vitalea;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

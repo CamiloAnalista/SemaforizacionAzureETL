@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="vitaleadbCTS"
+  DTS:DTSID="{BCF8CB38-386E-483A-9D33-1531CBDC7B46}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=vitaleadb.database.windows.net;User ID=ithealthbi;Initial Catalog=CRMVitalea;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlwHchkoNf0+KxMSQxqbe+wAAAAACAAAAAAADZgAAwAAAABAAAAC+KLkE7r6BmB763ctiDWnoAAAAAASAAACgAAAAEAAAAE1XKMa/q73kwCKYbZ3EM6t4AAAA/u/FXGiybWJi9QrJ/JmrmW0qpibAJK0YYeSsiARhp4dj54sa1o11N6QJYteZ1qsSEIbck58pY9N1FexQFv61YMduxuyMyj1JPPk/bac5VsGV4mzuwRutLraoMfqg15qRm+HgA6bhlAp+ELF9VYkC0ZKX3JRFpSzPFAAAAMu/sbmEb6PfzIrUHVaOU86BN4Bu</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

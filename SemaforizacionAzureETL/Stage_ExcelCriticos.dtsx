@@ -1,0 +1,1507 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2021 9:03:47 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="COLCAN-BI"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{3E6ABB58-6FCE-4FB5-8616-BF33DF75221B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Stage_ExcelCriticos"
+  DTS:PackageType="5"
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{6C5B4C96-3250-46B9-9C74-A4CDC16820C8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{1795C05D-271B-4001-8930-6EDCF616F920}"
+      DTS:ObjectName="Administrador de conexiones con Excel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ParametrosDWH\Semaforizacion\VALORES CRITICOS.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\poblar archivo DATOS CRITICOS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{F75BE543-691E-4329-95BC-08E9213B4D51}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="poblar archivo DATOS CRITICOS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\poblar archivo DATOS CRITICOS\Búsqueda"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Búsqueda;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;6"
+              description="Combina columnas adicionales con el flujo de datos mediante la búsqueda de valores en una tabla. Por ejemplo, se combina la columna 'id. de empleado' con la tabla de empleados para obtener la 'fecha de contratación' y 'el nombre de empleado'. Se recomienda esta transformación cuando hay suficiente espacio en memoria para la tabla de búsqueda."
+              name="Búsqueda"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL que genera la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimParametro]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica una instrucción SQL que usa parámetros para generar la tabla de búsqueda."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimParametro]) [refTable]
+where [refTable].[BK_CodigoParametro] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de conexión utilizado para tener acceso al conjunto de datos de referencia."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de caché de la tabla de búsqueda."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cómo la transformación de búsquedas trata las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el porcentaje de la caché asignado a las filas sin entradas coincidentes en el conjunto de datos de referencia."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Uso de memoria máximo para la caché de referencia en una plataforma de 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indica si se debe hacer referencia a metadatos en formato XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SRK_Parametro" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BK_IDParametro" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BK_CodigoParametro" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CodigoFacturacion" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Abreviatura" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="NombreParametro" dataType="DT_STR" length="1000" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TituloParametro" dataType="DT_STR" length="1000" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TiempoOportunidad" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EdadMinima" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EdadMaxima" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sexo" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Estado" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Unidades" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Volumen" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Formula" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Nivel" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Fuente" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CodigoCups" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="FechaInicio" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FechaFinal" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Muestra" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="IDSeccion" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Seccion" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="SeccionAgrupada" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="SeccionPadre" dataType="DT_STR" length="80" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Programado" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OportunidadControl" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="POS" dataType="DT_TEXT" length="0" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TextoCodificado" dataType="DT_TEXT" length="0" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
+                  name="ParameterMap">#{Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CODIGO]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determina si las claves duplicadas de los datos de referencia se deben tratar como errores cuando se usa el modo de caché."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="Administrador de conexiones utilizado para obtener acceso a los datos de búsqueda."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Inputs[Entrada de búsqueda]"
+                  name="Entrada de búsqueda">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Inputs[Entrada de búsqueda].Columns[Copia de CODIGO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Copia de CODIGO"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CODIGO]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Especifica la columna de la tabla de referencia con la que se combina una columna."
+                          name="JoinToReferenceColumn">BK_CodigoParametro</property>
+                        <property
+                          dataType="System.Null"
+                          description="Especifica la columna de la tabla de referencia de la que se copia una columna."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de entradas coincidentes de búsqueda]"
+                  errorOrTruncationOperation="Búsqueda"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Salida de entradas coincidentes de búsqueda"
+                  synchronousInputId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de entradas coincidentes de búsqueda].Columns[BK_IDParametro]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de entradas coincidentes de búsqueda].Columns[BK_IDParametro]"
+                      name="BK_IDParametro"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">BK_IDParametro</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de entradas no coincidentes de búsqueda]"
+                  description="Salida de búsqueda que trata las filas sin entradas coincidentes en el conjunto de datos de referencia. Utilice esta salida cuando la propiedad NoMatchBehavior esté establecida en 'Enviar las filas sin entradas coincidentes a la salida de entradas no coincidentes'."
+                  exclusionGroup="1"
+                  name="Salida de entradas no coincidentes de búsqueda"
+                  synchronousInputId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Inputs[Entrada de búsqueda]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de error de búsqueda]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de búsqueda"
+                  synchronousInputId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Inputs[Entrada de búsqueda]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de error de búsqueda].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de error de búsqueda].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\poblar archivo DATOS CRITICOS\Columna derivada"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Columna derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Crea nuevos valores de columna aplicando expresiones a las columnas de entrada de la transformación. Crea nuevas columnas o sobrescribe las columnas existentes. Por ejemplo, se concatenan los valores de las columnas 'nombre' y 'apellidos' para crear una columna 'nombre completo'."
+              name="Columna derivada"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Inputs[Entrada de columna derivada]"
+                  description="Entrada en la transformación Columna derivada"
+                  name="Entrada de columna derivada">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Inputs[Entrada de columna derivada].Columns[Copia de MUESTRA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de MUESTRA"
+                      errorOrTruncationOperation="Cálculo"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de MUESTRA]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión de columna derivada"
+                          name="Expression">[REPLACENULL](#{Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de MUESTRA]},"")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expresión descriptiva de columna derivada"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACENULL([Copia de MUESTRA],"")</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Outputs[Salida de columna derivada]"
+                  description="Salida predeterminada de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  name="Salida de columna derivada"
+                  synchronousInputId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Inputs[Entrada de columna derivada]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Outputs[Salida de error de columna derivada]"
+                  description="Salida de error de la transformación Columna derivada"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de columna derivada"
+                  synchronousInputId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Inputs[Entrada de columna derivada]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Outputs[Salida de error de columna derivada].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[CODIGO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CODIGO"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CODIGO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[NOMBRE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOMBRE"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NOMBRE]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[GRUPO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GRUPO"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRUPO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[TIPO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TIPO"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[TIPO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[RESULTADO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RESULTADO"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[RESULTADO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[EDAD MIN]"
+                      cachedDataType="r8"
+                      cachedName="EDAD MIN"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EDAD MIN]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[EDAD MAX]"
+                      cachedDataType="r8"
+                      cachedName="EDAD MAX"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EDAD MAX]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[SEXO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SEXO"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SEXO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[CRITICO BAJO]"
+                      cachedDataType="r8"
+                      cachedName="CRITICO BAJO"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CRITICO BAJO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[CRITICO ALTO]"
+                      cachedDataType="r8"
+                      cachedName="CRITICO ALTO"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CRITICO ALTO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[MUESTRA]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MUESTRA"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MUESTRA]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[TIPOEDAD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TIPOEDAD"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[TIPOEDAD]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CODIGO]"
+                      name="Copia de CODIGO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CODIGO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBRE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="150"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBRE]"
+                      name="Copia de NOMBRE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NOMBRE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de GRUPO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de GRUPO]"
+                      name="Copia de GRUPO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRUPO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TIPO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TIPO]"
+                      name="Copia de TIPO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[TIPO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de RESULTADO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de RESULTADO]"
+                      name="Copia de RESULTADO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[RESULTADO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EDAD MIN]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EDAD MIN]"
+                      name="Copia de EDAD MIN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EDAD MIN]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EDAD MAX]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EDAD MAX]"
+                      name="Copia de EDAD MAX"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EDAD MAX]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de SEXO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de SEXO]"
+                      name="Copia de SEXO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SEXO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CRITICO BAJO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CRITICO BAJO]"
+                      name="Copia de CRITICO BAJO"
+                      precision="18"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CRITICO BAJO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CRITICO ALTO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CRITICO ALTO]"
+                      name="Copia de CRITICO ALTO"
+                      precision="18"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CRITICO ALTO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de MUESTRA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de MUESTRA]"
+                      name="Copia de MUESTRA"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MUESTRA]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TIPOEDAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TIPOEDAD]"
+                      name="Copia de TIPOEDAD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[TIPOEDAD]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Stage].[ValorReferenciaCriticos]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de GRUPO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de GRUPO"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Grupo]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de GRUPO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de TIPO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Copia de TIPO"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoResultado]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TIPO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de RESULTADO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de RESULTADO"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Resultado]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de RESULTADO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de EDAD MIN]"
+                      cachedDataType="i4"
+                      cachedName="Copia de EDAD MIN"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EdadMin]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EDAD MIN]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de EDAD MAX]"
+                      cachedDataType="i4"
+                      cachedName="Copia de EDAD MAX"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EdadMax]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de EDAD MAX]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de SEXO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de SEXO"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sexo]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de SEXO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de CRITICO BAJO]"
+                      cachedDataType="numeric"
+                      cachedName="Copia de CRITICO BAJO"
+                      cachedPrecision="18"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CriticoBajo]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CRITICO BAJO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de CRITICO ALTO]"
+                      cachedDataType="numeric"
+                      cachedName="Copia de CRITICO ALTO"
+                      cachedPrecision="18"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CriticoAlto]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CRITICO ALTO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de CODIGO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Copia de CODIGO"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_Examen]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CODIGO]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de MUESTRA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de MUESTRA"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Muestra]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de MUESTRA]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de TIPOEDAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de TIPOEDAD"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoEdad]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de TIPOEDAD]" />
+                    <inputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[BK_IDParametro]"
+                      cachedDataType="i4"
+                      cachedName="BK_IDParametro"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_IDParametro]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de entradas coincidentes de búsqueda].Columns[BK_IDParametro]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Grupo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Grupo" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoResultado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TipoResultado" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CriticoBajo]"
+                      dataType="numeric"
+                      name="CriticoBajo"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CriticoAlto]"
+                      dataType="numeric"
+                      name="CriticoAlto"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Resultado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Resultado" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EdadMin]"
+                      dataType="i4"
+                      name="EdadMin" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EdadMax]"
+                      dataType="i4"
+                      name="EdadMax" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_Examen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BK_Examen" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Muestra" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoEdad]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TipoEdad" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[BK_IDParametro]"
+                      dataType="i4"
+                      name="BK_IDParametro" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen de Excel"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">hoja$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CODIGO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CODIGO]"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CODIGO]"
+                      name="CODIGO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NOMBRE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[NOMBRE]"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[NOMBRE]"
+                      name="NOMBRE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRUPO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[GRUPO]"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[GRUPO]"
+                      name="GRUPO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[TIPO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[TIPO]"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[TIPO]"
+                      name="TIPO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[RESULTADO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[RESULTADO]"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[RESULTADO]"
+                      name="RESULTADO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EDAD MIN]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EDAD MIN]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EDAD MIN]"
+                      name="EDAD MIN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EDAD MAX]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EDAD MAX]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EDAD MAX]"
+                      name="EDAD MAX"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SEXO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SEXO]"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SEXO]"
+                      name="SEXO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CRITICO BAJO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CRITICO BAJO]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CRITICO BAJO]"
+                      name="CRITICO BAJO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CRITICO ALTO]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CRITICO ALTO]"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CRITICO ALTO]"
+                      name="CRITICO ALTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MUESTRA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MUESTRA]"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MUESTRA]"
+                      name="MUESTRA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[TIPOEDAD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[TIPOEDAD]"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].Columns[TIPOEDAD]"
+                      name="TIPOEDAD"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CODIGO]"
+                      dataType="wstr"
+                      length="255"
+                      name="CODIGO" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOMBRE" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[GRUPO]"
+                      dataType="wstr"
+                      length="255"
+                      name="GRUPO" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[TIPO]"
+                      dataType="wstr"
+                      length="255"
+                      name="TIPO" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[RESULTADO]"
+                      dataType="wstr"
+                      length="255"
+                      name="RESULTADO" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EDAD MIN]"
+                      dataType="r8"
+                      name="EDAD MIN" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EDAD MAX]"
+                      dataType="r8"
+                      name="EDAD MAX" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SEXO]"
+                      dataType="wstr"
+                      length="255"
+                      name="SEXO" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CRITICO BAJO]"
+                      dataType="r8"
+                      name="CRITICO BAJO" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CRITICO ALTO]"
+                      dataType="r8"
+                      name="CRITICO ALTO" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MUESTRA]"
+                      dataType="wstr"
+                      length="255"
+                      name="MUESTRA" />
+                    <externalMetadataColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[TIPOEDAD]"
+                      dataType="wstr"
+                      length="255"
+                      name="TIPOEDAD" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CODIGO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CODIGO]"
+                      name="CODIGO" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[NOMBRE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[NOMBRE]"
+                      name="NOMBRE" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[GRUPO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[GRUPO]"
+                      name="GRUPO" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[TIPO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[TIPO]"
+                      name="TIPO" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CRITICO BAJO]"
+                      dataType="r8"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CRITICO BAJO]"
+                      name="CRITICO BAJO" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CRITICO ALTO]"
+                      dataType="r8"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CRITICO ALTO]"
+                      name="CRITICO ALTO" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[RESULTADO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[RESULTADO]"
+                      name="RESULTADO" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EDAD MIN]"
+                      dataType="r8"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EDAD MIN]"
+                      name="EDAD MIN" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EDAD MAX]"
+                      dataType="r8"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EDAD MAX]"
+                      name="EDAD MAX" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[TIPOEDAD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[TIPOEDAD]"
+                      name="TIPOEDAD" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SEXO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SEXO]"
+                      name="SEXO" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MUESTRA]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MUESTRA]"
+                      name="MUESTRA" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\poblar archivo DATOS CRITICOS.Paths[Salida de columna derivada]"
+              endId="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de columna derivada"
+              startId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Outputs[Salida de columna derivada]" />
+            <path
+              refId="Package\poblar archivo DATOS CRITICOS.Paths[Salida de conversión de datos]"
+              endId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Inputs[Entrada de búsqueda]"
+              name="Salida de conversión de datos"
+              startId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\poblar archivo DATOS CRITICOS.Paths[Salida de entradas coincidentes de búsqueda]"
+              endId="Package\poblar archivo DATOS CRITICOS\Columna derivada.Inputs[Entrada de columna derivada]"
+              name="Salida de entradas coincidentes de búsqueda"
+              startId="Package\poblar archivo DATOS CRITICOS\Búsqueda.Outputs[Salida de entradas coincidentes de búsqueda]" />
+            <path
+              refId="Package\poblar archivo DATOS CRITICOS.Paths[Salida de origen de Excel]"
+              endId="Package\poblar archivo DATOS CRITICOS\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de Excel"
+              startId="Package\poblar archivo DATOS CRITICOS\Origen de Excel.Outputs[Salida de origen de Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate table stage Valor referencia Criticos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{4DDCE6F3-6F6A-425E-862E-BFFE6024AB86}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate table stage Valor referencia Criticos"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stage.ValorReferenciaCriticos;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{8C1DAFB2-7C71-48DA-864A-BA14A8EC75EF}"
+      DTS:From="Package\Truncate table stage Valor referencia Criticos"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\poblar archivo DATOS CRITICOS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="291,42"
+          Id="Package\Truncate table stage Valor referencia Criticos"
+          TopLeft="218,37" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\poblar archivo DATOS CRITICOS"
+          TopLeft="248,112" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="364,79">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\poblar archivo DATOS CRITICOS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="125,42"
+          Id="Package\poblar archivo DATOS CRITICOS\Búsqueda"
+          TopLeft="244,188" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\poblar archivo DATOS CRITICOS\Origen de Excel"
+          TopLeft="230,40" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\poblar archivo DATOS CRITICOS\Columna derivada"
+          TopLeft="225,268" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB"
+          TopLeft="221,342" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\poblar archivo DATOS CRITICOS\Conversión de datos"
+          TopLeft="223,112" />
+        <EdgeLayout
+          Id="Package\poblar archivo DATOS CRITICOS.Paths[Salida de conversión de datos]"
+          TopLeft="308.5,154">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\poblar archivo DATOS CRITICOS.Paths[Salida de columna derivada]"
+          TopLeft="306,310">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\poblar archivo DATOS CRITICOS.Paths[Salida de origen de Excel]"
+          TopLeft="308.5,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\poblar archivo DATOS CRITICOS.Paths[Salida de entradas coincidentes de búsqueda]"
+          TopLeft="306.75,230">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.8190234375,9.15234375,199.638046875,12.1953125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\poblar archivo DATOS CRITICOS\Origen de Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\poblar archivo DATOS CRITICOS\Búsqueda">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimParametro]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\poblar archivo DATOS CRITICOS\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

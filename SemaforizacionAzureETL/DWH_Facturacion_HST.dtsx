@@ -1,0 +1,224 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/9/2022 3:50:26 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{F273DDA4-1F3D-4365-99C2-1A5FD51972A0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="DWH_Facturacion_HST"
+  DTS:PackageType="5"
+  DTS:VersionBuild="89"
+  DTS:VersionGUID="{441068CA-55B9-4A91-8741-2A46D4CA92EF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8F00CBC-B27B-4938-AF70-22640C00E133}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;2021&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_ano">
+      <DTS:VariableValue
+        DTS:DataType="8">2021</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D083F47D-09E1-446F-A3DC-412091175792}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_ANOMES">
+      <DTS:VariableValue
+        DTS:DataType="8">202202</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19EA269A-1E85-416E-A23F-D942AC22CC59}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;202107&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_periodo">
+      <DTS:VariableValue
+        DTS:DataType="8">202107</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5C078D97-BB89-4E9C-B664-A5818B01EFC7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PeriodoProcesar">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{52F0E01F-7F1B-466C-8E0C-0D6C6BBCC5AB}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_STR, 4, 1252) DATEPART(&quot;yy&quot; , GETDATE()) + RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;mm&quot; , GETDATE()), 2)+  RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;dd&quot; , GETDATE()), 2)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PROJECT_DATE">
+      <DTS:VariableValue
+        DTS:DataType="8">20230102</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{774AF0A7-0B3B-49E8-A1E2-EB4D94ADD38D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PROJECT_KEY">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A1FAD1CE-CD2D-4C57-A427-E0B1FFCCAF1B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT DISTINCT C.IDSOLICITUD, C.ANO, C.IDDOCUMENTO, C.IDENTIDAD, C.FECHASOLICITUD, C.FECHADOCUMENTO, C.FECHAVENCIMIENTO, &#xA;CRAD.FECHARADICACION, CAST(C.IDPLAN AS INT) IDPLAN, CAST(C.CENTROATENCION AS INT) CENTROATENCION, --C.URGENCIA , &#xA;&#x9;COALESCE(DS.DETENIDO,0) AS APLAZADO, IDPACIENTE, C.IDITEM, C.NUMEROSOLICITUD, C.PRECIOITEM, C.CANTIDAD, &#xA;&#x9;C.ESTADOFACTURA, C.NUMERODOCUMENTO, CAST(C.IDRADICACION AS VARCHAR(100)) AS IDRADICACION&#xA;FROM (&#xA;&#x9;SELECT DISTINCT CS.IDSOLICITUD, DCF.ANO ,DCF.IDDOCUMENTO, CONVERT (INT,LTRIM(RTRIM(DCF.IDENTIDADORIGEN))) IDENTIDAD,&#xA;&#x9;&#x9;CONVERT(DATE,CS.FECHASOLICITUD,120) AS FECHASOLICITUD, &#xA;&#x9;&#x9;CONVERT(DATE,CA.FECHADOCUMENTO,120 ) AS FECHADOCUMENTO,&#xA;&#x9;&#x9;CONVERT(DATE,CA.FECHAVENCIMIENTO,120) AS  FECHAVENCIMIENTO ,&#xA;&#x9;&#x9;CS.D1 AS IDPLAN, CS.D0 AS CENTROATENCION, --ISNULL(UR.NOMBRE,'NO') AS URGENCIA,&#xA;&#x9;&#x9;CS.IDPACIENTE, DCF.IDITEM, CONCAT(CS.ANO,'-',CS.NUMEROSOLICITUD) AS NUMEROSOLICITUD,ISNULL( DCF.PRECIOITEM,0) PRECIOITEM,&#xA;&#x9;&#x9;ISNULL(DCF.CANTIDAD,0) CANTIDAD, ISNULL(CA.DESCUENTO1,0) DESCUENTO1,ISNULL (CA.IVA,0) IVA,ISNULL(DCF.VALORCOPAGO,0) AS COPAGO,&#xA;&#x9;&#x9;ISNULL(DCF.VALORCM,0) AS VALORCM  , ISNULL(EF.NOMBRE, 'NO GENERADA') AS ESTADOFACTURA, &#xA;&#x9;&#x9; ISNULL(CONVERT (VARCHAR(22),RTRIM(LTRIM (REPLACE(CA.NUMERODOCUMENTO, '--','')))),'NA') AS NUMERODOCUMENTO,&#xA;&#x9;&#x9;ISNULL(UPPER(CA.CONCEPTO),'NA') AS CONCEPTO, ISNULL (CA.FACTURAPARTICULAR,'0') FACTURAPARTICULAR, 'ATHENEA' AS FUENTE,&#xA;&#x9;&#x9;SUBSTRING(CS1.VALOR,1,100) as IDRADICACION&#xA;                            &#xA;&#x9;FROM FACTURACION.TB_DISTRIBUCIONCUENTAFACTURADO&quot; + LEFT(@[User::V_ANOMES],4) + &quot; AS DCF&#xA;&#xA;&#x9;&#x9;INNER JOIN LABORATORIO.TB_CABSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot;   CS  WITH(NOLOCK) ON CS.IDSOLICITUD = DCF.IDORIGEN  AND CS.ANO = DCF.ANO AND CS.ANULADA = 0&#xA;&#x9;&#x9;LEFT JOIN DIMENSIONES.TB_CABSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot;  CS1 WITH(NOLOCK) ON CS1.DIMENSION = 17 AND CS1.ANO = CS.ANO AND CS.IDSOLICITUD = CS1.IDSOLICITUD&#xA;&#x9;&#x9;--LEFT JOIN DIMENSIONES.VW_URGENTE  UR WITH(NOLOCK)  ON CS.CD3 = UR.IDLISTA&#xA;&#x9;&#x9;LEFT JOIN FACTURACION.TB_CABINGRESOS&quot; + LEFT(@[User::V_ANOMES],4) + &quot;  CA  WITH(NOLOCK) ON DCF.IDDOCUMENTO = CA.IDDOCUMENTO &#xA;&#x9;&#x9;LEFT JOIN  FACTURACION.TB_ESTADOFACTURA EF  WITH(NOLOCK) ON EF.IDESTADO = CA.ESTADO&#xA;&#x9;) C&#xA;LEFT JOIN LABORATORIO.TB_DETSOLICITUD&quot; + LEFT(@[User::V_ANOMES],4) + &quot;  DS WITH(NOLOCK) ON DS.IDSOLICITUD = C.IDSOLICITUD AND DS.ANO = C.ANO &#xA;&#x9;AND DS.IDPARAMETRO = (SELECT MAX(PA.IDPARAMETRO) FROM LABORATORIO.TB_PARAMETROS PA WHERE C.IDITEM = PA.CODIGOFACTURACION)&#xA;LEFT JOIN CARTERA.TB_DETRADICACION&quot; + LEFT(@[User::V_ANOMES],4) + &quot;  DRAD ON DRAD.IDDOCUMENTO = C.IDDOCUMENTO and ANULADO = 0&#xA;LEFT JOIN CARTERA.TB_CABRADICACION&quot; + LEFT(@[User::V_ANOMES],4) + &quot;  CRAD on CRAD.IDRADICACION = DRAD.IDRADICACION&#xA;&#xA;WHERE CONVERT(VARCHAR(6), C.FECHASOLICITUD, 112) = &quot; + @[User::V_ANOMES] + &quot; /*AND C.IDPLAN IN ('7281','7280','16712')*/&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_QUERY_SOURCE">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT DISTINCT C.IDSOLICITUD, C.ANO, C.IDDOCUMENTO, C.IDENTIDAD, C.FECHASOLICITUD, C.FECHADOCUMENTO, C.FECHAVENCIMIENTO, 
+CRAD.FECHARADICACION, CAST(C.IDPLAN AS INT) IDPLAN, CAST(C.CENTROATENCION AS INT) CENTROATENCION, --C.URGENCIA , 
+	COALESCE(DS.DETENIDO,0) AS APLAZADO, IDPACIENTE, C.IDITEM, C.NUMEROSOLICITUD, C.PRECIOITEM, C.CANTIDAD, 
+	C.ESTADOFACTURA, C.NUMERODOCUMENTO, CAST(C.IDRADICACION AS VARCHAR(100)) AS IDRADICACION
+FROM (
+	SELECT DISTINCT CS.IDSOLICITUD, DCF.ANO ,DCF.IDDOCUMENTO, CONVERT (INT,LTRIM(RTRIM(DCF.IDENTIDADORIGEN))) IDENTIDAD,
+		CONVERT(DATE,CS.FECHASOLICITUD,120) AS FECHASOLICITUD, 
+		CONVERT(DATE,CA.FECHADOCUMENTO,120 ) AS FECHADOCUMENTO,
+		CONVERT(DATE,CA.FECHAVENCIMIENTO,120) AS  FECHAVENCIMIENTO ,
+		CS.D1 AS IDPLAN, CS.D0 AS CENTROATENCION, --ISNULL(UR.NOMBRE,'NO') AS URGENCIA,
+		CS.IDPACIENTE, DCF.IDITEM, CONCAT(CS.ANO,'-',CS.NUMEROSOLICITUD) AS NUMEROSOLICITUD,ISNULL( DCF.PRECIOITEM,0) PRECIOITEM,
+		ISNULL(DCF.CANTIDAD,0) CANTIDAD, ISNULL(CA.DESCUENTO1,0) DESCUENTO1,ISNULL (CA.IVA,0) IVA,ISNULL(DCF.VALORCOPAGO,0) AS COPAGO,
+		ISNULL(DCF.VALORCM,0) AS VALORCM  , ISNULL(EF.NOMBRE, 'NO GENERADA') AS ESTADOFACTURA, 
+		 ISNULL(CONVERT (VARCHAR(22),RTRIM(LTRIM (REPLACE(CA.NUMERODOCUMENTO, '--','')))),'NA') AS NUMERODOCUMENTO,
+		ISNULL(UPPER(CA.CONCEPTO),'NA') AS CONCEPTO, ISNULL (CA.FACTURAPARTICULAR,'0') FACTURAPARTICULAR, 'ATHENEA' AS FUENTE,
+		SUBSTRING(CS1.VALOR,1,100) as IDRADICACION
+                            
+	FROM FACTURACION.TB_DISTRIBUCIONCUENTAFACTURADO2022 AS DCF
+
+		INNER JOIN LABORATORIO.TB_CABSOLICITUD2022   CS  WITH(NOLOCK) ON CS.IDSOLICITUD = DCF.IDORIGEN  AND CS.ANO = DCF.ANO AND CS.ANULADA = 0
+		LEFT JOIN DIMENSIONES.TB_CABSOLICITUD2022  CS1 WITH(NOLOCK) ON CS1.DIMENSION = 17 AND CS1.ANO = CS.ANO AND CS.IDSOLICITUD = CS1.IDSOLICITUD
+		--LEFT JOIN DIMENSIONES.VW_URGENTE  UR WITH(NOLOCK)  ON CS.CD3 = UR.IDLISTA
+		LEFT JOIN FACTURACION.TB_CABINGRESOS2022  CA  WITH(NOLOCK) ON DCF.IDDOCUMENTO = CA.IDDOCUMENTO 
+		LEFT JOIN  FACTURACION.TB_ESTADOFACTURA EF  WITH(NOLOCK) ON EF.IDESTADO = CA.ESTADO
+	) C
+LEFT JOIN LABORATORIO.TB_DETSOLICITUD2022  DS WITH(NOLOCK) ON DS.IDSOLICITUD = C.IDSOLICITUD AND DS.ANO = C.ANO 
+	AND DS.IDPARAMETRO = (SELECT MAX(PA.IDPARAMETRO) FROM LABORATORIO.TB_PARAMETROS PA WHERE C.IDITEM = PA.CODIGOFACTURACION)
+LEFT JOIN CARTERA.TB_DETRADICACION2022  DRAD ON DRAD.IDDOCUMENTO = C.IDDOCUMENTO and ANULADO = 0
+LEFT JOIN CARTERA.TB_CABRADICACION2022  CRAD on CRAD.IDRADICACION = DRAD.IDRADICACION
+
+WHERE CONVERT(VARCHAR(6), C.FECHASOLICITUD, 112) = 202202 /*AND C.IDPLAN IN ('7281','7280','16712')*/</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Facturacion HST"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CBDA7B57-EBD3-4356-8242-3E9F5026F381}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Facturacion HST"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="WITH DS AS(&#xA;SELECT CONCAT( CONVERT(CHAR(6), DATEADD(MONTH, -1, GETDATE()),112),'01') SK_FECHA, CONVERT(CHAR(6), DATEADD(MONTH, -1, GETDATE()),112) Cierre, CONVERT(CHAR(6), [FechaSolicitud],112)[SK_PeriodoIngreso]&#xA;,SUM(CASE WHEN NUMERODOCUMENTO != 'NA' AND ESTADOFACTURA != 'ANULADA' THEN CANTIDAD * PRECIOITEM ELSE 0 END ) TotalFacturado&#xA;,SUM(CANTIDAD * PRECIOITEM ) TotalIngreso&#xA;,SUM(CASE WHEN NUMERODOCUMENTO = 'NA' AND ESTADOFACTURA != 'ANULADA' THEN CANTIDAD * PRECIOITEM ELSE 0 END ) TotalPendientes&#xA;,NK_Presupuesto&#xA;FROM [SemaforizacionColcan].[fct].[factFacturacion]&#xA;GROUP BY CONVERT(CHAR(6), [FechaSolicitud],112)&#xA;,NK_Presupuesto&#xA;)&#xA;INSERT INTO fct.factFacturacionHst&#xA;SELECT SK_FECHA, Cierre, CONCAT(LEFT([SK_PeriodoIngreso],4),'-',RIGHT([SK_PeriodoIngreso],2)) SK_PeriodoIngreso, TotalFacturado, TotalIngreso, TotalPendientes, NK_Presupuesto FROM DS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{867F5B32-7441-4E52-BAD9-205444F93562}"
+      DTS:EventID="7143521"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{9F550D8E-C01F-42AC-B55D-496E08F211D2}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Stage FactDiagnosticos 202202"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6B051791-D7E1-4300-B127-A1FB828EBDBF}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stage FactDiagnosticos 202202">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Name">"Stage FactDiagnosticos " +  @[User::V_ANOMES]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"INSERT INTO dbo.logError  (PackageName, TaskName, ErrorCode, ErrorDescription) VALUES('" + @[System::PackageName] + "','" + @[System::TaskName] + "','" + (DT_WSTR,12)@[System::ErrorCode] + "','" + @[System::ErrorDescription] + "')"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+              SQLTask:SqlStatementSource="INSERT INTO dbo.logError  (PackageName, TaskName, ErrorCode, ErrorDescription) VALUES('DWH_Facturacion_HST','Stage FactDiagnosticos 202202','0','')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="156,42.6666666666667"
+          Id="Package\Facturacion HST"
+          TopLeft="124.333338499068,50.3333330233892" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="194,54.6666666666667"
+          Id="Package.EventHandlers[OnError]\Stage FactDiagnosticos 202202"
+          TopLeft="321,63" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,708 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/15/2020 4:16:22 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="COLCAN-BI"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{18579808-4CF0-4BBE-BC93-D5A68C10C919}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="LDStageMunicipios"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{4D597293-7B86-4D3A-BCC3-45989A08CA05}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ExcelMunicipios]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{70D8E33F-1194-49B4-8394-11D4749739D4}"
+      DTS:ObjectName="ExcelMunicipios">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ParametrosDWH\Semaforizacion\dataMunicipiosColombia.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Stage Municipios"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{15BFD232-23C6-4271-968A-B800454CEDE0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Municipios"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage Municipios\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Stage Municipios\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[codigo_dpto]"
+                      cachedDataType="r8"
+                      cachedName="codigo_dpto"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[codigo_dpto]" />
+                    <inputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[nombre_departamento]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_departamento"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[nombre_departamento]" />
+                    <inputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[codigo_municipio]"
+                      cachedDataType="r8"
+                      cachedName="codigo_municipio"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[codigo_municipio]" />
+                    <inputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[nombre_municipio]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_municipio"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[nombre_municipio]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Stage Municipios\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de codigo_dpto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de codigo_dpto]"
+                      name="Copia de codigo_dpto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[codigo_dpto]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de nombre_departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de nombre_departamento]"
+                      name="Copia de nombre_departamento"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[nombre_departamento]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de codigo_municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de codigo_municipio]"
+                      name="Copia de codigo_municipio"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[codigo_municipio]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de nombre_municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de nombre_municipio]"
+                      name="Copia de nombre_municipio"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[nombre_municipio]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Stage Municipios\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Municipios\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[Municipios]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Municipios\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[longitud]"
+                      cachedDataType="r8"
+                      cachedName="longitud"
+                      externalMetadataColumnId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitud]"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[longitud]" />
+                    <inputColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[latitud]"
+                      cachedDataType="r8"
+                      cachedName="latitud"
+                      externalMetadataColumnId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Latitud]"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[latitud]" />
+                    <inputColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de codigo_dpto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de codigo_dpto"
+                      externalMetadataColumnId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodDpto]"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de codigo_dpto]" />
+                    <inputColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de nombre_departamento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Copia de nombre_departamento"
+                      externalMetadataColumnId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NomDpto]"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de nombre_departamento]" />
+                    <inputColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de codigo_municipio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de codigo_municipio"
+                      externalMetadataColumnId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodMunicipio]"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de codigo_municipio]" />
+                    <inputColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de nombre_municipio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Copia de nombre_municipio"
+                      externalMetadataColumnId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NomMunicipio]"
+                      lineageId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de nombre_municipio]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodDpto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CodDpto" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NomDpto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="NomDpto" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodMunicipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CodMunicipio" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NomMunicipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="NomMunicipio" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Latitud]"
+                      dataType="r8"
+                      name="Latitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Longitud]"
+                      dataType="r8"
+                      name="Longitud" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Municipios\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Municipios\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Municipios\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Municipios\Origen de Excel 1"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen de Excel 1"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Hoja1$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Municipios\Origen de Excel 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ExcelMunicipios]"
+                  connectionManagerRefId="Package.ConnectionManagers[ExcelMunicipios]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[codigo_dpto]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[codigo_dpto]"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[codigo_dpto]"
+                      name="codigo_dpto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[nombre_departamento]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[nombre_departamento]"
+                      length="255"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[nombre_departamento]"
+                      name="nombre_departamento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[codigo_municipio]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[codigo_municipio]"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[codigo_municipio]"
+                      name="codigo_municipio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[nombre_municipio]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[nombre_municipio]"
+                      length="255"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[nombre_municipio]"
+                      name="nombre_municipio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[longitud]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[longitud]"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[longitud]"
+                      name="longitud"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[latitud]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[latitud]"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[latitud]"
+                      name="latitud"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[codigo_dpto]"
+                      dataType="r8"
+                      name="codigo_dpto" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[nombre_departamento]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre_departamento" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[codigo_municipio]"
+                      dataType="r8"
+                      name="codigo_municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[nombre_municipio]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre_municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[longitud]"
+                      dataType="r8"
+                      name="longitud" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[latitud]"
+                      dataType="r8"
+                      name="latitud" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[codigo_dpto]"
+                      dataType="r8"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[codigo_dpto]"
+                      name="codigo_dpto" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[nombre_departamento]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[nombre_departamento]"
+                      name="nombre_departamento" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[codigo_municipio]"
+                      dataType="r8"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[codigo_municipio]"
+                      name="codigo_municipio" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[nombre_municipio]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[nombre_municipio]"
+                      name="nombre_municipio" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[longitud]"
+                      dataType="r8"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[longitud]"
+                      name="longitud" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[latitud]"
+                      dataType="r8"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[latitud]"
+                      name="latitud" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage Municipios.Paths[Salida de conversión de datos]"
+              endId="Package\Stage Municipios\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Salida de conversión de datos"
+              startId="Package\Stage Municipios\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Stage Municipios.Paths[Salida de origen de Excel]"
+              endId="Package\Stage Municipios\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de Excel"
+              startId="Package\Stage Municipios\Origen de Excel 1.Outputs[Salida de origen de Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Stage Municipios"
+          TopLeft="144,66" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Stage Municipios">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Stage Municipios\Origen de Excel 1"
+          TopLeft="297,64" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Stage Municipios\OLE DB Destination"
+          TopLeft="295.666666666667,224.333333333333" />
+        <NodeLayout
+          Size="175,43"
+          Id="Package\Stage Municipios\Conversión de datos"
+          TopLeft="295.166662059724,146.333329226573" />
+        <EdgeLayout
+          Id="Package\Stage Municipios.Paths[Salida de origen de Excel]"
+          TopLeft="380.333331029862,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.333329226573"
+              Start="0,0"
+              End="0,32.833329226573">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.833329226573" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stage Municipios.Paths[Salida de conversión de datos]"
+          TopLeft="383.416664363196,189.333329226573">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.00000410676"
+              Start="0,0"
+              End="0,27.50000410676">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.50000410676" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Municipios\Origen de Excel 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Municipios\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

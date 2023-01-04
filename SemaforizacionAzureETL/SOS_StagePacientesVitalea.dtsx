@@ -1,0 +1,2395 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/5/2020 10:17:20 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="COLCAN-BI"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{CEE53ADF-3800-415E-A317-248EE38E8EBC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="SOS_StagePacientesVitalea"
+  DTS:PackageType="5"
+  DTS:VersionBuild="66"
+  DTS:VersionGUID="{B4505D3D-A97D-42DF-958F-D8F68C88992F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Vitalea]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{CAE7C6F3-5378-414C-B4B6-4BBFA2F67FD4}"
+      DTS:ObjectName="Vitalea">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Dsn=Vitalea;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dim SP_PacientesVitalea"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D8D7B17D-064E-4C07-AC51-291A699F8CB3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dim SP_PacientesVitalea"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="EXEC SP_PacientesVitalea" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Pacientes SOS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{e872ad7c-4cd9-476f-b9e7-f08afb369c37}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pacientes SOS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Pacientes SOS\Destino de OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Stage].[PacienteVitalea]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Pacientes SOS\Destino de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[NumeroIdentificacion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="NumeroIdentificacion"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NumeroIdentificacion]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NumeroIdentificacion]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[TipoDocumento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="TipoDocumento"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoDocumento]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[TipoDocumento]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[FechaNacimiento]"
+                      cachedDataType="dbDate"
+                      cachedName="FechaNacimiento"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaNacimiento]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[FechaNacimiento]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Sexo"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sexo]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Sexo]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[PrimerNombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PrimerNombre"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Primer_Nombre]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PrimerNombre]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SegundoNombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SegundoNombre"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segundo_Nombre]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SegundoNombre]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[PrimerApellido]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PrimerApellido"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Primer_Apellido]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PrimerApellido]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SegundoApellido]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SegundoApellido"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segundo_Apellido]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SegundoApellido]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Telefono]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Telefono"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Telefono]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Telefono]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Municipio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Municipio"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Municipio]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Municipio]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[BkPaciente]"
+                      cachedDataType="i4"
+                      cachedName="BkPaciente"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[BkPaciente]" />
+                    <inputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Fuente]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="Fuente"
+                      externalMetadataColumnId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[fuente]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Fuente]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[TipoDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TipoDocumento" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[NumeroIdentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NumeroIdentificacion" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Primer_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Primer_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segundo_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Segundo_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Primer_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Primer_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Segundo_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Segundo_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FechaNacimiento]"
+                      dataType="dbDate"
+                      name="FechaNacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Telefono" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="fuente" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Pacientes SOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Pacientes SOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Pacientes SOS\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Pacientes SOS\Origen de OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="Origen de OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT(CAST(NumeroIdentificacion AS varchar(20))) AS NumeroIdentificacion, 
+CAST(UPPER(TI.Nombre) as varchar(30))  AS TipoDocumento,
+pa.ID as BkPaciente,CAST(PA.PrimerNombre as varchar(50)) as PrimerNombre,
+CAST(PA.SegundoNombre AS varchar(50)) AS SegundoNombre,CAST(PA.PrimerApellido AS varchar(50))AS PrimerApellido,
+CAST(PA.SegundoApellido AS varchar(50)) AS SegundoApellido ,
+CAST(PA.FechaNacimiento AS DATE) as FechaNacimiento,
+CASE WHEN PA.IDGenero = 1 THEN 'FEMENINO' WHEN PA.IDGenero = 2 THEN 'MASCULINO' END AS Sexo,
+CAST(CAM.Campo12 as varchar(100)) AS Telefono,
+(select CAST(Codigo as varchar(50)) from [dbo].[ItemConjuntoDatos] where IDConjuntoDatos = 7 and Id IN(
+select CAST(Campo1 as varchar(50)) from dbo.PacientesCamposAdicionales where IDPaciente = PA.ID
+)) AS Municipio, 'SOS' Fuente
+FROM [dbo].[Personas] PA
+left join TiposIdentificacion TI  ON PA.IDTipoIdentificacion = TI.ID
+left join PacientesCamposAdicionales CAM ON CAM.IDPaciente = PA.ID</property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Pacientes SOS\Origen de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{E32E42F5-61AA-4A73-82F6-A56294C5739A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SOS]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NumeroIdentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NumeroIdentificacion]"
+                      length="20"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[NumeroIdentificacion]"
+                      name="NumeroIdentificacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[TipoDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[TipoDocumento]"
+                      length="30"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[TipoDocumento]"
+                      name="TipoDocumento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[BkPaciente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[BkPaciente]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[BkPaciente]"
+                      name="BkPaciente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PrimerNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[PrimerNombre]"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PrimerNombre]"
+                      name="PrimerNombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SegundoNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SegundoNombre]"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SegundoNombre]"
+                      name="SegundoNombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PrimerApellido]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[PrimerApellido]"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[PrimerApellido]"
+                      name="PrimerApellido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SegundoApellido]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SegundoApellido]"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[SegundoApellido]"
+                      name="SegundoApellido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[FechaNacimiento]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[FechaNacimiento]"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[FechaNacimiento]"
+                      name="FechaNacimiento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Sexo]"
+                      length="10"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Sexo]"
+                      name="Sexo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Telefono]"
+                      length="100"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Telefono]"
+                      name="Telefono"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Municipio]"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Municipio]"
+                      name="Municipio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Fuente]"
+                      length="3"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].Columns[Fuente]"
+                      name="Fuente"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[NumeroIdentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="NumeroIdentificacion" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[TipoDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="TipoDocumento" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[BkPaciente]"
+                      dataType="i4"
+                      name="BkPaciente" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[PrimerNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PrimerNombre" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SegundoNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SegundoNombre" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[PrimerApellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PrimerApellido" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[SegundoApellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SegundoApellido" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[FechaNacimiento]"
+                      dataType="wstr"
+                      length="10"
+                      name="FechaNacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Telefono" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB].ExternalColumns[Fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="Fuente" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NumeroIdentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[NumeroIdentificacion]"
+                      name="NumeroIdentificacion" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[TipoDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[TipoDocumento]"
+                      name="TipoDocumento" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[BkPaciente]"
+                      dataType="i4"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[BkPaciente]"
+                      name="BkPaciente" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[PrimerNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[PrimerNombre]"
+                      name="PrimerNombre" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SegundoNombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SegundoNombre]"
+                      name="SegundoNombre" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[PrimerApellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[PrimerApellido]"
+                      name="PrimerApellido" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SegundoApellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[SegundoApellido]"
+                      name="SegundoApellido" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[FechaNacimiento]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[FechaNacimiento]"
+                      name="FechaNacimiento" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Sexo]"
+                      name="Sexo" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Telefono]"
+                      name="Telefono" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Municipio]"
+                      name="Municipio" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[Fuente]"
+                      name="Fuente" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Pacientes SOS.Paths[Salida de origen de OLE DB]"
+              endId="Package\Pacientes SOS\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Pacientes SOS\Origen de OLE DB.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PacientesCTS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1EA90045-6EBC-43CA-9719-17368B2378D9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PacientesCTS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\PacientesCTS\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[PacienteVitalea]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PacientesCTS\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TipoDocumento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="TipoDocumento"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoDocumento]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[TipoDocumento]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NumeroIdentificacion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="NumeroIdentificacion"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumeroIdentificacion]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[NumeroIdentificacion]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Primer_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Primer_Nombre"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Nombre]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Primer_Nombre]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Segundo_Nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Segundo_Nombre"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Nombre]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Segundo_Nombre]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Primer_Apellido]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Primer_Apellido"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Apellido]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Primer_Apellido]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Segundo_Apellido]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Segundo_Apellido"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Apellido]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Segundo_Apellido]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FechaNacimiento]"
+                      cachedDataType="dbDate"
+                      cachedName="FechaNacimiento"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaNacimiento]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaNacimiento]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Sexo"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Municipio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Municipio"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Municipio]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Municipio]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[fuente]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="fuente"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fuente]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[fuente]" />
+                    <inputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Id_Paciente]"
+                      cachedDataType="i4"
+                      cachedName="Id_Paciente"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Id_Paciente]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TipoDocumento" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumeroIdentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NumeroIdentificacion" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Primer_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Segundo_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Primer_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Segundo_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaNacimiento]"
+                      dataType="dbDate"
+                      name="FechaNacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Telefono" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Municipio" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="fuente" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PacientesCTS\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PacientesCTS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PacientesCTS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PacientesCTS\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT a.Id_Paciente,
+CAST(UPPER(b.nombre) AS varchar(30)) as TipoDocumento, 
+CAST(a.documento AS varchar(20)) as NumeroIdentificacion,
+CAST(UPPER(a.Primer_Nombre) AS varchar(50)) as Primer_Nombre, 
+CAST(UPPER(a.Segundo_Nombre) AS varchar(50)) as Segundo_Nombre, 
+CAST(UPPER(a.Primer_Apellido) AS varchar(50)) as Primer_Apellido,
+CAST(UPPER(a.Segundo_Apellido) AS varchar(50)) as Segundo_Apellido,
+CAST(a.fecha_nacimiento as date) FechaNacimiento,
+CAST(UPPER(s.Nombre) AS varchar(50)) as Sexo, 
+CAST(c.codigo AS varchar(30)) as Municipio, 
+CAST('CTS' AS varchar(16)) fuente
+FROM Paciente a
+INNER JOIN TiposDocumento b on a.IdTipoDocumento = b.IdTipoDocumento
+INNER JOIN Ciudades c on c.IdCiudad = a.IdCiudad
+INNER JOIN ventas v on a.Id_Paciente = v.Id_Paciente
+INNER JOIN Sexo s on s.IdSexo = a.IdSexo</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PacientesCTS\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{BCF8CB38-386E-483A-9D33-1531CBDC7B46}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[vitaleadbCTS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Id_Paciente]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Id_Paciente]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Id_Paciente]"
+                      name="Id_Paciente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[TipoDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TipoDocumento]"
+                      length="30"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[TipoDocumento]"
+                      name="TipoDocumento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[NumeroIdentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NumeroIdentificacion]"
+                      length="20"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[NumeroIdentificacion]"
+                      name="NumeroIdentificacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Primer_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Primer_Nombre]"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Primer_Nombre]"
+                      name="Primer_Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Segundo_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Segundo_Nombre]"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Segundo_Nombre]"
+                      name="Segundo_Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Primer_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Primer_Apellido]"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Primer_Apellido]"
+                      name="Primer_Apellido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Segundo_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Segundo_Apellido]"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Segundo_Apellido]"
+                      name="Segundo_Apellido"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaNacimiento]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaNacimiento]"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaNacimiento]"
+                      name="FechaNacimiento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Sexo]"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]"
+                      name="Sexo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Municipio]"
+                      length="30"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Municipio]"
+                      name="Municipio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fuente]"
+                      length="16"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].Columns[fuente]"
+                      name="fuente"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Id_Paciente]"
+                      dataType="i4"
+                      name="Id_Paciente" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TipoDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="TipoDocumento" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NumeroIdentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="NumeroIdentificacion" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Primer_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Primer_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Segundo_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Segundo_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Primer_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Primer_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Segundo_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Segundo_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaNacimiento]"
+                      dataType="dbDate"
+                      name="FechaNacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Municipio" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="fuente" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Id_Paciente]"
+                      dataType="i4"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Id_Paciente]"
+                      name="Id_Paciente" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TipoDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TipoDocumento]"
+                      name="TipoDocumento" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NumeroIdentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NumeroIdentificacion]"
+                      name="NumeroIdentificacion" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Primer_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Primer_Nombre]"
+                      name="Primer_Nombre" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Segundo_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Segundo_Nombre]"
+                      name="Segundo_Nombre" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Primer_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Primer_Apellido]"
+                      name="Primer_Apellido" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Segundo_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Segundo_Apellido]"
+                      name="Segundo_Apellido" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaNacimiento]"
+                      dataType="dbDate"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaNacimiento]"
+                      name="FechaNacimiento" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Sexo]"
+                      name="Sexo" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Municipio]"
+                      name="Municipio" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fuente]"
+                      name="fuente" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\PacientesCTS.Paths[OLE DB Source Output]"
+              endId="Package\PacientesCTS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\PacientesCTS\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PacientesWeb"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{0C62AEF9-5259-4176-808D-09160207BFFF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PacientesWeb"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\PacientesWeb\ODBC Source"
+              componentClassID="Microsoft.SSISODBCSrc"
+              contactInfo="ODBC Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="ODBC Source"
+              name="ODBC Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of the table to be fetched."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT id, CAST(CASE tipoidentificacion
+WHEN '1' THEN 'CEDULA DE CIUDADANIA'
+WHEN '2' THEN 'TARJETA DE IDENTIDAD'
+WHEN '3' THEN 'CEDULA DE EXTRANJERIA'
+WHEN '4' THEN 'PASAPORTE'
+WHEN '5' THEN 'PERMISO ESPECIAL DE PERMANENCI'
+WHEN '6' THEN 'REGISTRO CIVIL'
+ELSE 'SIN IDENTIFICAR'
+END AS varchar(50)) TipoDocumento, 
+CAST(TRIM(numeroidentificacion) as varchar(32)) NumeroIdentificacion,
+CAST(nombre AS varchar(50)) as Primer_Nombre, 
+CAST(UPPER(apellido) AS varchar(50)) as Primer_Apellido, 
+CAST(fechanacimiento as date) FechaNacimiento, 
+CAST(CASE WHEN sexo = '1' THEN 'MASCULINO' WHEN sexo = '2' THEN 'FEMENINO' ELSE UPPER(sexo) END AS varchar(16)) AS Sexo,
+CAST(telefono AS varchar(100)) as Telefono,
+CAST(CASE WHEN ciudad='' THEN '0' ELSE ciudad END AS varchar(32)) as Municipio,
+CAST('webvitalea' as varchar(32)) Fuente
+FROM public.drivethrucliente C 
+WHERE C.numeroidentificacion &lt;&gt;'';</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows fetched per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for fetching data."
+                  expressionType="Notify"
+                  name="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode used to access the database."
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="AccessMode">1</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PacientesWeb\ODBC Source.Connections[ODBCConnection]"
+                  connectionManagerID="{2F3F1289-4726-4E9F-902E-B14463D56188}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[VitaleaWeb]"
+                  description="The ODBC runtime connection used to access the database."
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output]"
+                  errorRowDisposition="FailComponent"
+                  name="ODBC Source Output"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[id]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[id]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[tipodocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[tipodocumento]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[tipodocumento]"
+                      name="tipodocumento" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[numeroidentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[numeroidentificacion]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[numeroidentificacion]"
+                      name="numeroidentificacion" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[primer_nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[primer_nombre]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[primer_nombre]"
+                      name="primer_nombre" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[primer_apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[primer_apellido]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[primer_apellido]"
+                      name="primer_apellido" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[fechanacimiento]"
+                      dataType="dbDate"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[fechanacimiento]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[fechanacimiento]"
+                      name="fechanacimiento" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[sexo]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[sexo]"
+                      name="sexo" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[telefono]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[telefono]"
+                      name="telefono" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[municipio]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[municipio]"
+                      name="municipio" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[fuente]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[fuente]"
+                      name="fuente" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[tipodocumento]"
+                      dataType="wstr"
+                      length="50"
+                      name="tipodocumento" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[numeroidentificacion]"
+                      dataType="wstr"
+                      length="32"
+                      name="numeroidentificacion" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[primer_nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="primer_nombre" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[primer_apellido]"
+                      dataType="wstr"
+                      length="50"
+                      name="primer_apellido" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[fechanacimiento]"
+                      dataType="dbDate"
+                      name="fechanacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[sexo]"
+                      dataType="wstr"
+                      length="16"
+                      name="sexo" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[telefono]"
+                      dataType="wstr"
+                      length="100"
+                      name="telefono" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[municipio]"
+                      dataType="wstr"
+                      length="32"
+                      name="municipio" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[fuente]"
+                      dataType="wstr"
+                      length="32"
+                      name="fuente" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[id]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[id]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[tipodocumento]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[tipodocumento]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[tipodocumento]"
+                      name="tipodocumento" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[numeroidentificacion]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[numeroidentificacion]"
+                      length="32"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[numeroidentificacion]"
+                      name="numeroidentificacion" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[primer_nombre]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[primer_nombre]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[primer_nombre]"
+                      name="primer_nombre" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[primer_apellido]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[primer_apellido]"
+                      length="50"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[primer_apellido]"
+                      name="primer_apellido" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[fechanacimiento]"
+                      dataType="dbDate"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[fechanacimiento]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[fechanacimiento]"
+                      name="fechanacimiento" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[sexo]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[sexo]"
+                      length="16"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[sexo]"
+                      name="sexo" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[telefono]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[telefono]"
+                      length="100"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[telefono]"
+                      name="telefono" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[municipio]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[municipio]"
+                      length="32"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[municipio]"
+                      name="municipio" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[fuente]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[fuente]"
+                      length="32"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[fuente]"
+                      name="fuente" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PacientesWeb\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[PacienteVitalea]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PacientesWeb\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[tipodocumento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="tipodocumento"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoDocumento]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[tipodocumento]" />
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[numeroidentificacion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="numeroidentificacion"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumeroIdentificacion]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[numeroidentificacion]" />
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[primer_nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="primer_nombre"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Nombre]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[primer_nombre]" />
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[primer_apellido]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="primer_apellido"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Apellido]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[primer_apellido]" />
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[fechanacimiento]"
+                      cachedDataType="dbDate"
+                      cachedName="fechanacimiento"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaNacimiento]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[fechanacimiento]" />
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="sexo"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[sexo]" />
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[telefono]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="telefono"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Telefono]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[telefono]" />
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[municipio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="municipio"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Municipio]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[municipio]" />
+                    <inputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[fuente]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="fuente"
+                      externalMetadataColumnId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fuente]"
+                      lineageId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output].Columns[fuente]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TipoDocumento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TipoDocumento" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NumeroIdentificacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NumeroIdentificacion" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Primer_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Segundo_Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Primer_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Primer_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Segundo_Apellido]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Segundo_Apellido" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaNacimiento]"
+                      dataType="dbDate"
+                      name="FechaNacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Telefono" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Municipio" />
+                    <externalMetadataColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="fuente" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PacientesWeb\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PacientesWeb\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PacientesWeb\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PacientesWeb\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\PacientesWeb.Paths[ODBC Source Output]"
+              endId="Package\PacientesWeb\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="ODBC Source Output"
+              startId="Package\PacientesWeb\ODBC Source.Outputs[ODBC Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Pacientes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AE12CC32-1263-4FE8-81A4-88A6A4AB2796}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Pacientes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Stage.PacienteVitalea" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{9F042FCB-9097-423B-85CA-080BAA2CDAD5}"
+      DTS:From="Package\Truncate Pacientes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\PacientesWeb" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{41AEA6EE-7AE4-40F4-BF5F-7CFFF5773EDA}"
+      DTS:From="Package\PacientesCTS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\dim SP_PacientesVitalea" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{C81B1557-2C64-4F6B-AAAD-7EBB3DC26AA6}"
+      DTS:From="Package\Truncate Pacientes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Pacientes SOS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{52CEBE34-3326-4B19-879A-F5E855B8E156}"
+      DTS:From="Package\Pacientes SOS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\dim SP_PacientesVitalea" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{87D72B46-4649-4DAC-B10A-B0EF2989831D}"
+      DTS:From="Package\Truncate Pacientes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\PacientesCTS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{BD13A3F3-936C-4598-A40E-61BA477B33B5}"
+      DTS:From="Package\PacientesWeb"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\dim SP_PacientesVitalea" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193.333333333334,42.6666666666667"
+          Id="Package\dim SP_PacientesVitalea"
+          TopLeft="713.333322703838,98.1499982449406" />
+        <NodeLayout
+          Size="142.666666666667,42.6666666666667"
+          Id="Package\PacientesCTS"
+          TopLeft="365.624994551763,176.583330175777" />
+        <NodeLayout
+          Size="145.333333333334,42.6666666666667"
+          Id="Package\PacientesWeb"
+          TopLeft="372.08333151415,17.5000008136036" />
+        <NodeLayout
+          Size="169.333333333334,42.6666666666667"
+          Id="Package\Truncate Pacientes"
+          TopLeft="30.6249995436522,97.2833315937718" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="115.291666210319,97.2833315937718">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="329.458331970498,-37.1166641135016"
+              Start="0,0"
+              End="329.458331970498,-29.6166641135016">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-14.5583320567508" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-14.5583320567508"
+                    Point2="0,-18.5583320567508"
+                    Point3="4,-18.5583320567508" />
+                  <mssgle:LineSegment
+                    End="325.458331970498,-18.5583320567508" />
+                  <mssgle:CubicBezierSegment
+                    Point1="325.458331970498,-18.5583320567508"
+                    Point2="329.458331970498,-18.5583320567508"
+                    Point3="329.458331970498,-22.5583320567508" />
+                  <mssgle:LineSegment
+                    End="329.458331970498,-29.6166641135016" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="459.40277232954,176.583330175777">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="350.597217040965,-35.7666652641697"
+              Start="0,0"
+              End="350.597217040965,-28.2666652641697">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-10.5446697931928" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-10.5446697931928"
+                    Point2="0,-14.5446697931928"
+                    Point3="4,-14.5446697931928" />
+                  <mssgle:LineSegment
+                    End="346.597217040965,-14.5446697931928" />
+                  <mssgle:CubicBezierSegment
+                    Point1="346.597217040965,-14.5446697931928"
+                    Point2="350.597217040965,-14.5446697931928"
+                    Point3="350.597217040965,-18.5446697931928" />
+                  <mssgle:LineSegment
+                    End="350.597217040965,-28.2666652641697" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Pacientes SOS"
+          TopLeft="367.708327854052,95.5166667945179" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="513.708327854052,117.999999186396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="199.624994849787,0"
+              Start="0,0"
+              End="192.124994849787,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="192.124994849787,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="199.958332876986,117.566665860812">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="167.749994977066,0"
+              Start="0,0"
+              End="160.249994977066,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="160.249994977066,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="115.291666210319,139.949998260439">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="299.222217230332,36.6333319153385"
+              Start="0,0"
+              End="299.222217230332,29.1333319153385">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.7362283638145" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.7362283638145"
+                    Point2="0,21.7362283638145"
+                    Point3="4,21.7362283638145" />
+                  <mssgle:LineSegment
+                    End="295.222217230332,21.7362283638145" />
+                  <mssgle:CubicBezierSegment
+                    Point1="295.222217230332,21.7362283638145"
+                    Point2="299.222217230332,21.7362283638145"
+                    Point3="299.222217230332,25.7362283638145" />
+                  <mssgle:LineSegment
+                    End="299.222217230332,29.1333319153385" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="467.638887069705,60.1666674802702">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="342.3611023008,37.9833307646704"
+              Start="0,0"
+              End="342.3611023008,30.4833307646704">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.4414992582326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.4414992582326"
+                    Point2="0,15.4414992582326"
+                    Point3="4,15.4414992582326" />
+                  <mssgle:LineSegment
+                    End="338.3611023008,15.4414992582326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="338.3611023008,15.4414992582326"
+                    Point2="342.3611023008,15.4414992582326"
+                    Point3="342.3611023008,19.4414992582326" />
+                  <mssgle:LineSegment
+                    End="342.3611023008,30.4833307646704" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\PacientesCTS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\PacientesCTS\OLE DB Source"
+          TopLeft="366.874994533137,25.9999995350838" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\PacientesCTS\OLE DB Destination"
+          TopLeft="361.874994607642,132.599997628927" />
+        <EdgeLayout
+          Id="Package\PacientesCTS.Paths[OLE DB Source Output]"
+          TopLeft="445.041661237056,68.6666662017504">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.9333314271768"
+              Start="0,0"
+              End="0,56.4333314271768">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.4333314271768" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\PacientesWeb">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\PacientesWeb\OLE DB Destination"
+          TopLeft="543,210" />
+        <NodeLayout
+          Size="142.666666666667,42.6666666666667"
+          Id="Package\PacientesWeb\ODBC Source"
+          TopLeft="564,49" />
+        <EdgeLayout
+          Id="Package\PacientesWeb.Paths[ODBC Source Output]"
+          TopLeft="632.166666666667,91.6666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,118.333333333333"
+              Start="0,0"
+              End="0,110.833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,110.833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Pacientes SOS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165.333333333334,42.6666666666667"
+          Id="Package\Pacientes SOS\Origen de OLE DB"
+          TopLeft="256.249998565763,46.1999994421005" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Pacientes SOS\Destino de OLE DB"
+          TopLeft="250.583332221955,157.466664977471" />
+        <EdgeLayout
+          Id="Package\Pacientes SOS.Paths[Salida de origen de OLE DB]"
+          TopLeft="336.749998727192,88.8666661087672">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68.5999988687035"
+              Start="0,0"
+              End="0,61.0999988687035">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.0999988687035" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Pacientes SOS\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PacientesWeb\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PacientesWeb\ODBC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PacientesCTS\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PacientesCTS\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

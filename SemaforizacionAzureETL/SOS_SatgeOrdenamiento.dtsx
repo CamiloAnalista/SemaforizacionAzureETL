@@ -1,0 +1,1460 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/2/2020 8:23:09 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{6525F25E-6EDD-4C33-A72C-FC6D5AFF076B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="SOS_SatgeOrdenamiento"
+  DTS:PackageType="5"
+  DTS:VersionBuild="83"
+  DTS:VersionGUID="{841147A1-F376-419B-B1DE-CAAC09D0FF52}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{0820F6F3-43C6-4F6B-AC30-99E11561CAB5}"
+      DTS:ObjectName="Administrador de conexiones con Excel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ParametrosDWH\Semaforizacion\dataMunicipiosColombia.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FE702663-53E1-421F-9F8E-7F2E8C08E03A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_ANOMES">
+      <DTS:VariableValue
+        DTS:DataType="8">202212</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B94C4C0-FFE9-43A1-B6D0-BD5101E55453}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_PeriodoProcesar">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1851760D-0899-47DE-A6C6-B8C1ABE998FD}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select o.PrefijoOrden SK_Fecha,&#xA;FORMAT(o.FechaIngreso,'yyyy-MM-dd hh:mm:ss') AS FechaIngreso, &#xA;eo.IdOrden as Orden,&#xA;CAST(ao.IDUsuario as varchar(16))  UsuarioAgenda,&#xA;CASE o.Estado &#xA;WHEN 1 THEN 'Asignado'&#xA;WHEN 2 THEN 'En espera'&#xA;WHEN 3 THEN 'En atencion'&#xA;WHEN 4 THEN 'Aplazado'&#xA;WHEN 5 THEN 'En proceso'&#xA;WHEN 6 THEN 'Atendido'&#xA;END EstadoOrden,&#xA;CASE eo.Estado &#xA;WHEN 1 THEN 'Ingresado'&#xA;WHEN 2 THEN 'Asignado'&#xA;WHEN 3 THEN 'Aplazado'&#xA;WHEN 4 THEN 'En proceso'&#xA;WHEN 5 THEN 'Atendido'&#xA;END EstadoEstudio,&#xA;te.ID as IDEvento, &#xA;cons.ID as IDConsultorio, &#xA;CAST(est.Codigo as varchar(10)) as IDEstudio, &#xA;FORMAT(eo.FechaInicioAtencion,'yyyy-MM-dd hh:mm:ss') AS FechaInicioAtencion,&#xA;FORMAT(eo.FechaFinAtencion,'yyyy-MM-dd hh:mm:ss') AS FechaFinAtencion,&#xA;FORMAT(eo.AsignacionInicial,'yyyy-MM-dd hh:mm:ss') AS &#xA;FechaAsignacion,&#xA;CAST(oa.Campo5 as varchar(100)) as OBSERVACIONES,&#xA;CAST(p.NumeroIdentificacion as varchar(50)) as Documento,&#xA;p.ID BK_IdPaciente,&#xA;c.Codigo as [Codigocontrato],&#xA;e.Codigo as [CodigoEmpresa],&#xA;eo.IDMedico,&#xA;CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna168 = e.ID &#xA;and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico1,     &#xA;CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna191 = e.ID &#xA;and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico2,     &#xA;CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna192 = e.ID &#xA;and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico3,     &#xA;CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna193 = e.ID &#xA;and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico4,     &#xA;CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna194 = e.ID &#xA;and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico5,&#xA;CAST(CONCAT(eo.IDOrden, p.NumeroIdentificacion, est.Codigo) AS varchar(64)) NK_Paraclinico&#xA;from dbo.Ordenes o with(nolock)  &#xA;left join dbo.Personas p with(nolock) on o.IDPaciente = p.ID   &#xA;left join dbo.EstudiosOrdenes eo with(nolock) on eo.IDOrden = o.ID   &#xA;left join dbo.Contratos c with(nolock) on o.IDContrato = c.ID &#xA;left join dbo.Empresas e with(nolock) on e.ID = c.IDEmpresa  &#xA;left join dbo.Estudios est with(nolock) on eo.IDEstudio = est.ID&#xA;left join Consultorios cons with(nolock) on cons.ID = eo.IDConsultorio&#xA;left join TipoEventos te with(nolock) on te.ID = o.IDTipoEvento&#xA;left join dbo.AuditoriaOrden ao with(nolock) on o.ID = ao.IDOrden and ao.Accion = '0'&#xA;left join OrdenesCamposAdicionales as oa on oa.IDOrden = o.ID &#xA;left join dbo.Plantillas K with(nolock) ON K.Id = eo.IdPlantilla&#xA;left join Plantilla30 hc with(nolock) ON hc.IdRegistroPlantilla = eo.IDRegistroPlantilla AND hc.Version = eo.Version   &#xA;left join Plantilla33 sg with(nolock) ON sg.IdRegistroPlantilla = eo.IDRegistroPlantilla AND sg.Version = eo.Version &#xA;WHERE CONVERT(varchar(6),cast(o.FechaIngreso as date), 112) = &quot; + @[User::V_ANOMES] + &quot;&#xA;and o.Anulado = 0&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="V_QUERY_SOURCE">
+      <DTS:VariableValue
+        DTS:DataType="8">select o.PrefijoOrden SK_Fecha,
+FORMAT(o.FechaIngreso,'yyyy-MM-dd hh:mm:ss') AS FechaIngreso, 
+eo.IdOrden as Orden,
+CAST(ao.IDUsuario as varchar(16))  UsuarioAgenda,
+CASE o.Estado 
+WHEN 1 THEN 'Asignado'
+WHEN 2 THEN 'En espera'
+WHEN 3 THEN 'En atencion'
+WHEN 4 THEN 'Aplazado'
+WHEN 5 THEN 'En proceso'
+WHEN 6 THEN 'Atendido'
+END EstadoOrden,
+CASE eo.Estado 
+WHEN 1 THEN 'Ingresado'
+WHEN 2 THEN 'Asignado'
+WHEN 3 THEN 'Aplazado'
+WHEN 4 THEN 'En proceso'
+WHEN 5 THEN 'Atendido'
+END EstadoEstudio,
+te.ID as IDEvento, 
+cons.ID as IDConsultorio, 
+CAST(est.Codigo as varchar(10)) as IDEstudio, 
+FORMAT(eo.FechaInicioAtencion,'yyyy-MM-dd hh:mm:ss') AS FechaInicioAtencion,
+FORMAT(eo.FechaFinAtencion,'yyyy-MM-dd hh:mm:ss') AS FechaFinAtencion,
+FORMAT(eo.AsignacionInicial,'yyyy-MM-dd hh:mm:ss') AS 
+FechaAsignacion,
+CAST(oa.Campo5 as varchar(100)) as OBSERVACIONES,
+CAST(p.NumeroIdentificacion as varchar(50)) as Documento,
+p.ID BK_IdPaciente,
+c.Codigo as [Codigocontrato],
+e.Codigo as [CodigoEmpresa],
+eo.IDMedico,
+CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna168 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico1,     
+CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna191 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico2,     
+CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna192 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico3,     
+CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna193 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico4,     
+CAST((select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna194 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as varchar(8)) Paraclinico5,
+CAST(CONCAT(eo.IDOrden, p.NumeroIdentificacion, est.Codigo) AS varchar(64)) NK_Paraclinico
+from dbo.Ordenes o with(nolock)  
+left join dbo.Personas p with(nolock) on o.IDPaciente = p.ID   
+left join dbo.EstudiosOrdenes eo with(nolock) on eo.IDOrden = o.ID   
+left join dbo.Contratos c with(nolock) on o.IDContrato = c.ID 
+left join dbo.Empresas e with(nolock) on e.ID = c.IDEmpresa  
+left join dbo.Estudios est with(nolock) on eo.IDEstudio = est.ID
+left join Consultorios cons with(nolock) on cons.ID = eo.IDConsultorio
+left join TipoEventos te with(nolock) on te.ID = o.IDTipoEvento
+left join dbo.AuditoriaOrden ao with(nolock) on o.ID = ao.IDOrden and ao.Accion = '0'
+left join OrdenesCamposAdicionales as oa on oa.IDOrden = o.ID 
+left join dbo.Plantillas K with(nolock) ON K.Id = eo.IdPlantilla
+left join Plantilla30 hc with(nolock) ON hc.IdRegistroPlantilla = eo.IDRegistroPlantilla AND hc.Version = eo.Version   
+left join Plantilla33 sg with(nolock) ON sg.IdRegistroPlantilla = eo.IDRegistroPlantilla AND sg.Version = eo.Version 
+WHERE CONVERT(varchar(6),cast(o.FechaIngreso as date), 112) = 202212
+and o.Anulado = 0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\AnoMes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6e5add58-174f-49a1-b352-adec9575381b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="AnoMes"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"SELECT [value]
+  FROM [SemaforizacionColcan].[dbo].[ParamExec]
+  WHERE package = 'OrdenamientoSOS' AND variable = 'AñoMes' AND [status] = 1
+  ORDER BY [ORDER]"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="SELECT [value]&#xA;  FROM [SemaforizacionColcan].[dbo].[ParamExec]&#xA;  WHERE package = 'OrdenamientoSOS' AND variable = 'AñoMes' AND [status] = 1&#xA;  ORDER BY [ORDER]"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::V_PeriodoProcesar" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{6fe1d51f-c33e-487d-8c39-e5acabb15563}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{5efb96f3-0fff-448b-941c-8912422bc10a}"
+        DTS:ObjectName="{0B7359FE-A01C-484E-81BC-E9FB66568601}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::V_PeriodoProcesar" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Stage Ordenamiento SOS"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{D11021F6-9BE9-4FC9-B449-BA3BB7A7910B}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stage Ordenamiento SOS"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Stage].[OrdenamientoSOS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FechaIngreso]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="FechaIngreso"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaIngreso]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaIngreso]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Orden]"
+                          cachedDataType="i4"
+                          cachedName="Orden"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Orden]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Orden]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EstadoOrden]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="11"
+                          cachedName="EstadoOrden"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoOrden]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoOrden]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EstadoEstudio]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="EstadoEstudio"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoEstudio]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoEstudio]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDEvento]"
+                          cachedDataType="i4"
+                          cachedName="IDEvento"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdEvento]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDEvento]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDConsultorio]"
+                          cachedDataType="i4"
+                          cachedName="IDConsultorio"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdConsultorio]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDConsultorio]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FechaInicioAtencion]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="FechaInicioAtencion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaInicioAt]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaInicioAtencion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FechaFinAtencion]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="FechaFinAtencion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaFinAt]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaFinAtencion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FechaAsignacion]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="FechaAsignacion"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaAsig]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaAsignacion]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDMedico]"
+                          cachedDataType="i4"
+                          cachedName="IDMedico"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Medico]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDMedico]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Codigocontrato]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="Codigocontrato"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Contrato]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Codigocontrato]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OBSERVACIONES]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="OBSERVACIONES"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Observaciones]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[OBSERVACIONES]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Documento]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Documento"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Documento]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Documento]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IDEstudio]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="IDEstudio"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodigoEstudio]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDEstudio]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BK_IdPaciente]"
+                          cachedDataType="i4"
+                          cachedName="BK_IdPaciente"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdPaciente]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IdPaciente]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Paraclinico1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Paraclinico1"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico1]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico1]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Paraclinico2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Paraclinico2"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico2]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico2]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Paraclinico3]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Paraclinico3"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico3]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico3]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Paraclinico4]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Paraclinico4"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico4]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico4]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Paraclinico5]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="Paraclinico5"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico5]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico5]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SK_Fecha]"
+                          cachedDataType="i4"
+                          cachedName="SK_Fecha"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_Fecha]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[SK_Fecha]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UsuarioAgenda]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="16"
+                          cachedName="UsuarioAgenda"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UsuarioAgenda]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[UsuarioAgenda]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CodigoEmpresa]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="CodigoEmpresa"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Empresa]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoEmpresa]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NK_Paraclinico]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="64"
+                          cachedName="NK_Paraclinico"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NK_Paraclinico]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[NK_Paraclinico]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaIngreso]"
+                          dataType="dbTimeStamp"
+                          name="FechaIngreso" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Orden]"
+                          dataType="i4"
+                          name="Orden" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UsuarioAgenda]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="UsuarioAgenda" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoOrden]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="EstadoOrden" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EstadoEstudio]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="EstadoEstudio" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdEvento]"
+                          dataType="i4"
+                          name="IdEvento" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdConsultorio]"
+                          dataType="i4"
+                          name="IdConsultorio" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaInicioAt]"
+                          dataType="dbTimeStamp"
+                          name="FechaInicioAt" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaFinAt]"
+                          dataType="dbTimeStamp"
+                          name="FechaFinAt" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaAsig]"
+                          dataType="dbTimeStamp"
+                          name="FechaAsig" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Observaciones]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Observaciones" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Documento]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Documento" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Contrato]"
+                          dataType="i4"
+                          name="Contrato" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Medico]"
+                          dataType="i4"
+                          name="Medico" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodigoEstudio]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="CodigoEstudio" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Empresa]"
+                          dataType="i4"
+                          name="Empresa" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_Fecha]"
+                          dataType="i4"
+                          name="SK_Fecha" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdPaciente]"
+                          dataType="i4"
+                          name="IdPaciente" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico1" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico3" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico4" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Paraclinico5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico5" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NK_Paraclinico]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          name="NK_Paraclinico" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select o.PrefijoOrden,
+FORMAT(o.FechaIngreso,'yyyy-MM-dd hh:mm:ss') AS FechaIngreso, 
+eo.IdOrden as Orden,
+ao.IDUsuario as UsuarioAgenda,
+CASE o.Estado 
+WHEN 1 THEN 'Asignado'
+WHEN 2 THEN 'En espera'
+WHEN 3 THEN 'En atencion'
+WHEN 4 THEN 'Aplazado'
+WHEN 5 THEN 'En proceso'
+WHEN 6 THEN 'Atendido'
+END EstadoOrden,
+CASE eo.Estado 
+WHEN 1 THEN 'Ingresado'
+WHEN 2 THEN 'Asignado'
+WHEN 3 THEN 'Aplazado'
+WHEN 4 THEN 'En proceso'
+WHEN 5 THEN 'Atendido'
+END EstadoEstudio,
+te.ID as IDEvento, 
+cons.ID as IDConsultorio, 
+CAST(est.Codigo as varchar(10)) as IDEstudio, 
+FORMAT(eo.FechaInicioAtencion,'yyyy-MM-dd hh:mm:ss') AS FechaInicioAtencion,
+FORMAT(eo.FechaFinAtencion,'yyyy-MM-dd hh:mm:ss') AS FechaFinAtencion,
+FORMAT(eo.AsignacionInicial,'yyyy-MM-dd hh:mm:ss') AS 
+FechaAsignacion,
+CAST(eo.AsignacionInicial as date) AS 
+FechaAsignacionFecha,
+CAST(oa.Campo5 as varchar(100)) as OBSERVACIONES,
+CAST(p.NumeroIdentificacion as varchar(50)) as Documento, 
+c.Codigo as [Codigocontrato],
+e.Codigo as [CodigoEmpresa],
+eo.IDMedico,
+(select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna168 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as Paraclinico1,     
+(select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna191 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as Paraclinico2,     
+(select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna192 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as Paraclinico3,     
+(select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna193 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as Paraclinico4,     
+(select e.Codigo from dbo.Estudios e join dbo.Plantilla30 p on p.Columna194 = e.ID 
+and p.IdRegistroPlantilla = hc.IDRegistroPlantilla AND p.Version = hc.Version) as Paraclinico5 
+from dbo.Ordenes o with(nolock)  
+left join dbo.Personas p with(nolock) on o.IDPaciente = p.ID   
+left join dbo.EstudiosOrdenes eo with(nolock) on eo.IDOrden = o.ID   
+left join dbo.Contratos c with(nolock) on o.IDContrato = c.ID 
+left join dbo.Empresas e with(nolock) on e.ID = c.IDEmpresa  
+left join dbo.Estudios est with(nolock) on eo.IDEstudio = est.ID
+left join Consultorios cons with(nolock) on cons.ID = eo.IDConsultorio
+left join TipoEventos te with(nolock) on te.ID = o.IDTipoEvento
+left join dbo.AuditoriaOrden ao with(nolock) on o.ID = ao.IDOrden and ao.Accion = '0'
+left join OrdenesCamposAdicionales as oa on oa.IDOrden = o.ID 
+left join dbo.Plantillas K with(nolock) ON K.Id = eo.IdPlantilla
+left join Plantilla30 hc with(nolock) ON hc.IdRegistroPlantilla = eo.IDRegistroPlantilla AND hc.Version = eo.Version   
+left join Plantilla33 sg with(nolock) ON sg.IdRegistroPlantilla = eo.IDRegistroPlantilla AND sg.Version = eo.Version 
+WHERE CONVERT(varchar(6),cast(o.FechaIngreso as date), 112) = 202201
+and o.Anulado = 0</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable">User::V_QUERY_SOURCE</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="{E32E42F5-61AA-4A73-82F6-A56294C5739A}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[SOS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico1]"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico1]"
+                          name="Paraclinico1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico2]"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico2]"
+                          name="Paraclinico2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico3]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico3]"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico3]"
+                          name="Paraclinico3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico4]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico4]"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico4]"
+                          name="Paraclinico4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico5]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico5]"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Paraclinico5]"
+                          name="Paraclinico5"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaIngreso]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaIngreso]"
+                          length="4000"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaIngreso]"
+                          name="FechaIngreso"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Orden]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Orden]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Orden]"
+                          name="Orden"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[UsuarioAgenda]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UsuarioAgenda]"
+                          length="16"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[UsuarioAgenda]"
+                          name="UsuarioAgenda"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoOrden]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstadoOrden]"
+                          length="11"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoOrden]"
+                          name="EstadoOrden"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoEstudio]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstadoEstudio]"
+                          length="10"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[EstadoEstudio]"
+                          name="EstadoEstudio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDEvento]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDEvento]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDEvento]"
+                          name="IDEvento"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDConsultorio]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDConsultorio]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDConsultorio]"
+                          name="IDConsultorio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDEstudio]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDEstudio]"
+                          length="10"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDEstudio]"
+                          name="IDEstudio"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaInicioAtencion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaInicioAtencion]"
+                          length="4000"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaInicioAtencion]"
+                          name="FechaInicioAtencion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaFinAtencion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaFinAtencion]"
+                          length="4000"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaFinAtencion]"
+                          name="FechaFinAtencion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaAsignacion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaAsignacion]"
+                          length="4000"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaAsignacion]"
+                          name="FechaAsignacion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[OBSERVACIONES]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OBSERVACIONES]"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[OBSERVACIONES]"
+                          name="OBSERVACIONES"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Codigocontrato]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Codigocontrato]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Codigocontrato]"
+                          name="Codigocontrato"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDMedico]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDMedico]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDMedico]"
+                          name="IDMedico"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Documento]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Documento]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[Documento]"
+                          name="Documento"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoEmpresa]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversión"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoEmpresa]"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoEmpresa]"
+                          name="CodigoEmpresa"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[SK_Fecha]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SK_Fecha]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[SK_Fecha]"
+                          name="SK_Fecha"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IdPaciente]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_IdPaciente]"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IdPaciente]"
+                          name="BK_IdPaciente"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[NK_Paraclinico]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NK_Paraclinico]"
+                          length="64"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].Columns[NK_Paraclinico]"
+                          name="NK_Paraclinico"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico1" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico2" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico3" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico4" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Paraclinico5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="Paraclinico5" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaIngreso]"
+                          dataType="wstr"
+                          length="4000"
+                          name="FechaIngreso" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Orden]"
+                          dataType="i4"
+                          name="Orden" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UsuarioAgenda]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          name="UsuarioAgenda" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstadoOrden]"
+                          codePage="1252"
+                          dataType="str"
+                          length="11"
+                          name="EstadoOrden" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EstadoEstudio]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="EstadoEstudio" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDEvento]"
+                          dataType="i4"
+                          name="IDEvento" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDConsultorio]"
+                          dataType="i4"
+                          name="IDConsultorio" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDEstudio]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="IDEstudio" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaInicioAtencion]"
+                          dataType="wstr"
+                          length="4000"
+                          name="FechaInicioAtencion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaFinAtencion]"
+                          dataType="wstr"
+                          length="4000"
+                          name="FechaFinAtencion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaAsignacion]"
+                          dataType="wstr"
+                          length="4000"
+                          name="FechaAsignacion" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OBSERVACIONES]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="OBSERVACIONES" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Codigocontrato]"
+                          dataType="wstr"
+                          length="50"
+                          name="Codigocontrato" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDMedico]"
+                          dataType="i4"
+                          name="IDMedico" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Documento]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Documento" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoEmpresa]"
+                          dataType="wstr"
+                          length="100"
+                          name="CodigoEmpresa" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SK_Fecha]"
+                          dataType="i4"
+                          name="SK_Fecha" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_IdPaciente]"
+                          dataType="i4"
+                          name="BK_IdPaciente" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NK_Paraclinico]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          name="NK_Paraclinico" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SK_Fecha]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SK_Fecha]"
+                          name="SK_Fecha" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaIngreso]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaIngreso]"
+                          name="FechaIngreso" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Orden]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Orden]"
+                          name="Orden" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UsuarioAgenda]"
+                          codePage="1252"
+                          dataType="str"
+                          length="16"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UsuarioAgenda]"
+                          name="UsuarioAgenda" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstadoOrden]"
+                          codePage="1252"
+                          dataType="str"
+                          length="11"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstadoOrden]"
+                          name="EstadoOrden" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstadoEstudio]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EstadoEstudio]"
+                          name="EstadoEstudio" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDEvento]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDEvento]"
+                          name="IDEvento" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDConsultorio]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDConsultorio]"
+                          name="IDConsultorio" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDEstudio]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDEstudio]"
+                          name="IDEstudio" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaInicioAtencion]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaInicioAtencion]"
+                          name="FechaInicioAtencion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaFinAtencion]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaFinAtencion]"
+                          name="FechaFinAtencion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaAsignacion]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaAsignacion]"
+                          name="FechaAsignacion" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OBSERVACIONES]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OBSERVACIONES]"
+                          name="OBSERVACIONES" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Documento]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Documento]"
+                          name="Documento" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_IdPaciente]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_IdPaciente]"
+                          name="BK_IdPaciente" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Codigocontrato]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Codigocontrato]"
+                          name="Codigocontrato" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoEmpresa]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoEmpresa]"
+                          name="CodigoEmpresa" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDMedico]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDMedico]"
+                          name="IDMedico" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico1]"
+                          name="Paraclinico1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico2]"
+                          name="Paraclinico2" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico3]"
+                          name="Paraclinico3" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico4]"
+                          name="Paraclinico4" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico5]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Paraclinico5]"
+                          name="Paraclinico5" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NK_Paraclinico]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NK_Paraclinico]"
+                          name="NK_Paraclinico" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Stage Ordenamiento SOS.Paths[OLE DB Source Output]"
+                  endId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{e1639670-4f9c-4a89-b0eb-29b89d02808e}"
+          DTS:ObjectName="{20D518ED-1369-404A-8CA2-AAE5D00B2E28}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::V_ANOMES" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{4687BD77-39FC-48E3-AEF6-8F89F3F6BF35}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE table STAGE.OrdenamientoSOS;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{51803D00-0CDF-4C67-940B-6A136028CCDC}"
+      DTS:From="Package\TRUNCATE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\AnoMes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{901BD2D2-AFFF-4871-818D-AFEF0249F51F}"
+      DTS:From="Package\AnoMes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Foreach Loop Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="116,42.6666666666667"
+          Id="Package\AnoMes"
+          TopLeft="291.708335975185,46.799999628067" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Foreach Loop Container\Stage Ordenamiento SOS"
+          TopLeft="27.6249957438559,48.7999977684021" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="258,153.333333333334"
+          Size="258,196"
+          Id="Package\Foreach Loop Container"
+          TopLeft="565.374997774139,39.9000015574695" />
+        <NodeLayout
+          Size="132,42.6666666666667"
+          Id="Package\TRUNCATE"
+          TopLeft="55.1250017415732,46.1499996396899" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="187.125001741573,67.8083329672118">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="104.583334233612,0"
+              Start="0,0"
+              End="97.0833342336118,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="97.0833342336118,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="407.708335975185,68.1333329614003">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157.666661798954,69.7666685960692"
+              Start="0,0"
+              End="150.166661798954,69.7666685960692">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="74.8333308994772,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="74.8333308994772,0"
+                    Point2="78.8333308994772,0"
+                    Point3="78.8333308994772,4" />
+                  <mssgle:LineSegment
+                    End="78.8333308994772,65.7666685960692" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.8333308994772,65.7666685960692"
+                    Point2="78.8333308994772,69.7666685960692"
+                    Point3="82.8333308994772,69.7666685960692" />
+                  <mssgle:LineSegment
+                    End="150.166661798954,69.7666685960692" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Stage Ordenamiento SOS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source"
+          TopLeft="227,54" />
+        <NodeLayout
+          Size="170.666666666667,42"
+          Id="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination"
+          TopLeft="219,210" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Stage Ordenamiento SOS.Paths[OLE DB Source Output]"
+          TopLeft="303.166666666667,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,114"
+              Start="0,0"
+              End="0,106.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,106.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Stage Ordenamiento SOS\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

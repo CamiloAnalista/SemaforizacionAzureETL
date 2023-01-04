@@ -1,0 +1,792 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/9/2021 2:38:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="COLCAN-BI"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{6094D5AE-ED9F-4540-8B06-46792D9B6D84}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="LDStagePresupuesto"
+  DTS:PackageType="5"
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{A431D06D-94FB-4EA8-BF58-0B24714490CA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{ECA136DA-E3A5-455B-B844-3A397DC25A6B}"
+      DTS:ObjectName="Administrador de conexiones con Excel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ParametrosDWH\Financiero\Presupuesto - Planeación financiera.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Archivo Presupuesto"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{06D416DC-F7D8-4F3C-8B5C-99CC285ABA24}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Archivo Presupuesto"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Archivo Presupuesto\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Archivo Presupuesto\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Categoría]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Categoría"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Categoría]" />
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Subcategoría]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Subcategoría"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Subcategoría]" />
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Año]"
+                      cachedDataType="r8"
+                      cachedName="Año"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Año]" />
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[Periodo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Periodo"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Periodo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Archivo Presupuesto\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Categoría]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Categoría]"
+                      name="Copia de Categoría"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Categoría]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Subcategoría]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Subcategoría]"
+                      name="Copia de Subcategoría"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Subcategoría]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Año]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Año]"
+                      name="Copia de Año"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Año]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Periodo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="2"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Periodo]"
+                      name="Copia de Periodo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Periodo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Archivo Presupuesto\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Archivo Presupuesto\Destino de OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[Stage].[Presupuesto]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Archivo Presupuesto\Destino de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Valor]"
+                      cachedDataType="r8"
+                      cachedName="Valor"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Valor]"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Valor]" />
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Codigo]"
+                      cachedDataType="r8"
+                      cachedName="Codigo"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoCategoria]"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Codigo]" />
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[CodSubcategoria]"
+                      cachedDataType="r8"
+                      cachedName="CodSubcategoria"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoSubCategoria]"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CodSubcategoria]" />
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de Categoría]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de Categoría"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Categoria]"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Categoría]" />
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de Subcategoría]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Copia de Subcategoría"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sub_Categoria]"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Subcategoría]" />
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de Periodo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="Copia de Periodo"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Mes]"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Periodo]" />
+                    <inputColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Copia de Año]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="Copia de Año"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ano]"
+                      lineageId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de Año]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Categoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Categoria" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sub_Categoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Sub_Categoria" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Valor]"
+                      dataType="cy"
+                      name="Valor" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoCategoria]"
+                      dataType="i4"
+                      name="CodigoCategoria" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[CodigoSubCategoria]"
+                      dataType="i4"
+                      name="CodigoSubCategoria" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Ano]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Ano" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Mes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Mes" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Archivo Presupuesto\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Presupuesto\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Presupuesto\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Archivo Presupuesto\Origen de Excel"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen de Excel"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Hoja1$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Archivo Presupuesto\Origen de Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  connectionManagerRefId="Package.ConnectionManagers[Administrador de conexiones con Excel]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Categoría]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Categoría]"
+                      length="255"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Categoría]"
+                      name="Categoría"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Subcategoría]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Subcategoría]"
+                      length="255"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Subcategoría]"
+                      name="Subcategoría"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Periodo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Periodo]"
+                      length="255"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Periodo]"
+                      name="Periodo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Año]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Año]"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Año]"
+                      name="Año"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Valor]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Valor]"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Valor]"
+                      name="Valor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Codigo]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Codigo]"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Codigo]"
+                      name="Codigo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CodSubcategoria]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CodSubcategoria]"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CodSubcategoria]"
+                      name="CodSubcategoria"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Categoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Categoría" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Subcategoría]"
+                      dataType="wstr"
+                      length="255"
+                      name="Subcategoría" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Periodo]"
+                      dataType="wstr"
+                      length="255"
+                      name="Periodo" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Año]"
+                      dataType="r8"
+                      name="Año" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Valor]"
+                      dataType="r8"
+                      name="Valor" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Codigo]"
+                      dataType="r8"
+                      name="Codigo" />
+                    <externalMetadataColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CodSubcategoria]"
+                      dataType="r8"
+                      name="CodSubcategoria" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Codigo]"
+                      dataType="r8"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Codigo]"
+                      name="Codigo" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Categoría]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Categoría]"
+                      name="Categoría" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CodSubcategoria]"
+                      dataType="r8"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CodSubcategoria]"
+                      name="CodSubcategoria" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Subcategoría]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Subcategoría]"
+                      name="Subcategoría" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Periodo]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Periodo]"
+                      name="Periodo" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Año]"
+                      dataType="r8"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Año]"
+                      name="Año" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Valor]"
+                      dataType="r8"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Valor]"
+                      name="Valor" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Archivo Presupuesto.Paths[Salida de conversión de datos]"
+              endId="Package\Archivo Presupuesto\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de conversión de datos"
+              startId="Package\Archivo Presupuesto\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Archivo Presupuesto.Paths[Salida de origen de Excel]"
+              endId="Package\Archivo Presupuesto\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de Excel"
+              startId="Package\Archivo Presupuesto\Origen de Excel.Outputs[Salida de origen de Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Eliminar Archivo Presupuesto"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{D7474CE2-CFCE-4BB5-BE26-D4B9EB416F0F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Eliminar Archivo Presupuesto"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="TRUNCATE table Stage.Presupuesto;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{BCF95871-B4F4-4E3E-AB19-D6E4429BC88D}"
+      DTS:From="Package\Eliminar Archivo Presupuesto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Archivo Presupuesto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="174.666666666667,42"
+          Id="Package\Archivo Presupuesto"
+          TopLeft="171,126" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Eliminar Archivo Presupuesto"
+          TopLeft="150,54" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="258.25,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Archivo Presupuesto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.333333333334,42"
+          Id="Package\Archivo Presupuesto\Origen de Excel"
+          TopLeft="238,47" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Archivo Presupuesto\Destino de OLE DB"
+          TopLeft="233,215" />
+        <NodeLayout
+          Size="174.666666666667,42"
+          Id="Package\Archivo Presupuesto\Conversión de datos"
+          TopLeft="227,131" />
+        <EdgeLayout
+          Id="Package\Archivo Presupuesto.Paths[Salida de origen de Excel]"
+          TopLeft="314.5,89">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Archivo Presupuesto.Paths[Salida de conversión de datos]"
+          TopLeft="315.75,173">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Archivo Presupuesto\Origen de Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Archivo Presupuesto\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

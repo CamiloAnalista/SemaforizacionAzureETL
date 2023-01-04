@@ -1,0 +1,1396 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/23/2019 10:37:26 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="COLCAN-BI"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{17C57004-57C8-4164-AE10-36E4AF3A413A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Stage_EronRegionalFidu"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{6A77A278-5F21-4A5E-84AB-ADD7A464C032}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ExcelEronRegionalFidu]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{BECFF843-F654-422A-8042-5EB7C66626F2}"
+      DTS:ObjectName="ExcelEronRegionalFidu">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ParametrosDWH\Semaforizacion\Clientes\Eron-Regional-FIDUPREVISORA.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ExcelPoblacionFidu]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{390116A0-B213-4938-9651-31919506D62A}"
+      DTS:ObjectName="ExcelPoblacionFidu">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ParametrosDWH\Semaforizacion\Clientes\Población ERONES - CONSORCIO PPL.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Stage Archivo Eron Regional Fiduprevisora"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{208c4bbc-29dc-4b73-ac1a-023dbed80cc1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Archivo Eron Regional Fiduprevisora"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[PLAN]"
+                      cachedDataType="r8"
+                      cachedName="PLAN"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PLAN]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[ERON]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ERON"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ERON]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[DEPARTAMENTO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DEPARTAMENTO"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DEPARTAMENTO]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[REGIONAL]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="REGIONAL"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[REGIONAL]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[CÓDIGO ERON]"
+                      cachedDataType="r8"
+                      cachedName="CÓDIGO ERON"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CÓDIGO ERON]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de PLAN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="5"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de PLAN]"
+                      name="Copia de PLAN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PLAN]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ERON]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ERON]"
+                      name="Copia de ERON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ERON]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de DEPARTAMENTO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de DEPARTAMENTO]"
+                      name="Copia de DEPARTAMENTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DEPARTAMENTO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de REGIONAL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de REGIONAL]"
+                      name="Copia de REGIONAL"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[REGIONAL]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CÓDIGO ERON]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CÓDIGO ERON]"
+                      name="Copia de CÓDIGO ERON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CÓDIGO ERON]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[Regional_FIDU]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de ERON]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Copia de ERON"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreEron]"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de ERON]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de REGIONAL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de REGIONAL"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Regional]"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de REGIONAL]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de PLAN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="Copia de PLAN"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_Plan]"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de PLAN]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de CÓDIGO ERON]"
+                      cachedDataType="i4"
+                      cachedName="Copia de CÓDIGO ERON"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Eron]"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CÓDIGO ERON]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de DEPARTAMENTO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copia de DEPARTAMENTO"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Dpto]"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de DEPARTAMENTO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreEron]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="NombreEron" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Dpto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Dpto" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Regional]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Regional" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_Plan]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="BK_Plan" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Eron]"
+                      dataType="i4"
+                      name="Eron" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen de Excel"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Hoja1$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ExcelEronRegionalFidu]"
+                  connectionManagerRefId="Package.ConnectionManagers[ExcelEronRegionalFidu]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PLAN]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[PLAN]"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[PLAN]"
+                      name="PLAN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ERON]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[ERON]"
+                      length="255"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ERON]"
+                      name="ERON"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DEPARTAMENTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DEPARTAMENTO]"
+                      length="255"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DEPARTAMENTO]"
+                      name="DEPARTAMENTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[REGIONAL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[REGIONAL]"
+                      length="255"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[REGIONAL]"
+                      name="REGIONAL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CÓDIGO ERON]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CÓDIGO ERON]"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].Columns[CÓDIGO ERON]"
+                      name="CÓDIGO ERON"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[PLAN]"
+                      dataType="r8"
+                      name="PLAN" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[ERON]"
+                      dataType="wstr"
+                      length="255"
+                      name="ERON" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DEPARTAMENTO]"
+                      dataType="wstr"
+                      length="255"
+                      name="DEPARTAMENTO" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[REGIONAL]"
+                      dataType="wstr"
+                      length="255"
+                      name="REGIONAL" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[CÓDIGO ERON]"
+                      dataType="r8"
+                      name="CÓDIGO ERON" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[PLAN]"
+                      dataType="r8"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[PLAN]"
+                      name="PLAN" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ERON]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ERON]"
+                      name="ERON" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DEPARTAMENTO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DEPARTAMENTO]"
+                      name="DEPARTAMENTO" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[REGIONAL]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[REGIONAL]"
+                      name="REGIONAL" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CÓDIGO ERON]"
+                      dataType="r8"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[CÓDIGO ERON]"
+                      name="CÓDIGO ERON" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage Archivo Eron Regional Fiduprevisora.Paths[Salida de conversión de datos]"
+              endId="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Salida de conversión de datos"
+              startId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Stage Archivo Eron Regional Fiduprevisora.Paths[Salida de origen de Excel]"
+              endId="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de Excel"
+              startId="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel.Outputs[Salida de origen de Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stage Archivo Poblacion Fiduprevisora"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{af4c9d1d-7888-4d94-b6ee-da15e47a2a6f}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stage Archivo Poblacion Fiduprevisora"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversión de datos;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversión de datos"
+              name="Conversión de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos]"
+                  name="Entrada de conversión de datos">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[CODIGOERON]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CODIGOERON"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[CODIGOERON]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[NOMBREERON]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOMBREERON"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NOMBREERON]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[NUMEROPACIENTES]"
+                      cachedDataType="r8"
+                      cachedName="NUMEROPACIENTES"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NUMEROPACIENTES]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos].Columns[PERIODO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERIODO"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[PERIODO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos]"
+                  exclusionGroup="1"
+                  name="Salida de conversión de datos"
+                  synchronousInputId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CODIGOERON]"
+                      dataType="ui8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CODIGOERON]"
+                      name="Copia de CODIGOERON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[CODIGOERON]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBREERON]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBREERON]"
+                      name="Copia de NOMBREERON"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NOMBREERON]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NUMEROPACIENTES]"
+                      dataType="ui4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NUMEROPACIENTES]"
+                      name="Copia de NUMEROPACIENTES"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NUMEROPACIENTES]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de PERIODO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de PERIODO]"
+                      name="Copia de PERIODO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica la columna de entrada usada como origen de datos para la conversión."
+                          name="SourceInputColumnLineageID">#{Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[PERIODO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de conversión de datos"
+                  synchronousInputId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de error de conversión de datos].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[Poblacion_Eron_Fidu]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de CODIGOERON]"
+                      cachedDataType="ui8"
+                      cachedName="Copia de CODIGOERON"
+                      externalMetadataColumnId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_Eron]"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de CODIGOERON]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de NOMBREERON]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Copia de NOMBREERON"
+                      externalMetadataColumnId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreEron]"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NOMBREERON]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de NUMEROPACIENTES]"
+                      cachedDataType="ui4"
+                      cachedName="Copia de NUMEROPACIENTES"
+                      externalMetadataColumnId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[numero_pacientes]"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de NUMEROPACIENTES]" />
+                    <inputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copia de PERIODO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="Copia de PERIODO"
+                      externalMetadataColumnId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[periodo]"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos].Columns[Copia de PERIODO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_Eron]"
+                      dataType="i4"
+                      name="BK_Eron" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreEron]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="NombreEron" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[numero_pacientes]"
+                      dataType="i4"
+                      name="numero_pacientes" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[periodo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="periodo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen de Excel 1"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">'Hoja 1$'</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ExcelPoblacionFidu]"
+                  connectionManagerRefId="Package.ConnectionManagers[ExcelPoblacionFidu]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[CODIGOERON]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[CODIGOERON]"
+                      length="255"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[CODIGOERON]"
+                      name="CODIGOERON"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NOMBREERON]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[NOMBREERON]"
+                      length="255"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NOMBREERON]"
+                      name="NOMBREERON"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NUMEROPACIENTES]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[NUMEROPACIENTES]"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[NUMEROPACIENTES]"
+                      name="NUMEROPACIENTES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[PERIODO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[PERIODO]"
+                      length="255"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].Columns[PERIODO]"
+                      name="PERIODO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[CODIGOERON]"
+                      dataType="wstr"
+                      length="255"
+                      name="CODIGOERON" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[NOMBREERON]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOMBREERON" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[NUMEROPACIENTES]"
+                      dataType="r8"
+                      name="NUMEROPACIENTES" />
+                    <externalMetadataColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel].ExternalColumns[PERIODO]"
+                      dataType="wstr"
+                      length="255"
+                      name="PERIODO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[CODIGOERON]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[CODIGOERON]"
+                      name="CODIGOERON" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[NOMBREERON]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[NOMBREERON]"
+                      name="NOMBREERON" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[NUMEROPACIENTES]"
+                      dataType="r8"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[NUMEROPACIENTES]"
+                      name="NUMEROPACIENTES" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[PERIODO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[PERIODO]"
+                      name="PERIODO" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Stage Archivo Poblacion Fiduprevisora.Paths[Salida de conversión de datos]"
+              endId="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Salida de conversión de datos"
+              startId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Outputs[Salida de conversión de datos]" />
+            <path
+              refId="Package\Stage Archivo Poblacion Fiduprevisora.Paths[Salida de origen de Excel]"
+              endId="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos.Inputs[Entrada de conversión de datos]"
+              name="Salida de origen de Excel"
+              startId="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1.Outputs[Salida de origen de Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Fiduprevisora"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{99766386-7217-4782-B9FD-202F8BD29DFF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Fiduprevisora"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{556F0240-B370-4925-A2F1-B6E0693E6F04}"
+          SQLTask:SqlStatementSource="truncate table Stage.Poblacion_Eron_Fidu;&#xA;truncate table Stage.Regional_FIDU;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{38FEA716-7130-4A78-A076-DF782916E351}"
+      DTS:From="Package\Stage Archivo Eron Regional Fiduprevisora"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Stage Archivo Poblacion Fiduprevisora" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4B1DBDB6-0EE1-46A8-A153-96645D3BECEE}"
+      DTS:From="Package\Truncate Fiduprevisora"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Stage Archivo Eron Regional Fiduprevisora" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="278,42"
+          Id="Package\Stage Archivo Eron Regional Fiduprevisora"
+          TopLeft="282,155" />
+        <NodeLayout
+          Size="258,42"
+          Id="Package\Stage Archivo Poblacion Fiduprevisora"
+          TopLeft="291,244" />
+        <NodeLayout
+          Size="186.666666666667,42"
+          Id="Package\Truncate Fiduprevisora"
+          TopLeft="335,68" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="420.5,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="424.75,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Stage Archivo Eron Regional Fiduprevisora">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.333333333334,42"
+          Id="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel"
+          TopLeft="410,48" />
+        <NodeLayout
+          Size="174.666666666667,42"
+          Id="Package\Stage Archivo Eron Regional Fiduprevisora\Conversión de datos"
+          TopLeft="401,130" />
+        <NodeLayout
+          Size="177.333333333334,42"
+          Id="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination"
+          TopLeft="399.666666666667,211.333333333333" />
+        <EdgeLayout
+          Id="Package\Stage Archivo Eron Regional Fiduprevisora.Paths[Salida de conversión de datos]"
+          TopLeft="488.333333333333,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.333333333333"
+              Start="0,0"
+              End="0,31.833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stage Archivo Eron Regional Fiduprevisora.Paths[Salida de origen de Excel]"
+          TopLeft="487.5,90">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Archivo Eron Regional Fiduprevisora\Origen de Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Archivo Eron Regional Fiduprevisora\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Stage Archivo Poblacion Fiduprevisora">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177.333333333334,42"
+          Id="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination"
+          TopLeft="246.666666666667,253.333333333333" />
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\Stage Archivo Poblacion Fiduprevisora\Conversión de datos"
+          TopLeft="250.166662059724,163.333329226573" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1"
+          TopLeft="259,71" />
+        <EdgeLayout
+          Id="Package\Stage Archivo Poblacion Fiduprevisora.Paths[Salida de origen de Excel]"
+          TopLeft="338.833331029862,113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.333329226573"
+              Start="0,0"
+              End="0,42.833329226573">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.833329226573" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Stage Archivo Poblacion Fiduprevisora.Paths[Salida de conversión de datos]"
+          TopLeft="336.416664363196,206.333329226573">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.00000410676"
+              Start="0,0"
+              End="0,39.50000410676">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.50000410676" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Archivo Poblacion Fiduprevisora\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Stage Archivo Poblacion Fiduprevisora\Origen de Excel 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

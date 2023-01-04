@@ -1,0 +1,2390 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2021 2:53:58 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DEV-ANALITICA"
+  DTS:CreatorName="LABCOLCAN\cbenavides"
+  DTS:DTSID="{48ABAED9-A399-4CB7-9F0D-13DC4089B4D3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="DWH_Parametros"
+  DTS:PackageType="5"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{564F38EE-3070-49AA-84E3-37BED1818C8E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Parametros"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DD4E6F58-4849-4C43-B904-4453FB9E9555}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Parametros"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Parametros\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimParametro]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Parametros\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[BK_IDParametro]"
+                      cachedDataType="i4"
+                      cachedName="BK_IDParametro"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IDParametro]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IDParametro]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[BK_CodigoParametro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="BK_CodigoParametro"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_CodigoParametro]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_CodigoParametro]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[CodigoFacturacion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CodigoFacturacion"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodigoFacturacion]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoFacturacion]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Abreviatura]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Abreviatura"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Abreviatura]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Abreviatura]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[NombreParametro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="NombreParametro"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreParametro]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[NombreParametro]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[TituloParametro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="TituloParametro"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TituloParametro]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TituloParametro]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[TiempoOportunidad]"
+                      cachedDataType="i2"
+                      cachedName="TiempoOportunidad"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TiempoOportunidad]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TiempoOportunidad]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[EdadMinima]"
+                      cachedDataType="ui1"
+                      cachedName="EdadMinima"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMinima]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMinima]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[EdadMaxima]"
+                      cachedDataType="ui1"
+                      cachedName="EdadMaxima"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMaxima]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMaxima]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Sexo"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Estado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Estado"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Unidades]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Unidades"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Unidades]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Unidades]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Volumen]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Volumen"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Volumen]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Volumen]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Formula]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Formula"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Formula]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Formula]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Nivel]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nivel"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nivel]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nivel]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[CodigoCups]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CodigoCups"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodigoCups]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoCups]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[FechaInicio]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FechaInicio"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaInicio]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaInicio]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[FechaFinal]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FechaFinal"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaFinal]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaFinal]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Muestra]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Muestra"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Muestra]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Muestra]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[IDSeccion]"
+                      cachedDataType="i4"
+                      cachedName="IDSeccion"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDSeccion]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDSeccion]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Seccion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Seccion"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Seccion]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Seccion]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[SeccionAgrupada]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SeccionAgrupada"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SeccionAgrupada]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionAgrupada]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[SeccionPadre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SeccionPadre"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SeccionPadre]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionPadre]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[Programado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Programado"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Programado]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Programado]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[OportunidadControl]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="OportunidadControl"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OportunidadControl]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[OportunidadControl]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[POS]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="POS"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[POS]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[POS]" />
+                    <inputColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].Columns[TextoCodificado]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="TextoCodificado"
+                      externalMetadataColumnId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TextoCodificado]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TextoCodificado]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SRK_Parametro]"
+                      dataType="i4"
+                      name="SRK_Parametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_IDParametro]"
+                      dataType="i4"
+                      name="BK_IDParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[BK_CodigoParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BK_CodigoParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodigoFacturacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CodigoFacturacion" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Abreviatura]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Abreviatura" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="NombreParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TituloParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="TituloParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TiempoOportunidad]"
+                      dataType="i2"
+                      name="TiempoOportunidad" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMinima]"
+                      dataType="ui1"
+                      name="EdadMinima" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EdadMaxima]"
+                      dataType="ui1"
+                      name="EdadMaxima" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Estado" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Unidades]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Unidades" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Volumen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Volumen" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Formula]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Formula" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nivel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nivel" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Fuente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Fuente" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CodigoCups]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CodigoCups" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaInicio]"
+                      dataType="dbTimeStamp"
+                      name="FechaInicio" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaFinal]"
+                      dataType="dbTimeStamp"
+                      name="FechaFinal" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Muestra" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IDSeccion]"
+                      dataType="i4"
+                      name="IDSeccion" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Seccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Seccion" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SeccionAgrupada]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="SeccionAgrupada" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[SeccionPadre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="SeccionPadre" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Programado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Programado" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[OportunidadControl]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="OportunidadControl" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[POS]"
+                      codePage="1252"
+                      dataType="text"
+                      name="POS" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[TextoCodificado]"
+                      codePage="1252"
+                      dataType="text"
+                      name="TextoCodificado" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Parametros\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Parametros\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Parametros\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Parametros\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Parametros\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Parametros\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimParametro] SET [Abreviatura] = ?,[BK_CodigoParametro] = ?,[CodigoCups] = ?,[CodigoFacturacion] = ?,[Estado] = ?,[IDSeccion] = ?,[Muestra] = ?,[Nivel] = ?,[NombreParametro] = ?,[OportunidadControl] = ?,[Seccion] = ?,[SeccionAgrupada] = ?,[SeccionPadre] = ?,[TiempoOportunidad] = ?,[TituloParametro] = ? WHERE [BK_IDParametro] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Parametros\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[Abreviatura]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Abreviatura"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Abreviatura]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[BK_CodigoParametro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="BK_CodigoParametro"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_CodigoParametro]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[BK_IDParametro]"
+                      cachedDataType="i4"
+                      cachedName="BK_IDParametro"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IDParametro]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[CodigoCups]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CodigoCups"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoCups]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[CodigoFacturacion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CodigoFacturacion"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoFacturacion]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[Estado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Estado"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[IDSeccion]"
+                      cachedDataType="i4"
+                      cachedName="IDSeccion"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDSeccion]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[Muestra]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Muestra"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Muestra]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[Nivel]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nivel"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nivel]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[NombreParametro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="NombreParametro"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[NombreParametro]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[OportunidadControl]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="OportunidadControl"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[OportunidadControl]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[Seccion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Seccion"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Seccion]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[SeccionAgrupada]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SeccionAgrupada"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionAgrupada]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[SeccionPadre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SeccionPadre"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionPadre]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[TiempoOportunidad]"
+                      cachedDataType="i2"
+                      cachedName="TiempoOportunidad"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TiempoOportunidad]" />
+                    <inputColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].Columns[TituloParametro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="TituloParametro"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TituloParametro]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="i4"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_11">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="Param_12">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      dataType="i2"
+                      name="Param_13">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="Param_14">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      dataType="i4"
+                      name="Param_15">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Parametros\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Parametros\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Parametros\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Parametros\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Parametros\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Stage].[Parametro]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Parametros\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IDParametro]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_IDParametro]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IDParametro]"
+                      name="BK_IDParametro"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_CodigoParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_CodigoParametro]"
+                      length="10"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_CodigoParametro]"
+                      name="BK_CodigoParametro"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoFacturacion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoFacturacion]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoFacturacion]"
+                      name="CodigoFacturacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Abreviatura]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Abreviatura]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Abreviatura]"
+                      name="Abreviatura"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[NombreParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NombreParametro]"
+                      length="1000"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[NombreParametro]"
+                      name="NombreParametro"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TituloParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TituloParametro]"
+                      length="1000"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TituloParametro]"
+                      name="TituloParametro"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TiempoOportunidad]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TiempoOportunidad]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TiempoOportunidad]"
+                      name="TiempoOportunidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMinima]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EdadMinima]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMinima]"
+                      name="EdadMinima"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMaxima]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EdadMaxima]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMaxima]"
+                      name="EdadMaxima"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Sexo]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]"
+                      name="Sexo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]"
+                      name="Estado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Unidades]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Unidades]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Unidades]"
+                      name="Unidades"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Volumen]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Volumen]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Volumen]"
+                      name="Volumen"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Formula]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Formula]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Formula]"
+                      name="Formula"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nivel]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nivel]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nivel]"
+                      name="Nivel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoCups]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoCups]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoCups]"
+                      name="CodigoCups"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaInicio]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaInicio]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaInicio]"
+                      name="FechaInicio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaFinal]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaFinal]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaFinal]"
+                      name="FechaFinal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Muestra]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Muestra]"
+                      name="Muestra"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDSeccion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDSeccion]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDSeccion]"
+                      name="IDSeccion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Seccion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Seccion]"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Seccion]"
+                      name="Seccion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[OportunidadControl]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OportunidadControl]"
+                      length="100"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[OportunidadControl]"
+                      name="OportunidadControl"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[POS]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[POS]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[POS]"
+                      name="POS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionAgrupada]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SeccionAgrupada]"
+                      length="100"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionAgrupada]"
+                      name="SeccionAgrupada"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionPadre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SeccionPadre]"
+                      length="100"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionPadre]"
+                      name="SeccionPadre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TextoCodificado]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TextoCodificado]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TextoCodificado]"
+                      name="TextoCodificado"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Programado]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Programado]"
+                      length="100"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Programado]"
+                      name="Programado"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_IDParametro]"
+                      dataType="i4"
+                      name="BK_IDParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BK_CodigoParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BK_CodigoParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoFacturacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CodigoFacturacion" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Abreviatura]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Abreviatura" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NombreParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="NombreParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TituloParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="TituloParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TiempoOportunidad]"
+                      dataType="i2"
+                      name="TiempoOportunidad" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EdadMinima]"
+                      dataType="ui1"
+                      name="EdadMinima" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EdadMaxima]"
+                      dataType="ui1"
+                      name="EdadMaxima" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Sexo" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Estado" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Unidades]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Unidades" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Volumen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Volumen" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Formula]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Formula" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Nivel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nivel" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CodigoCups]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CodigoCups" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaInicio]"
+                      dataType="dbTimeStamp"
+                      name="FechaInicio" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FechaFinal]"
+                      dataType="dbTimeStamp"
+                      name="FechaFinal" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Muestra" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IDSeccion]"
+                      dataType="i4"
+                      name="IDSeccion" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Seccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Seccion" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OportunidadControl]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="OportunidadControl" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[POS]"
+                      codePage="1252"
+                      dataType="text"
+                      name="POS" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SeccionAgrupada]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="SeccionAgrupada" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SeccionPadre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="SeccionPadre" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TextoCodificado]"
+                      codePage="1252"
+                      dataType="text"
+                      name="TextoCodificado" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Programado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Programado" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_IDParametro]"
+                      dataType="i4"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_IDParametro]"
+                      name="BK_IDParametro" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_CodigoParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BK_CodigoParametro]"
+                      name="BK_CodigoParametro" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoFacturacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoFacturacion]"
+                      name="CodigoFacturacion" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Abreviatura]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Abreviatura]"
+                      name="Abreviatura" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NombreParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NombreParametro]"
+                      name="NombreParametro" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TituloParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TituloParametro]"
+                      name="TituloParametro" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TiempoOportunidad]"
+                      dataType="i2"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TiempoOportunidad]"
+                      name="TiempoOportunidad" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EdadMinima]"
+                      dataType="ui1"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EdadMinima]"
+                      name="EdadMinima" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EdadMaxima]"
+                      dataType="ui1"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EdadMaxima]"
+                      name="EdadMaxima" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Sexo]"
+                      name="Sexo" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Estado]"
+                      name="Estado" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Unidades]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Unidades]"
+                      name="Unidades" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Volumen]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Volumen]"
+                      name="Volumen" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Formula]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Formula]"
+                      name="Formula" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nivel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Nivel]"
+                      name="Nivel" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoCups]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CodigoCups]"
+                      name="CodigoCups" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaInicio]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaInicio]"
+                      name="FechaInicio" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaFinal]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FechaFinal]"
+                      name="FechaFinal" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Muestra]"
+                      name="Muestra" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDSeccion]"
+                      dataType="i4"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IDSeccion]"
+                      name="IDSeccion" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Seccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Seccion]"
+                      name="Seccion" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SeccionAgrupada]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SeccionAgrupada]"
+                      name="SeccionAgrupada" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SeccionPadre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SeccionPadre]"
+                      name="SeccionPadre" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Programado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Programado]"
+                      name="Programado" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OportunidadControl]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OportunidadControl]"
+                      name="OportunidadControl" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[POS]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[POS]"
+                      name="POS" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TextoCodificado]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TextoCodificado]"
+                      name="TextoCodificado" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Parametros\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [Abreviatura], [BK_CodigoParametro], [BK_IDParametro], [CodigoCups], [CodigoFacturacion], [Estado], [IDSeccion], [Muestra], [Nivel], [NombreParametro], [OportunidadControl], [Seccion], [SeccionAgrupada], [SeccionPadre], [TiempoOportunidad], [TituloParametro] FROM [dbo].[DimParametro]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Parametros\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="{556F0240-B370-4925-A2F1-B6E0693E6F04}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Semaforizacion]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Abreviatura]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Abreviatura"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Abreviatura]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Abreviatura]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[BK_CodigoParametro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="BK_CodigoParametro"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[BK_CodigoParametro]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_CodigoParametro]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[BK_IDParametro]"
+                      cachedDataType="i4"
+                      cachedName="BK_IDParametro"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[BK_IDParametro]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IDParametro]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[CodigoCups]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CodigoCups"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CodigoCups]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoCups]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[CodigoFacturacion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CodigoFacturacion"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CodigoFacturacion]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoFacturacion]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Estado]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Estado"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Estado]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[IDSeccion]"
+                      cachedDataType="i4"
+                      cachedName="IDSeccion"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IDSeccion]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[IDSeccion]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Muestra]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Muestra"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Muestra]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Muestra]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Nivel]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Nivel"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Nivel]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Nivel]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[NombreParametro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="NombreParametro"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NombreParametro]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[NombreParametro]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[OportunidadControl]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="OportunidadControl"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OportunidadControl]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[OportunidadControl]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Seccion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Seccion"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Seccion]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[Seccion]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[SeccionAgrupada]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SeccionAgrupada"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SeccionAgrupada]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionAgrupada]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[SeccionPadre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SeccionPadre"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SeccionPadre]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionPadre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TiempoOportunidad]"
+                      cachedDataType="i2"
+                      cachedName="TiempoOportunidad"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TiempoOportunidad]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TiempoOportunidad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TituloParametro]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="TituloParametro"
+                      externalMetadataColumnId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TituloParametro]"
+                      lineageId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output].Columns[TituloParametro]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Abreviatura]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Abreviatura" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[BK_CodigoParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BK_CodigoParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[BK_IDParametro]"
+                      dataType="i4"
+                      name="BK_IDParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CodigoCups]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CodigoCups" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CodigoFacturacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CodigoFacturacion" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Estado]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Estado" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[IDSeccion]"
+                      dataType="i4"
+                      name="IDSeccion" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Muestra]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Muestra" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Nivel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Nivel" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NombreParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="NombreParametro" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[OportunidadControl]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="OportunidadControl" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Seccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Seccion" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SeccionAgrupada]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="SeccionAgrupada" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[SeccionPadre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="SeccionPadre" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TiempoOportunidad]"
+                      dataType="i2"
+                      name="TiempoOportunidad" />
+                    <externalMetadataColumn
+                      refId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TituloParametro]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="TituloParametro" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Parametros\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Parametros\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Parametros\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Parametros\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Parametros\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Parametros\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Parametros.Paths[Changing Attribute Updates Output]"
+              endId="Package\Parametros\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Changing Attribute Updates Output"
+              startId="Package\Parametros\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]" />
+            <path
+              refId="Package\Parametros.Paths[New Output]"
+              endId="Package\Parametros\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\Parametros\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
+              refId="Package\Parametros.Paths[OLE DB Source Output]"
+              endId="Package\Parametros\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+              name="OLE DB Source Output"
+              startId="Package\Parametros\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Parametros"
+          TopLeft="187,79" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Parametros">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Parametros\OLE DB Source"
+          TopLeft="237,17.5" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Parametros\Slowly Changing Dimension"
+          TopLeft="207.5,107.5" />
+        <EdgeLayout
+          Id="Package\Parametros.Paths[OLE DB Source Output]"
+          TopLeft="312,59.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Parametros\Insert Destination"
+          TopLeft="114.5,210.5" />
+        <EdgeLayout
+          Id="Package\Parametros.Paths[New Output]"
+          TopLeft="278.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-82.5,61"
+              Start="0,0"
+              End="-82.5,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.6780626780627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.6780626780627"
+                    Point2="0,24.6780626780627"
+                    Point3="-4,24.6780626780627" />
+                  <mssgle:LineSegment
+                    End="-78.5,24.6780626780627" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-78.5,24.6780626780627"
+                    Point2="-82.5,24.6780626780627"
+                    Point3="-82.5,28.6780626780627" />
+                  <mssgle:LineSegment
+                    End="-82.5,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-68.34138671875,29.6780626780627,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Parametros\OLE DB Command"
+          TopLeft="391,209.5" />
+        <EdgeLayout
+          Id="Package\Parametros.Paths[Changing Attribute Updates Output]"
+          TopLeft="345.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="128.5,60"
+              Start="0,0"
+              End="128.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2735042735043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2735042735043"
+                    Point2="0,24.2735042735043"
+                    Point3="4,24.2735042735043" />
+                  <mssgle:LineSegment
+                    End="124.5,24.2735042735043" />
+                  <mssgle:CubicBezierSegment
+                    Point1="124.5,24.2735042735043"
+                    Point2="128.5,24.2735042735043"
+                    Point3="128.5,28.2735042735043" />
+                  <mssgle:LineSegment
+                    End="128.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-14.28390625,29.2735042735043,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Parametros\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Parametros\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{556F0240-B370-4925-A2F1-B6E0693E6F04}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DimParametro]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Abreviatura]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Abreviatura&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_CodigoParametro]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;BK_CodigoParametro&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[BK_IDParametro]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;BK_IDParametro&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoCups]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CodigoCups&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[CodigoFacturacion]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CodigoFacturacion&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMaxima]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;EdadMaxima&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[EdadMinima]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;EdadMinima&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Estado]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Estado&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaFinal]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;FechaFinal&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[FechaInicio]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;FechaInicio&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Formula]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Formula&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[IDSeccion]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;IDSeccion&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Muestra]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Muestra&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Nivel]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Nivel&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[NombreParametro]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;NombreParametro&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[OportunidadControl]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;OportunidadControl&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[POS]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;POS&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Programado]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Programado&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Seccion]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Seccion&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionAgrupada]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SeccionAgrupada&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[SeccionPadre]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SeccionPadre&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Sexo]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Sexo&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[TextoCodificado]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;TextoCodificado&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[TiempoOportunidad]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;TiempoOportunidad&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[TituloParametro]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;TituloParametro&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Unidades]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Unidades&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLE DB Source.Outputs[OLE DB Source Output].Columns[Volumen]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Volumen&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
